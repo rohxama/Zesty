@@ -4,6 +4,7 @@ import { z } from 'zod'
 import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
 import { login, clearError } from '@/store/slices/authSlice'
 import toast from 'react-hot-toast'
+import { Mail, Lock, LogIn } from 'lucide-react'
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email'),
@@ -34,56 +35,168 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-[60vh] items-center justify-center">
-      <div className="w-full max-w-md space-y-6 rounded-lg border p-8">
-        <h1 className="text-center text-3xl font-bold">Login</h1>
+    <div className="flex min-h-[70vh] items-center justify-center">
+      <div className="card w-full max-w-md p-8">
+        {/* Header */}
+        <div className="mb-8 text-center">
+          <div
+            className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl"
+            style={{ background: 'var(--gradient-primary)' }}
+          >
+            <LogIn size={28} className="text-white" />
+          </div>
+          <h1
+            className="text-3xl font-bold"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            Welcome Back
+          </h1>
+          <p
+            className="mt-2"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            Sign in to your account to continue
+          </p>
+        </div>
 
+        {/* Error Message */}
         {error && (
-          <div className="rounded bg-red-100 p-3 text-red-600">
-            {error}
-            <button onClick={() => dispatch(clearError())} className="ml-2 underline">
+          <div
+            className="mb-6 rounded-xl p-4"
+            style={{
+              backgroundColor: 'rgba(255, 77, 77, 0.1)',
+              border: '1px solid rgba(255, 77, 77, 0.2)',
+            }}
+          >
+            <p className="text-sm" style={{ color: 'var(--color-primary-red)' }}>
+              {error}
+            </p>
+            <button
+              onClick={() => dispatch(clearError())}
+              className="mt-1 text-sm underline"
+              style={{ color: 'var(--color-text-muted)' }}
+            >
               Dismiss
             </button>
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email
+            <label
+              htmlFor="email"
+              className="mb-2 block text-sm font-medium"
+              style={{ color: 'var(--color-text-secondary)' }}
+            >
+              Email Address
             </label>
-            <input
-              id="email"
-              type="email"
-              {...register('email')}
-              className="mt-1 w-full rounded border px-3 py-2"
-              placeholder="you@example.com"
-            />
-            {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
+            <div className="relative">
+              <Mail
+                size={18}
+                className="absolute left-4 top-1/2 -translate-y-1/2"
+                style={{ color: 'var(--color-text-muted)' }}
+              />
+              <input
+                id="email"
+                type="email"
+                {...register('email')}
+                className="input w-full pl-12"
+                placeholder="you@example.com"
+              />
+            </div>
+            {errors.email && (
+              <p className="mt-2 text-sm" style={{ color: 'var(--color-primary-red)' }}>
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium">
+            <label
+              htmlFor="password"
+              className="mb-2 block text-sm font-medium"
+              style={{ color: 'var(--color-text-secondary)' }}
+            >
               Password
             </label>
-            <input
-              id="password"
-              type="password"
-              {...register('password')}
-              className="mt-1 w-full rounded border px-3 py-2"
-              placeholder="••••••"
-            />
-            {errors.password && <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>}
+            <div className="relative">
+              <Lock
+                size={18}
+                className="absolute left-4 top-1/2 -translate-y-1/2"
+                style={{ color: 'var(--color-text-muted)' }}
+              />
+              <input
+                id="password"
+                type="password"
+                {...register('password')}
+                className="input w-full pl-12"
+                placeholder="••••••••"
+              />
+            </div>
+            {errors.password && (
+              <p className="mt-2 text-sm" style={{ color: 'var(--color-primary-red)' }}>
+                {errors.password.message}
+              </p>
+            )}
+          </div>
+
+          <div className="flex items-center justify-between">
+            <label className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                className="h-4 w-4 rounded"
+                style={{ accentColor: 'var(--color-primary-red)' }}
+              />
+              <span
+                className="text-sm"
+                style={{ color: 'var(--color-text-secondary)' }}
+              >
+                Remember me
+              </span>
+            </label>
+            <a
+              href="#"
+              className="text-sm transition-colors hover:text-[var(--color-primary-red)]"
+              style={{ color: 'var(--color-primary-red)' }}
+            >
+              Forgot password?
+            </a>
           </div>
 
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full rounded-lg bg-orange-500 py-3 text-white transition-colors hover:bg-orange-600 disabled:opacity-50"
+            className="btn-primary flex w-full items-center justify-center gap-2"
           >
-            {isLoading ? 'Logging in...' : 'Login'}
+            {isLoading ? (
+              <>
+                <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                Signing in...
+              </>
+            ) : (
+              <>
+                <LogIn size={18} />
+                Sign In
+              </>
+            )}
           </button>
         </form>
+
+        {/* Footer */}
+        <p
+          className="mt-6 text-center text-sm"
+          style={{ color: 'var(--color-text-muted)' }}
+        >
+          Don't have an account?{' '}
+          <a
+            href="#"
+            className="font-medium transition-colors hover:text-[var(--color-secondary-orange)]"
+            style={{ color: 'var(--color-secondary-orange)' }}
+          >
+            Sign up
+          </a>
+        </p>
       </div>
     </div>
   )
