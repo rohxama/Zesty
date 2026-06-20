@@ -22,9 +22,12 @@ export default function SplashPage() {
       className="flex h-screen flex-col items-center justify-center overflow-hidden"
       style={{
         backgroundColor: 'var(--color-bg-main)',
-        transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease',
-        transform: exiting ? 'translateX(-100%)' : 'translateX(0)',
+        transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease',
+        transform: exiting ? 'translateY(-100%)' : 'translateY(0)',
         opacity: exiting ? 0 : 1,
+        position: 'fixed',
+        inset: 0,
+        zIndex: 50,
       }}
     >
       {/* Logo + Brand */}
@@ -37,9 +40,9 @@ export default function SplashPage() {
         }}
       >
         <img
-          src="/logo.svg"
-          alt="Wagba Logo"
-          className="w-28 h-28"
+          src="/logo.png"
+          alt="Zesty Logo"
+          className="w-28 h-28 object-contain"
           style={{
             filter: 'drop-shadow(0 0 30px rgba(255, 77, 77, 0.3))',
           }}
@@ -53,7 +56,7 @@ export default function SplashPage() {
             backgroundClip: 'text',
           }}
         >
-          Wagba
+          Zesty
         </h1>
       </div>
     </div>
