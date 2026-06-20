@@ -143,15 +143,14 @@ const startServer = async () => {
   try {
     await mongoose.connect(config.mongoUri)
     logger.info('Connected to MongoDB')
-
-    httpServer.listen(config.port, () => {
-      logger.info(`Server running on port ${config.port} in ${config.nodeEnv} mode`)
-      logger.info(`API Documentation: http://localhost:${config.port}/api/docs`)
-    })
   } catch (error) {
-    logger.error('Failed to connect to MongoDB:', error)
-    process.exit(1)
+    logger.warn('MongoDB not available — running without database')
   }
+
+  httpServer.listen(config.port, () => {
+    logger.info(`Server running on port ${config.port} in ${config.nodeEnv} mode`)
+    logger.info(`API Documentation: http://localhost:${config.port}/api/docs`)
+  })
 }
 
 startServer()
