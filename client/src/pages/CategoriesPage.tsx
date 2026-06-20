@@ -32,13 +32,15 @@ export default function CategoriesPage() {
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
         <h1
-          className="heading-md"
+          className="font-heading text-lg font-bold"
           style={{ color: 'var(--color-text-primary)' }}
         >
           Categories
@@ -47,7 +49,7 @@ export default function CategoriesPage() {
           className="flex h-10 w-10 items-center justify-center rounded-full"
           style={{ backgroundColor: 'var(--color-bg-card)' }}
         >
-          <Search size={20} style={{ color: 'var(--color-text-primary)' }} />
+          <Search size={18} style={{ color: 'var(--color-text-primary)' }} />
         </button>
       </div>
 
@@ -61,13 +63,13 @@ export default function CategoriesPage() {
           >
             <span className="mb-3 text-5xl">{category.emoji}</span>
             <h3
-              className="font-heading text-lg font-semibold"
+              className="font-heading text-base font-semibold"
               style={{ color: 'var(--color-text-primary)' }}
             >
               {category.name}
             </h3>
             <p
-              className="text-sm mt-1"
+              className="mt-1 text-xs"
               style={{ color: 'var(--color-text-muted)' }}
             >
               {category.count} items
@@ -85,100 +87,36 @@ export default function CategoriesPage() {
         }}
       >
         <div className="flex items-center justify-around">
-          <button
-            className="flex flex-col items-center gap-1"
-            onClick={() => navigate('/home')}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
+          <button className="flex flex-col items-center gap-1" onClick={() => navigate('/home')}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
-            <span
-              className="text-xs"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              Home
-            </span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Home</span>
           </button>
-          <button
-            className="flex flex-col items-center gap-1"
-            onClick={() => navigate('/categories')}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              style={{ color: 'var(--color-primary-red)' }}
-            >
+          <button className="flex flex-col items-center gap-1">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-primary-red)' }}>
               <rect x="3" y="3" width="7" height="7" />
               <rect x="14" y="3" width="7" height="7" />
               <rect x="14" y="14" width="7" height="7" />
               <rect x="3" y="14" width="7" height="7" />
             </svg>
-            <span
-              className="text-xs font-medium"
-              style={{ color: 'var(--color-primary-red)' }}
-            >
-              Categories
-            </span>
+            <span className="text-xs font-medium" style={{ color: 'var(--color-primary-red)' }}>Categories</span>
           </button>
-          <button
-            className="flex flex-col items-center gap-1"
-            onClick={() => navigate('/cart')}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
+          <button className="flex flex-col items-center gap-1" onClick={() => navigate('/cart')}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
               <circle cx="9" cy="21" r="1" />
               <circle cx="20" cy="21" r="1" />
               <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
             </svg>
-            <span
-              className="text-xs"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              My Cart
-            </span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>My Cart</span>
           </button>
-          <button
-            className="flex flex-col items-center gap-1"
-            onClick={() => navigate('/profile')}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
+          <button className="flex flex-col items-center gap-1" onClick={() => navigate('/profile')}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
               <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
-            <span
-              className="text-xs"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              Profile
-            </span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Profile</span>
           </button>
         </div>
       </div>

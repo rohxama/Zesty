@@ -12,29 +12,32 @@ export default function SignInPage() {
       <div className="flex justify-end px-6 pt-6">
         <button
           onClick={() => navigate('/home')}
-          className="text-sm font-medium"
-          style={{ color: 'var(--color-text-muted)' }}
+          className="rounded-full px-4 py-2 text-sm font-medium"
+          style={{
+            backgroundColor: 'var(--color-bg-card)',
+            color: 'var(--color-text-muted)',
+          }}
         >
           Skip Now
         </button>
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col px-6 pt-8">
+      <div className="flex flex-1 flex-col px-6 pt-4">
         {/* Header */}
         <h1
-          className="heading-xl mb-8"
+          className="font-heading text-3xl font-bold"
           style={{ color: 'var(--color-text-primary)' }}
         >
           Sign in
         </h1>
 
         {/* Form */}
-        <div className="space-y-5">
+        <div className="mt-8 space-y-5">
           {/* Email Field */}
           <div>
             <label
-              className="text-sm mb-2 flex items-center gap-2 font-medium"
+              className="mb-2 flex items-center gap-2 text-sm font-medium"
               style={{ color: 'var(--color-text-secondary)' }}
             >
               <svg
@@ -44,6 +47,8 @@ export default function SignInPage() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="M22 7l-10 6L2 7" />
@@ -60,7 +65,7 @@ export default function SignInPage() {
           {/* Password Field */}
           <div>
             <label
-              className="text-sm mb-2 flex items-center gap-2 font-medium"
+              className="mb-2 flex items-center gap-2 text-sm font-medium"
               style={{ color: 'var(--color-text-secondary)' }}
             >
               <svg
@@ -70,6 +75,8 @@ export default function SignInPage() {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
                 <rect x="3" y="11" width="18" height="11" rx="2" />
                 <path d="M7 11V7a5 5 0 0110 0v4" />
@@ -87,8 +94,8 @@ export default function SignInPage() {
           <div className="text-right">
             <a
               href="#"
-              className="text-sm"
-              style={{ color: 'var(--color-primary-red)' }}
+              className="text-sm font-medium"
+              style={{ color: 'var(--color-text-muted)' }}
             >
               Forgot Password?
             </a>
@@ -97,7 +104,7 @@ export default function SignInPage() {
           {/* Sign In Button */}
           <button
             onClick={() => navigate('/home')}
-            className="btn-primary w-full"
+            className="btn-primary w-full py-4"
           >
             Sign in
           </button>
@@ -125,7 +132,7 @@ export default function SignInPage() {
         <div className="flex justify-center gap-6">
           {/* Facebook */}
           <button
-            className="flex h-14 w-14 items-center justify-center rounded-full"
+            className="flex h-14 w-14 items-center justify-center rounded-full transition-all hover:scale-105"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2">
@@ -135,7 +142,7 @@ export default function SignInPage() {
 
           {/* Google */}
           <button
-            className="flex h-14 w-14 items-center justify-center rounded-full"
+            className="flex h-14 w-14 items-center justify-center rounded-full transition-all hover:scale-105"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
             <svg width="24" height="24" viewBox="0 0 24 24">
@@ -148,7 +155,7 @@ export default function SignInPage() {
 
           {/* Apple */}
           <button
-            className="flex h-14 w-14 items-center justify-center rounded-full"
+            className="flex h-14 w-14 items-center justify-center rounded-full transition-all hover:scale-105"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style={{ color: 'var(--color-text-primary)' }}>

@@ -2,10 +2,10 @@ import { Search, Bell } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const categories = [
-  { name: 'Burger', emoji: '🍔', count: 12 },
-  { name: 'Pizza', emoji: '🍕', count: 8 },
-  { name: 'Chicken', emoji: '🍗', count: 15 },
-  { name: 'Salad', emoji: '🥗', count: 6 },
+  { name: 'Burger', emoji: '🍔' },
+  { name: 'Pizza', emoji: '🍕' },
+  { name: 'Chicken', emoji: '🍗' },
+  { name: 'Salad', emoji: '🥗' },
 ]
 
 const popularMeals = [
@@ -15,8 +15,6 @@ const popularMeals = [
     restaurant: 'Burger Factory',
     price: 12.99,
     rating: 4.8,
-    calories: '900 Cal',
-    time: '20-25 Min',
     image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
   },
   {
@@ -25,8 +23,6 @@ const popularMeals = [
     restaurant: 'Pizza Palace',
     price: 14.99,
     rating: 4.9,
-    calories: '750 Cal',
-    time: '25-30 Min',
     image: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=400',
   },
 ]
@@ -46,48 +42,41 @@ export default function HomePage() {
           style={{ backgroundColor: 'var(--color-bg-card)' }}
         >
           <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
+            width="18"
+            height="14"
+            viewBox="0 0 18 14"
             fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="18" x2="21" y2="18" />
+            <path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
         </button>
-        <div className="flex items-center gap-2">
-          <div
+        <div className="flex items-center gap-3">
+          <button
             className="flex items-center gap-2 rounded-full px-4 py-2"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
             <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
+              width="14"
+              height="18"
+              viewBox="0 0 14 18"
               fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
               style={{ color: 'var(--color-primary-red)' }}
             >
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-              <circle cx="12" cy="10" r="3" />
+              <path d="M7 0C3.13 0 0 3.13 0 7c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="currentColor"/>
             </svg>
             <span
               className="text-sm font-medium"
               style={{ color: 'var(--color-text-primary)' }}
             >
-             cairo, Egypt
+              cairo, Egypt
             </span>
-          </div>
+          </button>
           <button
             className="flex h-10 w-10 items-center justify-center rounded-full"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
-            <Bell size={20} style={{ color: 'var(--color-text-primary)' }} />
+            <Bell size={18} style={{ color: 'var(--color-text-primary)' }} />
           </button>
         </div>
       </div>
@@ -98,11 +87,11 @@ export default function HomePage() {
           className="flex items-center gap-3 rounded-2xl px-4 py-3"
           style={{ backgroundColor: 'var(--color-bg-card)' }}
         >
-          <Search size={20} style={{ color: 'var(--color-text-muted)' }} />
+          <Search size={18} style={{ color: 'var(--color-text-muted)' }} />
           <input
             type="text"
             placeholder="Search"
-            className="flex-1 bg-transparent outline-none"
+            className="flex-1 bg-transparent text-sm outline-none"
             style={{ color: 'var(--color-text-primary)' }}
           />
           <button
@@ -110,12 +99,14 @@ export default function HomePage() {
             style={{ background: 'var(--gradient-primary)' }}
           >
             <svg
-              width="18"
-              height="18"
+              width="16"
+              height="16"
               viewBox="0 0 24 24"
               fill="none"
               stroke="white"
               strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
               <line x1="4" y1="21" x2="4" y2="14" />
               <line x1="4" y1="10" x2="4" y2="3" />
@@ -134,7 +125,7 @@ export default function HomePage() {
       {/* What do you want section */}
       <div className="px-4 pb-6">
         <h2
-          className="heading-md mb-4"
+          className="font-heading text-lg font-bold"
           style={{ color: 'var(--color-text-primary)' }}
         >
           What meal Do You Want?
@@ -142,28 +133,26 @@ export default function HomePage() {
 
         {/* Best Seller Banner */}
         <div
-          className="relative overflow-hidden rounded-2xl p-4"
+          className="relative mt-4 overflow-hidden rounded-2xl p-4"
           style={{ background: 'var(--gradient-primary)' }}
         >
           <div className="flex items-center justify-between">
             <div className="flex-1">
               <span
-                className="mb-1 inline-block rounded-full px-3 py-1 text-xs font-semibold"
+                className="mb-2 inline-block rounded-full px-3 py-1 text-xs font-semibold text-white"
                 style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
               >
                 Our Best Seller!
               </span>
-              <h3
-                className="font-heading text-lg font-bold text-white"
-              >
+              <h3 className="font-heading text-xl font-bold text-white">
                 50% OFF
               </h3>
-              <p className="text-sm text-white/80">
+              <p className="mt-1 text-xs text-white/80">
                 On your first order, use code in app
               </p>
               <button
                 onClick={() => navigate('/meal/1')}
-                className="mt-3 rounded-full bg-white px-4 py-2 text-sm font-semibold"
+                className="mt-3 rounded-full bg-white px-4 py-2 text-xs font-semibold"
                 style={{ color: 'var(--color-primary-red)' }}
               >
                 Order now
@@ -172,7 +161,7 @@ export default function HomePage() {
             <img
               src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200"
               alt="Burger"
-              className="h-24 w-24 rounded-full object-cover"
+              className="h-20 w-20 rounded-full object-cover"
             />
           </div>
         </div>
@@ -182,7 +171,7 @@ export default function HomePage() {
       <div className="px-4 pb-6">
         <div className="mb-4 flex items-center justify-between">
           <h2
-            className="heading-md"
+            className="font-heading text-lg font-bold"
             style={{ color: 'var(--color-text-primary)' }}
           >
             Categories
@@ -200,7 +189,7 @@ export default function HomePage() {
             <button
               key={index}
               onClick={() => navigate('/categories')}
-              className="flex flex-col items-center gap-2 rounded-2xl px-6 py-4"
+              className="flex flex-col items-center gap-2 rounded-2xl px-6 py-4 transition-all"
               style={{ backgroundColor: 'var(--color-bg-card)' }}
             >
               <span className="text-3xl">{category.emoji}</span>
@@ -219,7 +208,7 @@ export default function HomePage() {
       <div className="px-4">
         <div className="mb-4 flex items-center justify-between">
           <h2
-            className="heading-md"
+            className="font-heading text-lg font-bold"
             style={{ color: 'var(--color-text-primary)' }}
           >
             Popular Meals
@@ -236,7 +225,7 @@ export default function HomePage() {
             <button
               key={meal.id}
               onClick={() => navigate(`/meal/${meal.id}`)}
-              className="w-48 flex-shrink-0 overflow-hidden rounded-2xl"
+              className="w-48 flex-shrink-0 overflow-hidden rounded-2xl text-left"
               style={{ backgroundColor: 'var(--color-bg-card)' }}
             >
               <div className="relative h-32">
@@ -250,8 +239,8 @@ export default function HomePage() {
                   style={{ backgroundColor: 'var(--color-bg-card)' }}
                 >
                   <svg
-                    width="16"
-                    height="16"
+                    width="14"
+                    height="14"
                     viewBox="0 0 24 24"
                     fill="var(--color-primary-red)"
                     stroke="var(--color-primary-red)"
@@ -263,19 +252,24 @@ export default function HomePage() {
               </div>
               <div className="p-3">
                 <h3
-                  className="food-name text-sm"
+                  className="font-heading text-sm font-semibold"
                   style={{ color: 'var(--color-text-primary)' }}
                 >
                   {meal.name}
                 </h3>
                 <p
-                  className="text-xs mt-1"
+                  className="mt-1 text-xs"
                   style={{ color: 'var(--color-text-muted)' }}
                 >
                   {meal.restaurant}
                 </p>
                 <div className="mt-2 flex items-center justify-between">
-                  <span className="price-sm">${meal.price.toFixed(2)}</span>
+                  <span
+                    className="text-sm font-bold"
+                    style={{ color: 'var(--color-primary-red)' }}
+                  >
+                    ${meal.price.toFixed(2)}
+                  </span>
                   <div className="flex items-center gap-1">
                     <svg
                       width="12"
@@ -308,100 +302,36 @@ export default function HomePage() {
         }}
       >
         <div className="flex items-center justify-around">
-          <button
-            className="flex flex-col items-center gap-1"
-            onClick={() => navigate('/home')}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              style={{ color: 'var(--color-primary-red)' }}
-            >
+          <button className="flex flex-col items-center gap-1">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-primary-red)' }}>
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
-            <span
-              className="text-xs font-medium"
-              style={{ color: 'var(--color-primary-red)' }}
-            >
-              Home
-            </span>
+            <span className="text-xs font-medium" style={{ color: 'var(--color-primary-red)' }}>Home</span>
           </button>
-          <button
-            className="flex flex-col items-center gap-1"
-            onClick={() => navigate('/categories')}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
+          <button className="flex flex-col items-center gap-1" onClick={() => navigate('/categories')}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
               <rect x="3" y="3" width="7" height="7" />
               <rect x="14" y="3" width="7" height="7" />
               <rect x="14" y="14" width="7" height="7" />
               <rect x="3" y="14" width="7" height="7" />
             </svg>
-            <span
-              className="text-xs"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              Categories
-            </span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Categories</span>
           </button>
-          <button
-            className="flex flex-col items-center gap-1"
-            onClick={() => navigate('/cart')}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
+          <button className="flex flex-col items-center gap-1" onClick={() => navigate('/cart')}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
               <circle cx="9" cy="21" r="1" />
               <circle cx="20" cy="21" r="1" />
               <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
             </svg>
-            <span
-              className="text-xs"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              My Cart
-            </span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>My Cart</span>
           </button>
-          <button
-            className="flex flex-col items-center gap-1"
-            onClick={() => navigate('/profile')}
-          >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
+          <button className="flex flex-col items-center gap-1" onClick={() => navigate('/profile')}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
               <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
-            <span
-              className="text-xs"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              Profile
-            </span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Profile</span>
           </button>
         </div>
       </div>

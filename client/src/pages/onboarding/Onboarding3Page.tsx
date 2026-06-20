@@ -22,9 +22,11 @@ export default function Onboarding3Page() {
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            <path d="M19 12H5M12 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M19 12H5M12 19l-7-7 7-7" />
           </svg>
         </button>
       </div>
@@ -32,23 +34,23 @@ export default function Onboarding3Page() {
       {/* Content */}
       <div className="flex flex-1 flex-col items-center justify-center px-6">
         {/* Map Image */}
-        <div className="mb-8 overflow-hidden rounded-3xl">
+        <div className="mb-8 overflow-hidden rounded-3xl" style={{ width: '280px', height: '280px' }}>
           <img
             src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400"
             alt="Map Tracking"
-            className="h-64 w-64 object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
 
         {/* Text Content */}
         <h1
-          className="heading-xl mb-4 text-center"
+          className="font-heading text-3xl font-bold"
           style={{ color: 'var(--color-text-primary)' }}
         >
           Track your order now!
         </h1>
         <p
-          className="text-base max-w-sm text-center"
+          className="mt-3 max-w-sm text-center text-sm leading-relaxed"
           style={{ color: 'var(--color-text-secondary)' }}
         >
           Follow your meal in real time, from the kitchen straight to your door
@@ -77,7 +79,12 @@ export default function Onboarding3Page() {
         <div className="flex gap-4">
           <button
             onClick={() => navigate('/signin')}
-            className="btn-secondary flex-1"
+            className="flex-1 rounded-xl py-4 font-body font-semibold transition-all"
+            style={{
+              backgroundColor: 'var(--color-bg-card)',
+              color: 'var(--color-text-secondary)',
+              border: '1px solid var(--color-border-color)',
+            }}
           >
             Skip
           </button>
