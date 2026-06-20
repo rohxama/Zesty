@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import SplashPage from '@/pages/SplashPage'
 import Onboarding1Page from '@/pages/onboarding/Onboarding1Page'
 import Onboarding2Page from '@/pages/onboarding/Onboarding2Page'
@@ -60,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <ProfilePage />,
+  },
+  {
+    path: '*',
+    element: <Navigate to="/" replace />,
   },
 ])
 
