@@ -4,7 +4,27 @@ import logger from '../utils/logger.js'
 
 const router = Router()
 
-// Get all food items
+/**
+ * @swagger
+ * /api/foods:
+ *   get:
+ *     summary: Get all available food items
+ *     tags: [Food]
+ *     responses:
+ *       200:
+ *         description: List of food items
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Food'
+ */
 router.get('/', async (_req, res) => {
   try {
     const foods = await Food.find({ isAvailable: true })
@@ -15,7 +35,34 @@ router.get('/', async (_req, res) => {
   }
 })
 
-// Get food by ID
+/**
+ * @swagger
+ * /api/foods/{id}:
+ *   get:
+ *     summary: Get a food item by ID
+ *     tags: [Food]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Food item ID
+ *     responses:
+ *       200:
+ *         description: Food item found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   $ref: '#/components/schemas/Food'
+ *       404:
+ *         description: Food not found
+ */
 router.get('/:id', async (req, res) => {
   try {
     const food = await Food.findById(req.params.id)
@@ -30,7 +77,43 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-// Create food item
+/**
+ * @swagger
+ * /api/foods:
+ *   post:
+ *     summary: Create a new food item
+ *     tags: [Food]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [name, description, price, category]
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               category:
+ *                 type: string
+ *               image:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Food item created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   $ref: '#/components/schemas/Food'
+ */
 router.post('/', async (req, res) => {
   try {
     const food = await Food.create(req.body)
@@ -41,7 +124,44 @@ router.post('/', async (req, res) => {
   }
 })
 
-// Update food item
+/**
+ * @swagger
+ * /api/foods/{id}:
+ *   put:
+ *     summary: Update a food item
+ *     tags: [Food]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Food item ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               price:
+ *                 type: number
+ *               category:
+ *                 type: string
+ *               image:
+ *                 type: string
+ *               isAvailable:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: Food item updated
+ *       404:
+ *         description: Food not found
+ */
 router.put('/:id', async (req, res) => {
   try {
     const food = await Food.findByIdAndUpdate(req.params.id, req.body, { new: true })
@@ -56,7 +176,25 @@ router.put('/:id', async (req, res) => {
   }
 })
 
-// Delete food item
+/**
+ * @swagger
+ * /api/foods/{id}:
+ *   delete:
+ *     summary: Delete a food item
+ *     tags: [Food]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Food item ID
+ *     responses:
+ *       200:
+ *         description: Food item deleted
+ *       404:
+ *         description: Food not found
+ */
 router.delete('/:id', async (req, res) => {
   try {
     const food = await Food.findByIdAndDelete(req.params.id)

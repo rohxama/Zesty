@@ -1,0 +1,25 @@
+{
+  "name": "zesty",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Zesty - A modern food web application",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "build": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "start": "cd server && npm start",
+    "lint": "cd client && npm run lint",
+    "format": "cd client && npm run format",
+    "test": "cd client && npm test",
+    "test:e2e": "cd client && npm run test:ui",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
+    "concurrently": "^9.1.2",
+    "husky": "^9.1.7"
+  }
+}

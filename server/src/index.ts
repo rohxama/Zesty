@@ -5,6 +5,9 @@ import morgan from 'morgan'
 import rateLimit from 'express-rate-limit'
 import { createServer } from 'http'
 import { Server } from 'socket.io'
+import mongoose from 'mongoose'
+import swaggerJsdoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui-express'
 import { config } from './config/index.js'
 import logger from './utils/logger.js'
 import { errorHandler, notFound } from './middleware/errorHandler.js'
@@ -13,12 +16,65 @@ import foodRoutes from './routes/food.js'
 const app = express()
 const httpServer = createServer(app)
 
+// Socket.io
 export const io = new Server(httpServer, {
   cors: {
     origin: config.corsOrigin,
     methods: ['GET', 'POST'],
   },
 })
+
+// Swagger configuration
+const swaggerOptions: swaggerJsdoc.Options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Zesty Food API',
+      version: '0.1.0',
+      description: 'REST API for the Zesty food web application',
+      contact: {
+        name: 'Zesty Team',
+      },
+    },
+    servers: [
+      {
+        url: `http://localhost:${config.port}`,
+        description: 'Development server',
+      },
+    ],
+    components: {
+      schemas: {
+        Food: {
+          type: 'object',
+          properties: {
+            _id: { type: 'string', description: 'Food item ID' },
+            name: { type: 'string', description: 'Food item name' },
+            description: { type: 'string', description: 'Food item description' },
+            price: { type: 'number', description: 'Food item price' },
+            category: { type: 'string', description: 'Food item category' },
+            image: { type: 'string', description: 'Food item image URL' },
+            rating: { type: 'number', description: 'Average rating' },
+            reviews: { type: 'number', description: 'Number of reviews' },
+            isAvailable: { type: 'boolean', description: 'Availability status' },
+            createdAt: { type: 'string', format: 'date-time' },
+            updatedAt: { type: 'string', format: 'date-time' },
+          },
+        },
+        ApiResponse: {
+          type: 'object',
+          properties: {
+            success: { type: 'boolean' },
+            message: { type: 'string' },
+            data: { description: 'Response data' },
+          },
+        },
+      },
+    },
+  },
+  apis: ['./src/routes/*.ts'],
+}
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions)
 
 // Security middleware
 app.use(helmet())
@@ -44,18 +100,30 @@ app.use(
   }),
 )
 
+// Swagger UI
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  explorer: true,
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Zesty API Documentation',
+}))
+
+// OpenAPI spec as JSON
+app.get('/api/docs.json', (_req, res) => {
+  res.setHeader('Content-Type', 'application/json')
+  res.send(swaggerSpec)
+})
+
 // Health check
 app.get('/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() })
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+  })
 })
 
 // Routes
 app.use('/api/foods', foodRoutes)
-
-// API documentation
-app.get('/api/docs', (_req, res) => {
-  res.json({ message: 'API documentation endpoint - integrate swagger-ui-express here' })
-})
 
 // Socket.io connection
 io.on('connection', (socket) => {
@@ -70,9 +138,22 @@ io.on('connection', (socket) => {
 app.use(notFound)
 app.use(errorHandler)
 
-// Start server
-httpServer.listen(config.port, () => {
-  logger.info(`Server running on port ${config.port} in ${config.nodeEnv} mode`)
-})
+// Connect to MongoDB and start server
+const startServer = async () => {
+  try {
+    await mongoose.connect(config.mongoUri)
+    logger.info('Connected to MongoDB')
+
+    httpServer.listen(config.port, () => {
+      logger.info(`Server running on port ${config.port} in ${config.nodeEnv} mode`)
+      logger.info(`API Documentation: http://localhost:${config.port}/api/docs`)
+    })
+  } catch (error) {
+    logger.error('Failed to connect to MongoDB:', error)
+    process.exit(1)
+  }
+}
+
+startServer()
 
 export default app
