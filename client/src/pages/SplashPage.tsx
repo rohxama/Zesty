@@ -1,73 +1,57 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export default function SplashPage() {
   const navigate = useNavigate()
+  const [visible, setVisible] = useState(false)
+  const [exiting, setExiting] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate('/onboarding/1')
-    }, 2500)
-    return () => clearTimeout(timer)
+    const enterTimer = setTimeout(() => setVisible(true), 100)
+    const exitTimer = setTimeout(() => setExiting(true), 2200)
+    const navTimer = setTimeout(() => navigate('/onboarding/1'), 3000)
+    return () => {
+      clearTimeout(enterTimer)
+      clearTimeout(exitTimer)
+      clearTimeout(navTimer)
+    }
   }, [navigate])
 
   return (
     <div
-      className="flex h-screen flex-col items-center justify-center"
-      style={{ backgroundColor: 'var(--color-bg-main)' }}
+      className="flex h-screen flex-col items-center justify-center overflow-hidden"
+      style={{
+        backgroundColor: 'var(--color-bg-main)',
+        transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease',
+        transform: exiting ? 'translateX(-100%)' : 'translateX(0)',
+        opacity: exiting ? 0 : 1,
+      }}
     >
-      {/* Logo */}
-      <div className="flex flex-col items-center gap-3">
-        {/* Fork and Knife Icon */}
-        <div className="flex items-center gap-1">
-          <svg
-            width="48"
-            height="64"
-            viewBox="0 0 48 64"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Fork */}
-            <path
-              d="M8 4V20C8 24 12 28 16 28V60H12C10 60 8 58 8 56V28"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              style={{ color: 'var(--color-primary-red)' }}
-            />
-            <path
-              d="M16 4V20C16 24 12 28 8 28"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              style={{ color: 'var(--color-primary-red)' }}
-            />
-            <line x1="12" y1="4" x2="12" y2="20" stroke="currentColor" strokeWidth="4" strokeLinecap="round" style={{ color: 'var(--color-primary-red)' }} />
-          </svg>
-          <svg
-            width="48"
-            height="64"
-            viewBox="0 0 48 64"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Knife */}
-            <path
-              d="M40 4C40 4 32 20 32 32C32 40 36 44 40 44V60H36C34 60 32 58 32 56V44"
-              stroke="currentColor"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              style={{ color: 'var(--color-secondary-orange)' }}
-            />
-          </svg>
-        </div>
-        {/* Brand Name */}
+      {/* Logo + Brand */}
+      <div
+        className="flex flex-col items-center gap-5"
+        style={{
+          transition: 'opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'scale(1) translateY(0)' : 'scale(0.8) translateY(20px)',
+        }}
+      >
+        <img
+          src="/logo.svg"
+          alt="Wagba Logo"
+          className="w-28 h-28"
+          style={{
+            filter: 'drop-shadow(0 0 30px rgba(255, 77, 77, 0.3))',
+          }}
+        />
         <h1
-          className="font-heading text-4xl font-bold"
-          style={{ color: 'var(--color-primary-red)' }}
+          className="font-heading text-5xl font-bold tracking-tight"
+          style={{
+            background: 'var(--gradient-primary)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
         >
           Wagba
         </h1>
