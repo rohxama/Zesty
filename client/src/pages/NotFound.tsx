@@ -8,22 +8,13 @@ export default function NotFound() {
         className="mb-6 flex h-32 w-32 items-center justify-center rounded-full"
         style={{ backgroundColor: 'var(--color-bg-card)' }}
       >
-        <span
-          className="text-6xl font-bold text-gradient"
-        >
-          404
-        </span>
+        <span className="heading-xl text-gradient">404</span>
       </div>
 
-      <h1
-        className="text-4xl font-bold"
-        style={{ color: 'var(--color-text-primary)' }}
-      >
-        Page Not Found
-      </h1>
+      <h1 className="heading-lg">Page Not Found</h1>
 
       <p
-        className="mt-4 max-w-md text-center text-lg"
+        className="text-lg mt-4 max-w-md text-center"
         style={{ color: 'var(--color-text-secondary)' }}
       >
         The page you're looking for doesn't exist or has been moved.

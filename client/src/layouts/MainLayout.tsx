@@ -17,12 +17,9 @@ export default function MainLayout() {
               className="flex h-10 w-10 items-center justify-center rounded-xl"
               style={{ background: 'var(--gradient-primary)' }}
             >
-              <span className="text-lg font-bold text-white">Z</span>
+              <span className="font-heading text-lg font-bold text-white">Z</span>
             </div>
-            <span
-              className="text-2xl font-bold"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
+            <span className="font-heading text-2xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
               Zesty
             </span>
           </a>
@@ -31,14 +28,14 @@ export default function MainLayout() {
           <div className="hidden items-center gap-8 md:flex">
             <a
               href="/menu"
-              className="font-medium transition-colors hover:text-[var(--color-primary-red)]"
+              className="nav-link"
               style={{ color: 'var(--color-text-secondary)' }}
             >
               Menu
             </a>
             <a
               href="/cart"
-              className="relative font-medium transition-colors hover:text-[var(--color-primary-red)]"
+              className="nav-link relative"
               style={{ color: 'var(--color-text-secondary)' }}
             >
               <ShoppingCart size={20} />
@@ -74,7 +71,7 @@ export default function MainLayout() {
             <div className="flex flex-col gap-4">
               <a
                 href="/menu"
-                className="font-medium"
+                className="nav-link"
                 style={{ color: 'var(--color-text-secondary)' }}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -82,7 +79,7 @@ export default function MainLayout() {
               </a>
               <a
                 href="/cart"
-                className="font-medium"
+                className="nav-link"
                 style={{ color: 'var(--color-text-secondary)' }}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -116,16 +113,13 @@ export default function MainLayout() {
               className="flex h-8 w-8 items-center justify-center rounded-lg"
               style={{ background: 'var(--gradient-primary)' }}
             >
-              <span className="text-sm font-bold text-white">Z</span>
+              <span className="font-heading text-sm font-bold text-white">Z</span>
             </div>
-            <span
-              className="text-lg font-bold"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
+            <span className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
               Zesty
             </span>
           </div>
-          <p style={{ color: 'var(--color-text-muted)' }}>
+          <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
             &copy; 2026 Zesty. All rights reserved. Delicious food, delivered to your door.
           </p>
         </div>
@@ -139,6 +133,7 @@ export default function MainLayout() {
           style: {
             background: '#1A1A1A',
             color: '#FFFFFF',
+            fontFamily: 'var(--font-body)',
             border: '1px solid rgba(255,255,255,0.08)',
             borderRadius: '12px',
           },

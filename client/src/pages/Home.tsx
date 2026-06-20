@@ -12,24 +12,18 @@ export default function Home() {
             border: '1px solid var(--color-border-color)',
           }}
         >
-          <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+          <span className="text-sm font-body" style={{ color: 'var(--color-text-secondary)' }}>
             🍕 #1 Food Delivery App
           </span>
         </div>
 
-        <h1
-          className="text-5xl font-bold leading-tight md:text-7xl"
-          style={{ color: 'var(--color-text-primary)' }}
-        >
+        <h1 className="heading-xl">
           Delicious Food,
           <br />
           <span className="text-gradient">Delivered Fast</span>
         </h1>
 
-        <p
-          className="mt-6 max-w-2xl text-lg md:text-xl"
-          style={{ color: 'var(--color-text-secondary)' }}
-        >
+        <p className="text-lg mx-auto mt-6 max-w-2xl" style={{ color: 'var(--color-text-secondary)' }}>
           Experience the finest cuisines from top restaurants, delivered right to your
           doorstep. Fresh, fast, and full of flavor.
         </p>
@@ -37,14 +31,14 @@ export default function Home() {
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <a
             href="/menu"
-            className="btn-primary flex items-center gap-2 text-lg"
+            className="btn-primary flex items-center gap-2"
           >
             Explore Menu
             <ArrowRight size={20} />
           </a>
           <a
             href="/login"
-            className="btn-secondary flex items-center gap-2 text-lg"
+            className="btn-secondary flex items-center gap-2"
           >
             Get Started
           </a>
@@ -80,13 +74,10 @@ export default function Home() {
             >
               <span className="text-white">{feature.icon}</span>
             </div>
-            <h3
-              className="mb-2 text-xl font-semibold"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
+            <h3 className="heading-sm" style={{ color: 'var(--color-text-primary)' }}>
               {feature.title}
             </h3>
-            <p style={{ color: 'var(--color-text-secondary)' }}>
+            <p className="text-base mt-2" style={{ color: 'var(--color-text-secondary)' }}>
               {feature.description}
             </p>
           </div>
@@ -95,12 +86,7 @@ export default function Home() {
 
       {/* Popular Categories */}
       <section>
-        <h2
-          className="mb-8 text-3xl font-bold"
-          style={{ color: 'var(--color-text-primary)' }}
-        >
-          Popular Categories
-        </h2>
+        <h2 className="heading-lg mb-8">Popular Categories</h2>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           {[
             { emoji: '🍔', name: 'Burgers' },
@@ -113,10 +99,7 @@ export default function Home() {
               className="card card-hover flex flex-col items-center p-6 transition-all duration-200"
             >
               <span className="mb-3 text-4xl">{category.emoji}</span>
-              <span
-                className="font-medium"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
+              <span className="font-heading font-semibold" style={{ color: 'var(--color-text-primary)' }}>
                 {category.name}
               </span>
             </div>
@@ -125,24 +108,14 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section
-        className="card overflow-hidden p-8 text-center md:p-12"
-      >
-        <h2
-          className="text-3xl font-bold md:text-4xl"
-          style={{ color: 'var(--color-text-primary)' }}
-        >
-          Ready to Order?
-        </h2>
-        <p
-          className="mx-auto mt-4 max-w-xl text-lg"
-          style={{ color: 'var(--color-text-secondary)' }}
-        >
+      <section className="card overflow-hidden p-8 text-center md:p-12">
+        <h2 className="heading-lg">Ready to Order?</h2>
+        <p className="text-lg mx-auto mt-4 max-w-xl" style={{ color: 'var(--color-text-secondary)' }}>
           Join thousands of happy customers enjoying delicious meals every day.
         </p>
         <a
           href="/menu"
-          className="btn-primary mt-8 inline-flex items-center gap-2 text-lg"
+          className="btn-primary mt-8 inline-flex items-center gap-2"
         >
           Order Now
           <ArrowRight size={20} />

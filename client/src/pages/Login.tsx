@@ -45,16 +45,8 @@ export default function Login() {
           >
             <LogIn size={28} className="text-white" />
           </div>
-          <h1
-            className="text-3xl font-bold"
-            style={{ color: 'var(--color-text-primary)' }}
-          >
-            Welcome Back
-          </h1>
-          <p
-            className="mt-2"
-            style={{ color: 'var(--color-text-secondary)' }}
-          >
+          <h1 className="heading-lg">Welcome Back</h1>
+          <p className="text-base mt-2" style={{ color: 'var(--color-text-secondary)' }}>
             Sign in to your account to continue
           </p>
         </div>
@@ -73,7 +65,7 @@ export default function Login() {
             </p>
             <button
               onClick={() => dispatch(clearError())}
-              className="mt-1 text-sm underline"
+              className="text-sm mt-1 underline"
               style={{ color: 'var(--color-text-muted)' }}
             >
               Dismiss
@@ -86,7 +78,7 @@ export default function Login() {
           <div>
             <label
               htmlFor="email"
-              className="mb-2 block text-sm font-medium"
+              className="text-sm mb-2 block font-medium"
               style={{ color: 'var(--color-text-secondary)' }}
             >
               Email Address
@@ -106,7 +98,7 @@ export default function Login() {
               />
             </div>
             {errors.email && (
-              <p className="mt-2 text-sm" style={{ color: 'var(--color-primary-red)' }}>
+              <p className="text-sm mt-2" style={{ color: 'var(--color-primary-red)' }}>
                 {errors.email.message}
               </p>
             )}
@@ -115,7 +107,7 @@ export default function Login() {
           <div>
             <label
               htmlFor="password"
-              className="mb-2 block text-sm font-medium"
+              className="text-sm mb-2 block font-medium"
               style={{ color: 'var(--color-text-secondary)' }}
             >
               Password
@@ -135,7 +127,7 @@ export default function Login() {
               />
             </div>
             {errors.password && (
-              <p className="mt-2 text-sm" style={{ color: 'var(--color-primary-red)' }}>
+              <p className="text-sm mt-2" style={{ color: 'var(--color-primary-red)' }}>
                 {errors.password.message}
               </p>
             )}
@@ -148,16 +140,13 @@ export default function Login() {
                 className="h-4 w-4 rounded"
                 style={{ accentColor: 'var(--color-primary-red)' }}
               />
-              <span
-                className="text-sm"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
+              <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
                 Remember me
               </span>
             </label>
             <a
               href="#"
-              className="text-sm transition-colors hover:text-[var(--color-primary-red)]"
+              className="text-sm transition-colors hover:text-[var(--color-secondary-orange)]"
               style={{ color: 'var(--color-primary-red)' }}
             >
               Forgot password?
@@ -184,14 +173,11 @@ export default function Login() {
         </form>
 
         {/* Footer */}
-        <p
-          className="mt-6 text-center text-sm"
-          style={{ color: 'var(--color-text-muted)' }}
-        >
+        <p className="text-sm mt-6 text-center" style={{ color: 'var(--color-text-muted)' }}>
           Don't have an account?{' '}
           <a
             href="#"
-            className="font-medium transition-colors hover:text-[var(--color-secondary-orange)]"
+            className="font-body font-medium transition-colors hover:text-[var(--color-secondary-orange)]"
             style={{ color: 'var(--color-secondary-orange)' }}
           >
             Sign up

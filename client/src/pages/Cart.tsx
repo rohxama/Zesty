@@ -16,16 +16,8 @@ export default function Cart() {
         >
           <ShoppingBag size={40} style={{ color: 'var(--color-text-muted)' }} />
         </div>
-        <h1
-          className="text-3xl font-bold"
-          style={{ color: 'var(--color-text-primary)' }}
-        >
-          Your Cart is Empty
-        </h1>
-        <p
-          className="mt-2"
-          style={{ color: 'var(--color-text-secondary)' }}
-        >
+        <h1 className="heading-lg">Your Cart is Empty</h1>
+        <p className="text-base mt-2" style={{ color: 'var(--color-text-secondary)' }}>
           Looks like you haven't added anything yet
         </p>
         <Link
@@ -44,15 +36,10 @@ export default function Cart() {
       {/* Cart Items */}
       <div className="space-y-4 lg:col-span-2">
         <div className="flex items-center justify-between">
-          <h1
-            className="text-3xl font-bold"
-            style={{ color: 'var(--color-text-primary)' }}
-          >
-            Your Cart
-          </h1>
+          <h1 className="heading-lg">Your Cart</h1>
           <button
             onClick={() => dispatch(clearCart())}
-            className="flex items-center gap-2 text-sm transition-colors"
+            className="text-sm flex items-center gap-2 transition-colors"
             style={{ color: 'var(--color-text-muted)' }}
           >
             <Trash2 size={16} />
@@ -72,24 +59,13 @@ export default function Cart() {
                 className="h-20 w-20 rounded-xl object-cover"
               />
               <div className="flex-1">
-                <h3
-                  className="font-semibold"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
+                <h3 className="food-name" style={{ color: 'var(--color-text-primary)' }}>
                   {item.food.name}
                 </h3>
-                <p
-                  className="text-sm"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
+                <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary)' }}>
                   {item.food.description}
                 </p>
-                <p
-                  className="mt-1 font-bold"
-                  style={{ color: 'var(--color-primary-red)' }}
-                >
-                  ${item.food.price.toFixed(2)}
-                </p>
+                <p className="price-sm mt-1">${item.food.price.toFixed(2)}</p>
               </div>
               <div className="flex flex-col items-end gap-2">
                 <button
@@ -118,7 +94,7 @@ export default function Cart() {
                     <Minus size={16} />
                   </button>
                   <span
-                    className="min-w-[2rem] text-center font-medium"
+                    className="min-w-[2rem] text-center font-body font-medium"
                     style={{ color: 'var(--color-text-primary)' }}
                   >
                     {item.quantity}
@@ -147,27 +123,19 @@ export default function Cart() {
       {/* Order Summary */}
       <div className="lg:col-span-1">
         <div className="card sticky top-24 p-6">
-          <h2
-            className="mb-6 text-xl font-bold"
-            style={{ color: 'var(--color-text-primary)' }}
-          >
-            Order Summary
-          </h2>
+          <h2 className="heading-sm mb-6">Order Summary</h2>
 
           <div className="space-y-4">
             <div className="flex justify-between">
-              <span style={{ color: 'var(--color-text-secondary)' }}>Subtotal</span>
-              <span
-                className="font-medium"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
+              <span className="text-base" style={{ color: 'var(--color-text-secondary)' }}>Subtotal</span>
+              <span className="font-body font-medium" style={{ color: 'var(--color-text-primary)' }}>
                 ${total.toFixed(2)}
               </span>
             </div>
             <div className="flex justify-between">
-              <span style={{ color: 'var(--color-text-secondary)' }}>Delivery</span>
+              <span className="text-base" style={{ color: 'var(--color-text-secondary)' }}>Delivery</span>
               <span
-                className="font-medium"
+                className="font-body font-medium"
                 style={{ color: total >= 30 ? '#22c55e' : 'var(--color-text-primary)' }}
               >
                 {total >= 30 ? 'Free' : '$4.99'}
@@ -178,18 +146,8 @@ export default function Cart() {
               style={{ borderColor: 'var(--color-border-color)' }}
             >
               <div className="flex justify-between">
-                <span
-                  className="text-lg font-bold"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
-                  Total
-                </span>
-                <span
-                  className="text-lg font-bold"
-                  style={{ color: 'var(--color-primary-red)' }}
-                >
-                  ${(total >= 30 ? total : total + 4.99).toFixed(2)}
-                </span>
+                <span className="heading-sm">Total</span>
+                <span className="price-lg">${(total >= 30 ? total : total + 4.99).toFixed(2)}</span>
               </div>
             </div>
           </div>
@@ -201,7 +159,7 @@ export default function Cart() {
 
           <Link
             to="/menu"
-            className="mt-4 block text-center text-sm transition-colors hover:text-[var(--color-primary-red)]"
+            className="text-sm mt-4 block text-center transition-colors hover:text-[var(--color-primary-red)]"
             style={{ color: 'var(--color-text-muted)' }}
           >
             Continue Shopping

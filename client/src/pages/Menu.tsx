@@ -97,25 +97,15 @@ export default function Menu() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1
-          className="text-3xl font-bold"
-          style={{ color: 'var(--color-text-primary)' }}
-        >
-          Our Menu
-        </h1>
-        <p
-          className="mt-2"
-          style={{ color: 'var(--color-text-secondary)' }}
-        >
+        <h1 className="heading-lg">Our Menu</h1>
+        <p className="text-base mt-2" style={{ color: 'var(--color-text-secondary)' }}>
           Discover our delicious selection of food items
         </p>
       </div>
 
       {/* Search and Filter */}
       <div className="flex flex-col gap-4 sm:flex-row">
-        <div
-          className="input flex flex-1 items-center gap-2"
-        >
+        <div className="input flex flex-1 items-center gap-2">
           <Search size={20} style={{ color: 'var(--color-text-muted)' }} />
           <input
             type="text"
@@ -153,10 +143,7 @@ export default function Menu() {
                   fill="var(--color-secondary-orange)"
                   color="var(--color-secondary-orange)"
                 />
-                <span
-                  className="text-sm font-medium"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
+                <span className="text-sm font-body font-medium" style={{ color: 'var(--color-text-primary)' }}>
                   {food.rating}
                 </span>
               </div>
@@ -165,14 +152,11 @@ export default function Menu() {
             {/* Content */}
             <div className="p-4">
               <div className="mb-2 flex items-center justify-between">
-                <h3
-                  className="text-lg font-semibold"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
+                <h3 className="food-name" style={{ color: 'var(--color-text-primary)' }}>
                   {food.name}
                 </h3>
                 <span
-                  className="rounded-full px-2 py-1 text-xs"
+                  className="badge"
                   style={{
                     backgroundColor: 'var(--color-bg-hover)',
                     color: 'var(--color-text-muted)',
@@ -182,24 +166,15 @@ export default function Menu() {
                 </span>
               </div>
 
-              <p
-                className="mb-4 text-sm"
-                style={{ color: 'var(--color-text-secondary)' }}
-              >
+              <p className="text-sm mb-4" style={{ color: 'var(--color-text-secondary)' }}>
                 {food.description}
               </p>
 
               <div className="flex items-center justify-between">
-                <span
-                  className="text-xl font-bold"
-                  style={{ color: 'var(--color-primary-red)' }}
-                >
-                  ${food.price.toFixed(2)}
-                </span>
+                <span className="price-md">${food.price.toFixed(2)}</span>
                 <button
                   onClick={() => handleAddToCart(food)}
-                  className="flex items-center gap-2 rounded-xl px-4 py-2 font-medium text-white transition-all duration-200 hover:shadow-lg"
-                  style={{ background: 'var(--gradient-primary)' }}
+                  className="btn-primary flex items-center gap-2 !px-4 !py-2"
                 >
                   <Plus size={18} />
                   Add
