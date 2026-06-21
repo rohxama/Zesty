@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-export default function SignInPage() {
+export default function SignUpPage() {
   const navigate = useNavigate()
 
   return (
@@ -8,48 +8,44 @@ export default function SignInPage() {
       className="flex min-h-screen flex-col"
       style={{ backgroundColor: 'var(--color-bg-main)' }}
     >
-      {/* Skip Button */}
-      <div className="flex justify-end px-6 pt-6">
-        <button
-          onClick={() => navigate('/home')}
-          className="rounded-full px-4 py-2 text-sm font-medium"
-          style={{
-            backgroundColor: 'var(--color-bg-card)',
-            color: 'var(--color-text-muted)',
-          }}
-        >
-          Skip Now
-        </button>
-      </div>
-
       {/* Content */}
-      <div className="flex flex-1 flex-col px-6 pt-4">
+      <div className="flex flex-1 flex-col px-6 pt-12">
         {/* Header */}
         <h1
           className="font-heading text-3xl font-bold"
           style={{ color: 'var(--color-text-primary)' }}
         >
-          Sign in
+          Sign up
         </h1>
 
         {/* Form */}
         <div className="mt-8 space-y-5">
+          {/* Name Field */}
+          <div>
+            <label
+              className="mb-2 flex items-center gap-2 text-sm font-medium"
+              style={{ color: 'var(--color-text-secondary)' }}
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+              Full Name
+            </label>
+            <input
+              type="text"
+              placeholder="John Doe"
+              className="input w-full"
+            />
+          </div>
+
           {/* Email Field */}
           <div>
             <label
               className="mb-2 flex items-center gap-2 text-sm font-medium"
               style={{ color: 'var(--color-text-secondary)' }}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="M22 7l-10 6L2 7" />
               </svg>
@@ -68,16 +64,7 @@ export default function SignInPage() {
               className="mb-2 flex items-center gap-2 text-sm font-medium"
               style={{ color: 'var(--color-text-secondary)' }}
             >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="11" width="18" height="11" rx="2" />
                 <path d="M7 11V7a5 5 0 0110 0v4" />
               </svg>
@@ -90,42 +77,39 @@ export default function SignInPage() {
             />
           </div>
 
-          {/* Forgot Password */}
-          <div className="text-right">
-            <a
-              href="#"
-              className="text-sm font-medium"
-              style={{ color: 'var(--color-text-muted)' }}
+          {/* Confirm Password Field */}
+          <div>
+            <label
+              className="mb-2 flex items-center gap-2 text-sm font-medium"
+              style={{ color: 'var(--color-text-secondary)' }}
             >
-              Forgot Password?
-            </a>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0110 0v4" />
+              </svg>
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              placeholder="••••••••"
+              className="input w-full"
+            />
           </div>
 
-          {/* Sign In Button */}
+          {/* Sign Up Button */}
           <button
             onClick={() => navigate('/home')}
             className="btn-primary w-full py-4"
           >
-            Sign in
+            Sign up
           </button>
         </div>
 
         {/* Divider */}
         <div className="my-8 flex items-center gap-4">
-          <div
-            className="h-px flex-1"
-            style={{ backgroundColor: 'var(--color-border-color)' }}
-          />
-          <span
-            className="text-sm"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
-            or sign in with
-          </span>
-          <div
-            className="h-px flex-1"
-            style={{ backgroundColor: 'var(--color-border-color)' }}
-          />
+          <div className="h-px flex-1" style={{ backgroundColor: 'var(--color-border-color)' }} />
+          <span className="text-sm" style={{ color: 'var(--color-text-muted)' }}>or sign up with</span>
+          <div className="h-px flex-1" style={{ backgroundColor: 'var(--color-border-color)' }} />
         </div>
 
         {/* Social Login */}
@@ -164,20 +148,17 @@ export default function SignInPage() {
           </button>
         </div>
 
-        {/* Sign Up Link */}
+        {/* Sign In Link */}
         <div className="mt-auto pb-8 text-center">
-          <span
-            className="text-sm"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
-            Don't have an account?{' '}
+          <span className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
+            Already have an account?{' '}
           </span>
           <button
-            onClick={() => navigate('/signup')}
+            onClick={() => navigate('/signin')}
             className="text-sm font-semibold"
             style={{ color: 'var(--color-primary-red)' }}
           >
-            Sign up
+            Sign in
           </button>
         </div>
       </div>

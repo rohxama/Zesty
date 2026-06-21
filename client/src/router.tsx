@@ -4,6 +4,7 @@ import Onboarding1Page from '@/pages/onboarding/Onboarding1Page'
 import Onboarding2Page from '@/pages/onboarding/Onboarding2Page'
 import Onboarding3Page from '@/pages/onboarding/Onboarding3Page'
 import SignInPage from '@/pages/SignInPage'
+import SignUpPage from '@/pages/SignUpPage'
 import HomePage from '@/pages/HomePage'
 import CategoriesPage from '@/pages/CategoriesPage'
 import MealDetailsPage from '@/pages/MealDetailsPage'
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: '/signin',
     element: <SignInPage />,
+  },
+  {
+    path: '/signup',
+    element: <SignUpPage />,
   },
   {
     path: '/home',
