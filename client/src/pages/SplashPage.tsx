@@ -54,7 +54,7 @@ export default function SplashPage() {
                   marginTop: i < 3 ? '0' : '0',
                 }}
               >
-                <img src={src} alt={`Food ${i + 1}`} className="h-full w-full object-cover" loading="lazy" />
+                <img src={src} alt={`Food ${i + 1}`} className="h-full w-full object-cover" />
               </div>
             ))}
           </div>
@@ -77,23 +77,12 @@ export default function SplashPage() {
           </p>
         </div>
 
-        {/* Progress Dots with sliding indicator */}
+        {/* Progress Dots */}
         <div className="mt-auto px-6 pb-10">
-          <div className="relative flex justify-center gap-3">
-            {[0, 1, 2].map((i) => (
-              <div
-                key={i}
-                className="h-2 w-2 rounded-full"
-                style={{ backgroundColor: 'var(--color-bg-hover)' }}
-              />
-            ))}
-            <div
-              className="absolute top-0 left-0 h-2 w-8 rounded-full"
-              style={{
-                background: 'var(--gradient-primary)',
-                transform: 'translateX(0)',
-              }}
-            />
+          <div className="flex justify-center gap-2">
+            <div className="h-2 w-8 rounded-full" style={{ background: 'var(--gradient-primary)' }} />
+            <div className="h-2 w-2 rounded-full" style={{ backgroundColor: 'var(--color-bg-hover)' }} />
+            <div className="h-2 w-2 rounded-full" style={{ backgroundColor: 'var(--color-bg-hover)' }} />
           </div>
         </div>
       </div>

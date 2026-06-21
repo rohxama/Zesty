@@ -53,7 +53,6 @@ export default function Onboarding1Page() {
                 src={src}
                 alt={`Food ${i + 1}`}
                 className="h-full w-full object-cover"
-                loading="lazy"
               />
             </div>
           ))}
@@ -68,40 +67,32 @@ export default function Onboarding1Page() {
       </div>
 
       {/* Text Content */}
-      <div className="mt-6 px-6 text-center">
+      <div className="mt-6 px-6">
         <h1
-          className="font-heading text-3xl font-bold"
+          className="font-heading text-3xl font-bold text-center"
           style={{ color: 'var(--color-text-primary)' }}
         >
           Choose your meal!
         </h1>
         <p
-          className="mt-3 text-sm leading-relaxed"
+          className="mt-3 text-sm leading-relaxed text-center"
           style={{ color: 'var(--color-text-secondary)' }}
         >
           Discover delicious meals from your favorite restaurants in just a few taps
         </p>
       </div>
 
-      {/* Progress Dots with sliding indicator */}
+      {/* Progress Dots */}
       <div className="mt-auto px-6 pb-10">
-        <div className="relative flex justify-center gap-3">
-          {/* Background dots */}
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="h-2 w-2 rounded-full"
-              style={{ backgroundColor: 'var(--color-bg-hover)' }}
-            />
-          ))}
-          {/* Sliding active indicator */}
+        <div className="flex justify-center gap-2">
+          <div className="h-2 w-8 rounded-full" style={{ background: 'var(--gradient-primary)' }} />
           <div
-            className="absolute top-0 left-0 h-2 w-8 rounded-full"
-            style={{
-              background: 'var(--gradient-primary)',
-              transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              transform: 'translateX(0)',
-            }}
+            className="h-2 w-2 rounded-full"
+            style={{ backgroundColor: 'var(--color-bg-hover)' }}
+          />
+          <div
+            className="h-2 w-2 rounded-full"
+            style={{ backgroundColor: 'var(--color-bg-hover)' }}
           />
         </div>
       </div>
