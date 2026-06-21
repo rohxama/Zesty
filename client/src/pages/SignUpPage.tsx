@@ -1,7 +1,57 @@
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 export default function SignUpPage() {
   const navigate = useNavigate()
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {}
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required'
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Invalid email format'
+    }
+
+    if (!formData.password) {
+      newErrors.password = 'Password is required'
+    } else if (formData.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters'
+    }
+
+    if (!formData.confirmPassword) {
+      newErrors.confirmPassword = 'Please confirm your password'
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match'
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = () => {
+    if (validate()) {
+      navigate('/home')
+    }
+  }
+
+  const handleChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }))
+    }
+  }
 
   return (
     <div
@@ -36,7 +86,15 @@ export default function SignUpPage() {
               type="text"
               placeholder="John Doe"
               className="input w-full"
+              value={formData.name}
+              onChange={(e) => handleChange('name', e.target.value)}
+              style={{
+                borderColor: errors.name ? 'var(--color-primary-red)' : undefined,
+              }}
             />
+            {errors.name && (
+              <p className="mt-1 text-xs" style={{ color: 'var(--color-primary-red)' }}>{errors.name}</p>
+            )}
           </div>
 
           {/* Email Field */}
@@ -55,7 +113,15 @@ export default function SignUpPage() {
               type="email"
               placeholder="example@email.com"
               className="input w-full"
+              value={formData.email}
+              onChange={(e) => handleChange('email', e.target.value)}
+              style={{
+                borderColor: errors.email ? 'var(--color-primary-red)' : undefined,
+              }}
             />
+            {errors.email && (
+              <p className="mt-1 text-xs" style={{ color: 'var(--color-primary-red)' }}>{errors.email}</p>
+            )}
           </div>
 
           {/* Password Field */}
@@ -74,7 +140,15 @@ export default function SignUpPage() {
               type="password"
               placeholder="••••••••"
               className="input w-full"
+              value={formData.password}
+              onChange={(e) => handleChange('password', e.target.value)}
+              style={{
+                borderColor: errors.password ? 'var(--color-primary-red)' : undefined,
+              }}
             />
+            {errors.password && (
+              <p className="mt-1 text-xs" style={{ color: 'var(--color-primary-red)' }}>{errors.password}</p>
+            )}
           </div>
 
           {/* Confirm Password Field */}
@@ -93,12 +167,20 @@ export default function SignUpPage() {
               type="password"
               placeholder="••••••••"
               className="input w-full"
+              value={formData.confirmPassword}
+              onChange={(e) => handleChange('confirmPassword', e.target.value)}
+              style={{
+                borderColor: errors.confirmPassword ? 'var(--color-primary-red)' : undefined,
+              }}
             />
+            {errors.confirmPassword && (
+              <p className="mt-1 text-xs" style={{ color: 'var(--color-primary-red)' }}>{errors.confirmPassword}</p>
+            )}
           </div>
 
           {/* Sign Up Button */}
           <button
-            onClick={() => navigate('/home')}
+            onClick={handleSubmit}
             className="btn-primary w-full py-4"
           >
             Sign up
@@ -114,7 +196,6 @@ export default function SignUpPage() {
 
         {/* Social Login */}
         <div className="flex justify-center gap-6">
-          {/* Facebook */}
           <button
             className="flex h-14 w-14 items-center justify-center rounded-full transition-all hover:scale-105"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
@@ -124,7 +205,6 @@ export default function SignUpPage() {
             </svg>
           </button>
 
-          {/* Google */}
           <button
             className="flex h-14 w-14 items-center justify-center rounded-full transition-all hover:scale-105"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
@@ -137,7 +217,6 @@ export default function SignUpPage() {
             </svg>
           </button>
 
-          {/* Apple */}
           <button
             className="flex h-14 w-14 items-center justify-center rounded-full transition-all hover:scale-105"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
