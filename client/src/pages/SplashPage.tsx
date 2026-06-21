@@ -68,7 +68,7 @@ export default function SplashPage() {
         </div>
 
         {/* Text Content */}
-        <div className="mt-6 px-6">
+        <div className="mt-6 px-6 text-center">
           <h1 className="font-heading text-3xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
             Choose your meal!
           </h1>
