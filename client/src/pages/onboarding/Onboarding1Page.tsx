@@ -29,22 +29,46 @@ export default function Onboarding1Page() {
       className="flex min-h-screen flex-col"
       style={{ backgroundColor: 'var(--color-bg-main)' }}
     >
-      <div className="flex-1 px-6">
-        <div className="grid grid-cols-3 gap-2">
+      {/* Image grid with top cut-off and bottom overlay */}
+      <div className="relative" style={{ marginTop: '-60px' }}>
+        <div
+          className="grid gap-3 px-4"
+          style={{
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateRows: 'auto',
+          }}
+        >
           {foodImages.map((src, i) => (
-            <div key={i} className="aspect-square overflow-hidden rounded-xl">
+            <div
+              key={i}
+              className="overflow-hidden rounded-xl"
+              style={{ aspectRatio: '1' }}
+            >
               <img src={src} alt={`Food ${i + 1}`} className="h-full w-full object-cover" loading="lazy" />
             </div>
           ))}
         </div>
-        <h1 className="mt-6 font-heading text-3xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
+        {/* Gradient overlay at bottom of grid */}
+        <div
+          className="pointer-events-none absolute bottom-0 left-0 right-0 h-24"
+          style={{
+            background: 'linear-gradient(to bottom, transparent 0%, var(--color-bg-main) 100%)',
+          }}
+        />
+      </div>
+
+      {/* Text Content */}
+      <div className="px-6">
+        <h1 className="font-heading text-3xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
           Choose your meal!
         </h1>
         <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
           Discover delicious meals from your favorite restaurants in just a few taps
         </p>
       </div>
-      <div className="px-6 pb-10">
+
+      {/* Progress Dots */}
+      <div className="mt-auto px-6 pb-10">
         <div className="flex justify-center gap-2">
           <div className="h-2 w-8 rounded-full" style={{ background: 'var(--gradient-primary)' }} />
           <div className="h-2 w-2 rounded-full" style={{ backgroundColor: 'var(--color-bg-hover)' }} />
