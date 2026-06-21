@@ -13,7 +13,7 @@ const foodImages = [
   'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=300',
   'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300',
   'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=300',
-  'https://images.unsplash.com/photo-1432139509613-5c4255a1d197?w=300',
+  'https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=300',
 ]
 
 export default function SplashPage() {
