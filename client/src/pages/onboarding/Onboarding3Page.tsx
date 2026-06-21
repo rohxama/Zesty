@@ -48,8 +48,8 @@ export default function Onboarding3Page() {
         <div
           className="mb-8 overflow-hidden rounded-3xl"
           style={{
-            width: '280px',
-            height: '280px',
+            width: '350px',
+            height: '350px',
             transition: 'opacity 0.8s ease, transform 0.8s ease',
             opacity: visible ? 1 : 0,
             transform: visible ? 'scale(1)' : 'scale(0.9)',
@@ -71,7 +71,7 @@ export default function Onboarding3Page() {
           }}
         >
           <h1
-            className="font-heading text-3xl font-bold"
+            className="font-heading text-3xl font-bold text-center"
             style={{ color: 'var(--color-text-primary)' }}
           >
             Track your order now!
@@ -85,20 +85,23 @@ export default function Onboarding3Page() {
         </div>
       </div>
 
-      {/* Progress Dots */}
+      {/* Progress Dots with sliding indicator */}
       <div className="px-6 pb-10">
-        <div className="flex justify-center gap-2">
+        <div className="relative flex justify-center gap-3">
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              className="h-2 w-2 rounded-full"
+              style={{ backgroundColor: 'var(--color-bg-hover)' }}
+            />
+          ))}
           <div
-            className="h-2 w-2 rounded-full"
-            style={{ backgroundColor: 'var(--color-bg-hover)' }}
-          />
-          <div
-            className="h-2 w-2 rounded-full"
-            style={{ backgroundColor: 'var(--color-bg-hover)' }}
-          />
-          <div
-            className="h-2 w-8 rounded-full"
-            style={{ background: 'var(--gradient-primary)' }}
+            className="absolute top-0 left-0 h-2 w-8 rounded-full"
+            style={{
+              background: 'var(--gradient-primary)',
+              transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+              transform: 'translateX(calc(200% + 24px))',
+            }}
           />
         </div>
       </div>
