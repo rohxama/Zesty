@@ -1,5 +1,17 @@
 import { useNavigate } from 'react-router-dom'
 
+const foodImages = [
+  'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300',
+  'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300',
+  'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300',
+  'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=300',
+  'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=300',
+  'https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=300',
+  'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=300',
+  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300',
+  'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=300',
+]
+
 export default function Onboarding1Page() {
   const navigate = useNavigate()
 
@@ -8,31 +20,33 @@ export default function Onboarding1Page() {
       className="flex min-h-screen flex-col"
       style={{ backgroundColor: 'var(--color-bg-main)' }}
     >
+      {/* Header */}
+      <div className="px-6 pt-10 pb-4 text-center">
+        <h2
+          className="font-heading text-base font-semibold"
+          style={{ color: 'var(--color-text-muted)' }}
+        >
+          Onboarding-1
+        </h2>
+      </div>
+
       {/* Content */}
-      <div className="flex-1 px-6 pt-8">
-        {/* Food Image Grid */}
-        <div className="mb-8 grid grid-cols-3 gap-2" style={{ height: '280px' }}>
-          <div className="col-span-2 row-span-2 overflow-hidden rounded-2xl">
-            <img
-              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400"
-              alt="Burger"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img
-              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200"
-              alt="Pizza"
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <div className="overflow-hidden rounded-2xl">
-            <img
-              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200"
-              alt="Salad"
-              className="h-full w-full object-cover"
-            />
-          </div>
+      <div className="flex-1 px-6">
+        {/* Food Image Grid - 3x3 */}
+        <div className="mb-8 grid grid-cols-3 gap-2">
+          {foodImages.map((src, i) => (
+            <div
+              key={i}
+              className="aspect-square overflow-hidden rounded-xl"
+            >
+              <img
+                src={src}
+                alt={`Food ${i + 1}`}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
         </div>
 
         {/* Text Content */}
@@ -51,7 +65,7 @@ export default function Onboarding1Page() {
       </div>
 
       {/* Bottom Section */}
-      <div className="px-6 pb-8">
+      <div className="px-6 pb-8 pt-6">
         {/* Progress Dots */}
         <div className="mb-8 flex justify-center gap-2">
           <div
