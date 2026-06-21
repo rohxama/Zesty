@@ -11,6 +11,9 @@ const foodImages = [
   'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=300',
   'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300',
   'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=300',
+  'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300',
+  'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=300',
+  'https://images.unsplash.com/photo-1432139509613-5c4255a1d197?w=300',
 ]
 
 export default function SplashPage() {
@@ -33,15 +36,15 @@ export default function SplashPage() {
     <div className="relative h-screen w-screen overflow-hidden" style={{ backgroundColor: 'var(--color-bg-main)' }}>
       {/* Onboarding1 content underneath */}
       <div className="absolute inset-0 flex flex-col" style={{ backgroundColor: 'var(--color-bg-main)' }}>
-        <div className="flex-1 px-6 pt-12">
-          <div className="mb-8 grid grid-cols-3 gap-2">
+        <div className="flex-1 px-6">
+          <div className="grid grid-cols-3 gap-2">
             {foodImages.map((src, i) => (
               <div key={i} className="aspect-square overflow-hidden rounded-xl">
                 <img src={src} alt={`Food ${i + 1}`} className="h-full w-full object-cover" loading="lazy" />
               </div>
             ))}
           </div>
-          <h1 className="font-heading text-3xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
+          <h1 className="mt-6 font-heading text-3xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
             Choose your meal!
           </h1>
           <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
