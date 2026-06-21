@@ -19,6 +19,17 @@ export default function Onboarding2Page() {
       className="relative flex min-h-screen flex-col"
       style={{ backgroundColor: 'var(--color-bg-main)' }}
     >
+      {/* Back Button */}
+      <button
+        onClick={() => navigate('/onboarding/1')}
+        className="absolute left-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full"
+        style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)' }}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--color-text-primary)' }}>
+          <path d="M19 12H5M12 19l-7-7 7-7" />
+        </svg>
+      </button>
+
       {/* Skip Button */}
       <button
         onClick={() => navigate('/signin')}
@@ -37,8 +48,8 @@ export default function Onboarding2Page() {
         <div
           className="mb-8 overflow-hidden rounded-3xl"
           style={{
-            width: '380px',
-            height: '380px',
+            width: '350px',
+            height: '350px',
             transition: 'opacity 0.8s ease, transform 0.8s ease',
             opacity: visible ? 1 : 0,
             transform: visible ? 'scale(1)' : 'scale(0.9)',
