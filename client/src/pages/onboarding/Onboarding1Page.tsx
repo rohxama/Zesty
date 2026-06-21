@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const foodImages = [
@@ -15,15 +15,10 @@ const foodImages = [
 
 export default function Onboarding1Page() {
   const navigate = useNavigate()
-  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const enterTimer = setTimeout(() => setVisible(true), 100)
     const navTimer = setTimeout(() => navigate('/onboarding/2'), 3000)
-    return () => {
-      clearTimeout(enterTimer)
-      clearTimeout(navTimer)
-    }
+    return () => clearTimeout(navTimer)
   }, [navigate])
 
   return (
@@ -34,14 +29,7 @@ export default function Onboarding1Page() {
       {/* Content */}
       <div className="flex-1 px-6 pt-12">
         {/* Food Image Grid - 3x3 */}
-        <div
-          className="mb-8 grid grid-cols-3 gap-2"
-          style={{
-            transition: 'opacity 0.8s ease, transform 0.8s ease',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(20px)',
-          }}
-        >
+        <div className="mb-8 grid grid-cols-3 gap-2">
           {foodImages.map((src, i) => (
             <div
               key={i}
@@ -58,26 +46,18 @@ export default function Onboarding1Page() {
         </div>
 
         {/* Text Content */}
-        <div
-          style={{
-            transition: 'opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(20px)',
-          }}
+        <h1
+          className="font-heading text-3xl font-bold"
+          style={{ color: 'var(--color-text-primary)' }}
         >
-          <h1
-            className="font-heading text-3xl font-bold"
-            style={{ color: 'var(--color-text-primary)' }}
-          >
-            Choose your meal!
-          </h1>
-          <p
-            className="mt-3 text-sm leading-relaxed"
-            style={{ color: 'var(--color-text-secondary)' }}
-          >
-            Discover delicious meals from your favorite restaurants in just a few taps
-          </p>
-        </div>
+          Choose your meal!
+        </h1>
+        <p
+          className="mt-3 text-sm leading-relaxed"
+          style={{ color: 'var(--color-text-secondary)' }}
+        >
+          Discover delicious meals from your favorite restaurants in just a few taps
+        </p>
       </div>
 
       {/* Progress Dots */}
