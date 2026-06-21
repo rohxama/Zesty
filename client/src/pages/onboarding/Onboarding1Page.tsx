@@ -25,10 +25,7 @@ export default function Onboarding1Page() {
   }, [navigate])
 
   return (
-    <div
-      className="flex min-h-screen flex-col"
-      style={{ backgroundColor: 'var(--color-bg-main)' }}
-    >
+    <div className="flex min-h-screen flex-col" style={{ backgroundColor: 'var(--color-bg-main)' }}>
       {/* Image grid with top cut-off and bottom overlay */}
       <div className="relative" style={{ marginTop: '-60px' }}>
         <div
@@ -39,12 +36,13 @@ export default function Onboarding1Page() {
           }}
         >
           {foodImages.map((src, i) => (
-            <div
-              key={i}
-              className="overflow-hidden rounded-xl"
-              style={{ aspectRatio: '1' }}
-            >
-              <img src={src} alt={`Food ${i + 1}`} className="h-full w-full object-cover" loading="lazy" />
+            <div key={i} className="overflow-hidden rounded-xl" style={{ aspectRatio: '1' }}>
+              <img
+                src={src}
+                alt={`Food ${i + 1}`}
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
@@ -59,10 +57,16 @@ export default function Onboarding1Page() {
 
       {/* Text Content */}
       <div className="mt-6 px-6">
-        <h1 className="font-heading text-3xl font-bold" style={{ color: 'var(--color-text-primary)' }}>
+        <h1
+          className="font-heading text-3xl font-bold text-center"
+          style={{ color: 'var(--color-text-primary)' }}
+        >
           Choose your meal!
         </h1>
-        <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+        <p
+          className="mt-3 text-sm leading-relaxed text-center"
+          style={{ color: 'var(--color-text-secondary)' }}
+        >
           Discover delicious meals from your favorite restaurants in just a few taps
         </p>
       </div>
@@ -71,8 +75,14 @@ export default function Onboarding1Page() {
       <div className="mt-auto px-6 pb-10">
         <div className="flex justify-center gap-2">
           <div className="h-2 w-8 rounded-full" style={{ background: 'var(--gradient-primary)' }} />
-          <div className="h-2 w-2 rounded-full" style={{ backgroundColor: 'var(--color-bg-hover)' }} />
-          <div className="h-2 w-2 rounded-full" style={{ backgroundColor: 'var(--color-bg-hover)' }} />
+          <div
+            className="h-2 w-2 rounded-full"
+            style={{ backgroundColor: 'var(--color-bg-hover)' }}
+          />
+          <div
+            className="h-2 w-2 rounded-full"
+            style={{ backgroundColor: 'var(--color-bg-hover)' }}
+          />
         </div>
       </div>
     </div>

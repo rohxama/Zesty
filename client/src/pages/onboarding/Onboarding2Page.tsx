@@ -16,9 +16,21 @@ export default function Onboarding2Page() {
 
   return (
     <div
-      className="flex min-h-screen flex-col"
+      className="relative flex min-h-screen flex-col"
       style={{ backgroundColor: 'var(--color-bg-main)' }}
     >
+      {/* Skip Button */}
+      <button
+        onClick={() => navigate('/signin')}
+        className="absolute left-4 top-4 z-20 rounded-full px-5 py-2 font-body text-sm font-semibold"
+        style={{
+          backgroundColor: 'rgba(255, 255, 255, 0.15)',
+          color: 'var(--color-text-primary)',
+        }}
+      >
+        Skip
+      </button>
+
       {/* Content */}
       <div className="flex flex-1 flex-col items-center justify-center px-6">
         {/* Image */}
