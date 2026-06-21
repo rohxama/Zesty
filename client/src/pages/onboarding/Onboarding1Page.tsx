@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const foodImages = [
@@ -14,26 +15,33 @@ const foodImages = [
 
 export default function Onboarding1Page() {
   const navigate = useNavigate()
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const enterTimer = setTimeout(() => setVisible(true), 100)
+    const navTimer = setTimeout(() => navigate('/onboarding/2'), 3000)
+    return () => {
+      clearTimeout(enterTimer)
+      clearTimeout(navTimer)
+    }
+  }, [navigate])
 
   return (
     <div
       className="flex min-h-screen flex-col"
       style={{ backgroundColor: 'var(--color-bg-main)' }}
     >
-      {/* Header */}
-      <div className="px-6 pt-10 pb-4 text-center">
-        <h2
-          className="font-heading text-base font-semibold"
-          style={{ color: 'var(--color-text-muted)' }}
-        >
-          Onboarding-1
-        </h2>
-      </div>
-
       {/* Content */}
-      <div className="flex-1 px-6">
+      <div className="flex-1 px-6 pt-12">
         {/* Food Image Grid - 3x3 */}
-        <div className="mb-8 grid grid-cols-3 gap-2">
+        <div
+          className="mb-8 grid grid-cols-3 gap-2"
+          style={{
+            transition: 'opacity 0.8s ease, transform 0.8s ease',
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(20px)',
+          }}
+        >
           {foodImages.map((src, i) => (
             <div
               key={i}
@@ -50,24 +58,31 @@ export default function Onboarding1Page() {
         </div>
 
         {/* Text Content */}
-        <h1
-          className="font-heading text-3xl font-bold"
-          style={{ color: 'var(--color-text-primary)' }}
+        <div
+          style={{
+            transition: 'opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s',
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(20px)',
+          }}
         >
-          Choose your meal!
-        </h1>
-        <p
-          className="mt-3 text-sm leading-relaxed"
-          style={{ color: 'var(--color-text-secondary)' }}
-        >
-          Discover delicious meals from your favorite restaurants in just a few taps
-        </p>
+          <h1
+            className="font-heading text-3xl font-bold"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            Choose your meal!
+          </h1>
+          <p
+            className="mt-3 text-sm leading-relaxed"
+            style={{ color: 'var(--color-text-secondary)' }}
+          >
+            Discover delicious meals from your favorite restaurants in just a few taps
+          </p>
+        </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="px-6 pb-8 pt-6">
-        {/* Progress Dots */}
-        <div className="mb-8 flex justify-center gap-2">
+      {/* Progress Dots */}
+      <div className="px-6 pb-10">
+        <div className="flex justify-center gap-2">
           <div
             className="h-2 w-8 rounded-full"
             style={{ background: 'var(--gradient-primary)' }}
@@ -80,27 +95,6 @@ export default function Onboarding1Page() {
             className="h-2 w-2 rounded-full"
             style={{ backgroundColor: 'var(--color-bg-hover)' }}
           />
-        </div>
-
-        {/* Buttons */}
-        <div className="flex gap-4">
-          <button
-            onClick={() => navigate('/signin')}
-            className="flex-1 rounded-xl py-4 font-body font-semibold transition-all"
-            style={{
-              backgroundColor: 'var(--color-bg-card)',
-              color: 'var(--color-text-secondary)',
-              border: '1px solid var(--color-border-color)',
-            }}
-          >
-            Skip
-          </button>
-          <button
-            onClick={() => navigate('/onboarding/2')}
-            className="btn-primary flex-1"
-          >
-            Next
-          </button>
         </div>
       </div>
     </div>
