@@ -22,7 +22,7 @@ export default function Onboarding2Page() {
       {/* Skip Button */}
       <button
         onClick={() => navigate('/signin')}
-        className="absolute left-4 top-4 z-20 rounded-full px-5 py-2 font-body text-sm font-semibold"
+        className="absolute right-4 top-4 z-20 rounded-full px-5 py-2 font-body text-sm font-semibold"
         style={{
           backgroundColor: 'rgba(255, 255, 255, 0.15)',
           color: 'var(--color-text-primary)',
@@ -37,8 +37,8 @@ export default function Onboarding2Page() {
         <div
           className="mb-8 overflow-hidden rounded-3xl"
           style={{
-            width: '280px',
-            height: '280px',
+            width: '380px',
+            height: '380px',
             transition: 'opacity 0.8s ease, transform 0.8s ease',
             opacity: visible ? 1 : 0,
             transform: visible ? 'scale(1)' : 'scale(0.9)',
