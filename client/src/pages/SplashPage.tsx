@@ -8,8 +8,8 @@ export default function SplashPage() {
 
   useEffect(() => {
     const enterTimer = setTimeout(() => setVisible(true), 100)
-    const exitTimer = setTimeout(() => setExiting(true), 2200)
-    const navTimer = setTimeout(() => navigate('/onboarding/1'), 3000)
+    const exitTimer = setTimeout(() => setExiting(true), 2000)
+    const navTimer = setTimeout(() => navigate('/onboarding/1'), 2600)
     return () => {
       clearTimeout(enterTimer)
       clearTimeout(exitTimer)
@@ -22,9 +22,8 @@ export default function SplashPage() {
       className="flex h-screen flex-col items-center justify-center overflow-hidden"
       style={{
         backgroundColor: 'var(--color-bg-main)',
-        transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease',
+        transition: exiting ? 'transform 0.6s cubic-bezier(0.4, 0, 1, 1)' : 'none',
         transform: exiting ? 'translateY(-100%)' : 'translateY(0)',
-        opacity: exiting ? 0 : 1,
         position: 'fixed',
         inset: 0,
         zIndex: 50,
@@ -34,7 +33,7 @@ export default function SplashPage() {
       <div
         className="flex flex-col items-center gap-5"
         style={{
-          transition: 'opacity 0.8s ease, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+          transition: 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
           opacity: visible ? 1 : 0,
           transform: visible ? 'scale(1) translateY(0)' : 'scale(0.8) translateY(20px)',
         }}
@@ -42,22 +41,8 @@ export default function SplashPage() {
         <img
           src="/logo.png"
           alt="Zesty Logo"
-          className="w-28 h-28 object-contain"
-          style={{
-            filter: 'drop-shadow(0 0 30px rgba(255, 77, 77, 0.3))',
-          }}
+          className="w-60 h-60 object-contain"
         />
-        <h1
-          className="font-heading text-5xl font-bold tracking-tight"
-          style={{
-            background: 'var(--gradient-primary)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}
-        >
-          Zesty
-        </h1>
       </div>
     </div>
   )
