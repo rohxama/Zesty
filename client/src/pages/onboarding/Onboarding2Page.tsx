@@ -56,8 +56,8 @@ export default function Onboarding2Page() {
           }}
         >
           <img
-            src="https://images.unsplash.com/photo-1526367790999-0150786686a2?w=400"
-            alt="Delivery Person"
+            src="/onboarding-img2.png"
+            alt="Special Offer"
             className="h-full w-full object-cover"
           />
         </div>
