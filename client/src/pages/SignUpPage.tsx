@@ -54,8 +54,7 @@ export default function SignUpPage() {
       })
 
       if (response.data.success) {
-        localStorage.setItem('zesty_current_user', JSON.stringify(response.data.data))
-        navigate('/home')
+        navigate('/signin')
       }
     } catch (error: any) {
       const message = error.response?.data?.message || 'Something went wrong'
