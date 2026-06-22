@@ -152,7 +152,10 @@ export default function ProfilePage() {
       {/* Logout */}
       <div className="px-4 pt-4">
         <button
-          onClick={() => navigate('/signin')}
+          onClick={() => {
+            localStorage.removeItem('zesty_current_user')
+            navigate('/signin')
+          }}
           className="flex w-full items-center justify-center gap-2 rounded-xl py-4"
           style={{ backgroundColor: 'var(--color-bg-card)' }}
         >

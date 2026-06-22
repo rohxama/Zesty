@@ -12,6 +12,7 @@ import MyCartPage from '@/pages/MyCartPage'
 import CheckoutPage from '@/pages/CheckoutPage'
 import OrderDonePage from '@/pages/OrderDonePage'
 import ProfilePage from '@/pages/ProfilePage'
+import ProtectedRoute from '@/components/ProtectedRoute'
 
 const router = createBrowserRouter([
   {
@@ -40,31 +41,31 @@ const router = createBrowserRouter([
   },
   {
     path: '/home',
-    element: <HomePage />,
+    element: <ProtectedRoute><HomePage /></ProtectedRoute>,
   },
   {
     path: '/categories',
-    element: <CategoriesPage />,
+    element: <ProtectedRoute><CategoriesPage /></ProtectedRoute>,
   },
   {
     path: '/meal/:id',
-    element: <MealDetailsPage />,
+    element: <ProtectedRoute><MealDetailsPage /></ProtectedRoute>,
   },
   {
     path: '/cart',
-    element: <MyCartPage />,
+    element: <ProtectedRoute><MyCartPage /></ProtectedRoute>,
   },
   {
     path: '/checkout',
-    element: <CheckoutPage />,
+    element: <ProtectedRoute><CheckoutPage /></ProtectedRoute>,
   },
   {
     path: '/order-done',
-    element: <OrderDonePage />,
+    element: <ProtectedRoute><OrderDonePage /></ProtectedRoute>,
   },
   {
     path: '/profile',
-    element: <ProfilePage />,
+    element: <ProtectedRoute><ProfilePage /></ProtectedRoute>,
   },
   {
     path: '*',
