@@ -12,6 +12,7 @@ import { config } from './config/index.js'
 import logger from './utils/logger.js'
 import { errorHandler, notFound } from './middleware/errorHandler.js'
 import foodRoutes from './routes/food.js'
+import authRoutes from './routes/auth.js'
 
 const app = express()
 const httpServer = createServer(app)
@@ -123,6 +124,7 @@ app.get('/health', (_req, res) => {
 })
 
 // Routes
+app.use('/api/auth', authRoutes)
 app.use('/api/foods', foodRoutes)
 
 // Socket.io connection

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import api from '@/api/axios'
 
 export default function SignInPage() {
   const navigate = useNavigate()
@@ -8,6 +9,7 @@ export default function SignInPage() {
     password: '',
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [loading, setLoading] = useState(false)
 
   const validate = () => {
     const newErrors: Record<string, string> = {}
@@ -28,28 +30,31 @@ export default function SignInPage() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = () => {
-    if (validate()) {
-      const users = JSON.parse(localStorage.getItem('zesty_users') || '[]')
-      const user = users.find((u: { email: string; password: string }) =>
-        u.email === formData.email && u.password === formData.password
-      )
+  const handleSubmit = async () => {
+    if (!validate()) return
 
-      if (!user) {
-        const emailExists = users.some((u: { email: string }) => u.email === formData.email)
-        if (!emailExists) {
-          setErrors({ email: 'You have no account with this email. Please sign up first.' })
-        } else {
-          setErrors({ password: 'Incorrect password' })
-        }
-        return
+    setLoading(true)
+    try {
+      const response = await api.post('/auth/signin', {
+        email: formData.email,
+        password: formData.password,
+      })
+
+      if (response.data.success) {
+        localStorage.setItem('zesty_current_user', JSON.stringify(response.data.data))
+        navigate('/home')
       }
-
-      localStorage.setItem('zesty_current_user', JSON.stringify({
-        name: user.name,
-        email: user.email,
-      }))
-      navigate('/home')
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Something went wrong'
+      if (message.includes('no account')) {
+        setErrors({ email: message })
+      } else if (message.includes('Incorrect')) {
+        setErrors({ password: message })
+      } else {
+        setErrors({ email: message })
+      }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -159,9 +164,11 @@ export default function SignInPage() {
           {/* Sign In Button */}
           <button
             onClick={handleSubmit}
-            className="btn-primary w-full py-4 bg-var(--color-primary-red) text-white font-semibold rounded-lg transition-all hover:scale-105"
+            className="btn-primary w-full py-4"
+            disabled={loading}
+            style={{ opacity: loading ? 0.7 : 1 }}
           >
-            Sign in
+            {loading ? 'Signing in...' : 'Sign in'}
           </button>
         </div>
 

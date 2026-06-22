@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import api from '@/api/axios'
 
 export default function SignUpPage() {
   const navigate = useNavigate()
@@ -10,6 +11,7 @@ export default function SignUpPage() {
     confirmPassword: '',
   })
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [loading, setLoading] = useState(false)
 
   const validate = () => {
     const newErrors: Record<string, string> = {}
@@ -40,27 +42,30 @@ export default function SignUpPage() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = () => {
-    if (validate()) {
-      const users = JSON.parse(localStorage.getItem('zesty_users') || '[]')
-      const userExists = users.some((u: { email: string }) => u.email === formData.email)
+  const handleSubmit = async () => {
+    if (!validate()) return
 
-      if (userExists) {
-        setErrors({ email: 'An account with this email already exists' })
-        return
-      }
-
-      users.push({
+    setLoading(true)
+    try {
+      const response = await api.post('/auth/signup', {
         name: formData.name,
         email: formData.email,
         password: formData.password,
       })
-      localStorage.setItem('zesty_users', JSON.stringify(users))
-      localStorage.setItem('zesty_current_user', JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-      }))
-      navigate('/home')
+
+      if (response.data.success) {
+        localStorage.setItem('zesty_current_user', JSON.stringify(response.data.data))
+        navigate('/home')
+      }
+    } catch (error: any) {
+      const message = error.response?.data?.message || 'Something went wrong'
+      if (message.includes('already exists')) {
+        setErrors({ email: message })
+      } else {
+        setErrors({ email: message })
+      }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -200,8 +205,10 @@ export default function SignUpPage() {
           <button
             onClick={handleSubmit}
             className="btn-primary w-full py-4"
+            disabled={loading}
+            style={{ opacity: loading ? 0.7 : 1 }}
           >
-            Sign up
+            {loading ? 'Creating account...' : 'Sign up'}
           </button>
         </div>
 
