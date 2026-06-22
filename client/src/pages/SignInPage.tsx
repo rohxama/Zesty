@@ -50,6 +50,8 @@ export default function SignInPage() {
         setErrors({ email: message })
       } else if (message.includes('Incorrect')) {
         setErrors({ password: message })
+      } else if (message.includes('Database not connected')) {
+        setErrors({ email: 'Server is starting up. Please try again in a moment.' })
       } else {
         setErrors({ email: message })
       }

@@ -1,8 +1,19 @@
 import { Router, type Request, type Response } from 'express'
+import mongoose from 'mongoose'
 import { User } from '../models/User.js'
 import logger from '../utils/logger.js'
 
 const router = Router()
+
+const checkDb = (_req: Request, res: Response, next: Function) => {
+  if (mongoose.connection.readyState !== 1) {
+    res.status(503).json({ success: false, message: 'Database not connected. Please start MongoDB and try again.' })
+    return
+  }
+  next()
+}
+
+router.use(checkDb)
 
 /**
  * @swagger

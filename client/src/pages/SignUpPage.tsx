@@ -60,6 +60,8 @@ export default function SignUpPage() {
       const message = error.response?.data?.message || 'Something went wrong'
       if (message.includes('already exists')) {
         setErrors({ email: message })
+      } else if (message.includes('Database not connected')) {
+        setErrors({ email: 'Server is starting up. Please try again in a moment.' })
       } else {
         setErrors({ email: message })
       }
