@@ -56,7 +56,7 @@ export default function Onboarding3Page() {
           }}
         >
           <img
-            src="/onboarding%20image%203.png"
+            src="/onboarding-img3.png"
             alt="Track Order"
             className="h-full w-full object-cover"
           />
