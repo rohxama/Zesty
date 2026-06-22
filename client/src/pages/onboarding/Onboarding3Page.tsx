@@ -56,7 +56,7 @@ export default function Onboarding3Page() {
           }}
         >
           <img
-            src="/onboarding-img3.png"
+            src="/onboarding3-img.png"
             alt="Track Order"
             className="h-full w-full object-cover"
           />
@@ -74,7 +74,7 @@ export default function Onboarding3Page() {
             style={{ color: 'var(--color-text-primary)' }}
           >
             Track your order now!
-          </h1>n
+          </h1>
           <p
             className="mt-3 max-w-sm text-center text-sm leading-relaxed"
             style={{ color: 'var(--color-text-secondary)' }}
