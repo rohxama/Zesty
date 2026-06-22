@@ -42,6 +42,24 @@ export default function SignUpPage() {
 
   const handleSubmit = () => {
     if (validate()) {
+      const users = JSON.parse(localStorage.getItem('zesty_users') || '[]')
+      const userExists = users.some((u: { email: string }) => u.email === formData.email)
+
+      if (userExists) {
+        setErrors({ email: 'An account with this email already exists' })
+        return
+      }
+
+      users.push({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      })
+      localStorage.setItem('zesty_users', JSON.stringify(users))
+      localStorage.setItem('zesty_current_user', JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+      }))
       navigate('/home')
     }
   }

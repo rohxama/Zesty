@@ -30,6 +30,25 @@ export default function SignInPage() {
 
   const handleSubmit = () => {
     if (validate()) {
+      const users = JSON.parse(localStorage.getItem('zesty_users') || '[]')
+      const user = users.find((u: { email: string; password: string }) =>
+        u.email === formData.email && u.password === formData.password
+      )
+
+      if (!user) {
+        const emailExists = users.some((u: { email: string }) => u.email === formData.email)
+        if (!emailExists) {
+          setErrors({ email: 'You have no account with this email. Please sign up first.' })
+        } else {
+          setErrors({ password: 'Incorrect password' })
+        }
+        return
+      }
+
+      localStorage.setItem('zesty_current_user', JSON.stringify({
+        name: user.name,
+        email: user.email,
+      }))
       navigate('/home')
     }
   }
@@ -140,7 +159,7 @@ export default function SignInPage() {
           {/* Sign In Button */}
           <button
             onClick={handleSubmit}
-            className="btn-primary w-full py-4"
+            className="btn-primary w-full py-4 bg-var(--color-primary-red) text-white font-semibold rounded-lg transition-all hover:scale-105"
           >
             Sign in
           </button>
