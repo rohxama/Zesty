@@ -306,9 +306,15 @@ export default function MealDetailsPage() {
                 className="flex w-full items-center justify-between rounded-xl p-4"
                 style={{ backgroundColor: 'var(--color-bg-card)' }}
               >
+                <span className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>
+                  {option.name}
+                </span>
                 <div className="flex items-center gap-3">
+                  <span className="text-sm font-medium" style={{ color: 'var(--color-primary-red)' }}>
+                    + $ {option.price.toFixed(2)}
+                  </span>
                   <div
-                    className="flex h-6 w-6 items-center justify-center rounded-full"
+                    className="flex h-5 w-5 items-center justify-center rounded"
                     style={{
                       backgroundColor: selectedOptions.includes(index)
                         ? 'var(--color-primary-red)'
@@ -321,13 +327,7 @@ export default function MealDetailsPage() {
                       </svg>
                     )}
                   </div>
-                  <span className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>
-                    {option.name}
-                  </span>
                 </div>
-                <span className="text-sm font-medium" style={{ color: 'var(--color-primary-red)' }}>
-                  + $ {option.price.toFixed(2)}
-                </span>
               </button>
             ))}
           </div>
