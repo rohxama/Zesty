@@ -2,10 +2,10 @@ import { useNavigate } from 'react-router-dom'
 import { Search } from 'lucide-react'
 
 const categories = [
-  { name: 'Burgers', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400', count: 12 },
-  { name: 'Pizza', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400', count: 8 },
-  { name: 'Sushi', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400', count: 15 },
-  { name: 'Chicken', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400', count: 6 },
+  { name: 'Burgers', image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400', count: 12 },
+  { name: 'Pizza', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400', count: 8 },
+  { name: 'Sushi', image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?w=400', count: 15 },
+  { name: 'Chicken', image: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400', count: 6 },
   { name: 'Grill', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400', count: 10 },
   { name: 'Shawarma', image: 'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=400', count: 9 },
 ]
