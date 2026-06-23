@@ -2,12 +2,12 @@ import { useNavigate } from 'react-router-dom'
 import { Search } from 'lucide-react'
 
 const categories = [
-  { name: 'Burgers', emoji: '🍔', count: 12 },
-  { name: 'Pizza', emoji: '🍕', count: 8 },
-  { name: 'Sushi', emoji: '🍣', count: 15 },
-  { name: 'Chicken', emoji: '🍗', count: 6 },
-  { name: 'Grill', emoji: '🥩', count: 10 },
-  { name: 'Shawarma', emoji: '🌯', count: 9 },
+  { name: 'Burgers', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400', count: 12 },
+  { name: 'Pizza', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400', count: 8 },
+  { name: 'Sushi', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400', count: 15 },
+  { name: 'Chicken', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400', count: 6 },
+  { name: 'Grill', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400', count: 10 },
+  { name: 'Shawarma', image: 'https://images.unsplash.com/photo-1529006557810-274b9b3fc259?w=400', count: 9 },
 ]
 
 export default function CategoriesPage() {
@@ -61,7 +61,13 @@ export default function CategoriesPage() {
             onClick={() => navigate('/categories')}
             className="card flex flex-col items-center justify-center p-6 transition-all duration-200 hover:scale-[1.02]"
           >
-            <span className="mb-3 text-5xl">{category.emoji}</span>
+            <div className="mb-3 h-20 w-20 overflow-hidden rounded-full">
+              <img
+                src={category.image}
+                alt={category.name}
+                className="h-full w-full object-cover"
+              />
+            </div>
             <h3
               className="font-heading text-base font-semibold"
               style={{ color: 'var(--color-text-primary)' }}
