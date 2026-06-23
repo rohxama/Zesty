@@ -1,18 +1,17 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 
-const additionalOptions = [
-  { name: 'Add Cheese', price: 0.50 },
-  { name: 'Add Extra Water', price: 0.30 },
-  { name: 'Add Extra Meat', price: 2.00 },
-]
-
-export default function MealDetailsPage() {
-  const navigate = useNavigate()
-  const [quantity, setQuantity] = useState(1)
-  const [selectedOptions, setSelectedOptions] = useState<number[]>([])
-
-  const meal = {
+const mealsData: Record<string, {
+  name: string
+  description: string
+  price: number
+  calories: string
+  rating: number
+  time: string
+  image: string
+  options: { name: string; price: number }[]
+}> = {
+  burgers: {
     name: 'Jumbo Burger',
     description: 'Tasty Jumbo Burger with extra cheese, mayo, and veggies. This hearty burger is packed with flavor.',
     price: 43.00,
@@ -20,7 +19,91 @@ export default function MealDetailsPage() {
     rating: 4.8,
     time: '20-25 Min',
     image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600',
-  }
+    options: [
+      { name: 'Add Cheese', price: 0.50 },
+      { name: 'Add Extra Sauce', price: 0.30 },
+      { name: 'Add Extra Meat', price: 2.00 },
+    ],
+  },
+  pizza: {
+    name: 'Margherita Pizza',
+    description: 'Classic Italian pizza with fresh mozzarella, tomatoes, and basil on a crispy thin crust.',
+    price: 38.50,
+    calories: '850 Cal',
+    rating: 4.9,
+    time: '25-30 Min',
+    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600',
+    options: [
+      { name: 'Add Extra Cheese', price: 1.00 },
+      { name: 'Add Mushrooms', price: 0.75 },
+      { name: 'Add Pepperoni', price: 1.50 },
+    ],
+  },
+  sushi: {
+    name: 'Salmon Sushi Set',
+    description: 'Fresh premium salmon sashimi and nigiri, served with wasabi, ginger, and soy sauce.',
+    price: 52.00,
+    calories: '450 Cal',
+    rating: 4.7,
+    time: '15-20 Min',
+    image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600',
+    options: [
+      { name: 'Add Miso Soup', price: 2.00 },
+      { name: 'Add Edamame', price: 1.50 },
+      { name: 'Extra Soy Sauce', price: 0.25 },
+    ],
+  },
+  chicken: {
+    name: 'Crispy Fried Chicken',
+    description: 'Golden crispy fried chicken pieces with a blend of secret spices and herbs.',
+    price: 28.00,
+    calories: '720 Cal',
+    rating: 4.6,
+    time: '20-25 Min',
+    image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=600',
+    options: [
+      { name: 'Add Coleslaw', price: 1.00 },
+      { name: 'Add Fries', price: 1.50 },
+      { name: 'Extra Sauce', price: 0.50 },
+    ],
+  },
+  grill: {
+    name: 'Grilled Steak',
+    description: 'Premium cut grilled steak cooked to perfection, served with grilled vegetables and sauce.',
+    price: 65.00,
+    calories: '1100 Cal',
+    rating: 4.9,
+    time: '30-35 Min',
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600',
+    options: [
+      { name: 'Add Garlic Bread', price: 1.50 },
+      { name: 'Add Side Salad', price: 2.00 },
+      { name: 'Extra Sauce', price: 0.75 },
+    ],
+  },
+  shawarma: {
+    name: 'Chicken Shawarma',
+    description: 'Juicy marinated chicken wrapped in warm pita with tahini, pickles, and fresh veggies.',
+    price: 22.00,
+    calories: '650 Cal',
+    rating: 4.7,
+    time: '15-20 Min',
+    image: 'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=600',
+    options: [
+      { name: 'Add Hummus', price: 1.00 },
+      { name: 'Add Fries', price: 1.50 },
+      { name: 'Extra Garlic Sauce', price: 0.50 },
+    ],
+  },
+}
+
+export default function MealDetailsPage() {
+  const navigate = useNavigate()
+  const { id } = useParams<{ id: string }>()
+  const [quantity, setQuantity] = useState(1)
+  const [selectedOptions, setSelectedOptions] = useState<number[]>([])
+
+  const meal = mealsData[id ?? ''] ?? mealsData.burgers!
 
   const toggleOption = (index: number) => {
     setSelectedOptions((prev) =>
@@ -29,7 +112,7 @@ export default function MealDetailsPage() {
   }
 
   const totalPrice = meal.price * quantity +
-    additionalOptions
+    meal.options
       .filter((_, index) => selectedOptions.includes(index))
       .reduce((sum, opt) => sum + opt.price, 0) * quantity
 
@@ -216,7 +299,7 @@ export default function MealDetailsPage() {
             Additional options
           </h3>
           <div className="mt-3 space-y-3">
-            {additionalOptions.map((option, index) => (
+            {meal.options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => toggleOption(index)}

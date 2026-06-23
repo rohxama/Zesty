@@ -2,12 +2,12 @@ import { useNavigate } from 'react-router-dom'
 import { Search } from 'lucide-react'
 
 const categories = [
-  { name: 'Burgers', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400', count: 12 },
-  { name: 'Pizza', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400', count: 8 },
-  { name: 'Sushi', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400', count: 15 },
-  { name: 'Chicken', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400', count: 6 },
-  { name: 'Grill', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400', count: 10 },
-  { name: 'Shawarma', image: 'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=400', count: 9 },
+  { id: 'burgers', name: 'Burgers', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400', count: 12 },
+  { id: 'pizza', name: 'Pizza', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400', count: 8 },
+  { id: 'sushi', name: 'Sushi', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400', count: 15 },
+  { id: 'chicken', name: 'Chicken', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400', count: 6 },
+  { id: 'grill', name: 'Grill', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400', count: 10 },
+  { id: 'shawarma', name: 'Shawarma', image: 'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=400', count: 9 },
 ]
 
 export default function CategoriesPage() {
@@ -58,7 +58,7 @@ export default function CategoriesPage() {
         {categories.map((category, index) => (
           <button
             key={index}
-            onClick={() => navigate('/categories')}
+            onClick={() => navigate(`/meal/${category.id}`)}
             className="card flex flex-col items-center justify-center p-6 transition-all duration-200 hover:scale-[1.02]"
           >
             <div className="mb-3 h-24 w-24 overflow-hidden rounded-full">
