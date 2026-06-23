@@ -29,10 +29,10 @@ const banners = [
 ]
 
 const categories = [
-  { name: 'Burger', emoji: '🍔' },
-  { name: 'Pizza', emoji: '🍕' },
-  { name: 'Chicken', emoji: '🍗' },
-  { name: 'Salad', emoji: '🥗' },
+  { name: 'Burger', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200' },
+  { name: 'Pizza', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200' },
+  { name: 'Chicken', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=200' },
+  { name: 'Salad', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200' },
 ]
 
 const popularMeals = [
@@ -294,16 +294,17 @@ export default function HomePage() {
             See all
           </button>
         </div>
-        <div className="flex gap-4 overflow-x-auto pb-2">
+        <div className="grid grid-cols-4 gap-3">
           {categories.map((category, index) => (
             <button
               key={index}
               onClick={() => navigate('/categories')}
-              className="flex flex-col items-center gap-2 rounded-2xl px-6 py-4 transition-all"
-              style={{ backgroundColor: 'var(--color-bg-card)' }}
+              className="flex flex-col items-center gap-2"
             >
-              <span className="text-3xl">{category.emoji}</span>
-              <span className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>
+              <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: 'var(--color-bg-card)' }}>
+                <img src={category.image} alt={category.name} className="h-full w-full object-cover" />
+              </div>
+              <span className="text-xs font-medium" style={{ color: 'var(--color-text-primary)' }}>
                 {category.name}
               </span>
             </button>
