@@ -7,7 +7,7 @@ const categories = [
   { name: 'Sushi', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400', count: 15 },
   { name: 'Chicken', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=400', count: 6 },
   { name: 'Grill', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400', count: 10 },
-  { name: 'Shawarma', image: 'https://images.unsplash.com/photo-1529006557810-274b9b3fc259?w=400', count: 9 },
+  { name: 'Shawarma', image: 'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=400', count: 9 },
 ]
 
 export default function CategoriesPage() {
