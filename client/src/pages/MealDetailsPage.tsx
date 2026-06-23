@@ -115,6 +115,7 @@ export default function MealDetailsPage() {
   const { id } = useParams<{ id: string }>()
   const [quantity, setQuantity] = useState(1)
   const [selectedOptions, setSelectedOptions] = useState<number[]>([])
+  const [showFullDescription, setShowFullDescription] = useState(false)
 
   const meal = mealsData[id ?? ''] ?? mealsData.burgers!
 
@@ -304,9 +305,13 @@ export default function MealDetailsPage() {
             className="mt-2 text-sm leading-relaxed"
             style={{ color: 'var(--color-text-secondary)' }}
           >
-            {meal.description}
-            <button className="ml-1 font-medium" style={{ color: 'var(--color-primary-red)' }}>
-              Read More
+            {showFullDescription ? meal.fullDescription : meal.description}
+            <button
+              onClick={() => setShowFullDescription(!showFullDescription)}
+              className="ml-1 font-medium"
+              style={{ color: 'var(--color-primary-red)' }}
+            >
+              {showFullDescription ? 'Read Less' : 'Read More'}
             </button>
           </p>
         </div>
