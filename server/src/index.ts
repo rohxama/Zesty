@@ -146,6 +146,8 @@ const startServer = async () => {
     await mongoose.connect(config.mongoUri)
     logger.info('Connected to MongoDB')
   } catch (error) {
+    console.error('MongoDB connection error:')
+    console.error(error)
     logger.warn('MongoDB not available — running without database')
   }
 

@@ -54,36 +54,48 @@ const popularMeals = [
   },
 ]
 
+const extendedBanners = [...banners, banners[0]!]
+
 export default function HomePage() {
   const navigate = useNavigate()
-  const [currentBanner, setCurrentBanner] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [offset, setOffset] = useState(0)
-  const sliderRef = useRef<HTMLDivElement>(null)
+  const [isTransitioning, setIsTransitioning] = useState(true)
   const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  const totalBanners = banners.length
+  const goToSlide = useCallback((index: number) => {
+    setIsTransitioning(true)
+    setCurrentIndex(index)
+  }, [])
 
-  const nextBanner = useCallback(() => {
-    setCurrentBanner((prev) => (prev + 1) % totalBanners)
-  }, [totalBanners])
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => prev + 1)
+  }, [])
 
-  const prevBanner = useCallback(() => {
-    setCurrentBanner((prev) => (prev - 1 + totalBanners) % totalBanners)
-  }, [totalBanners])
-
-  // Auto-play infinite
+  // Auto-play
   useEffect(() => {
     autoPlayRef.current = setInterval(() => {
       if (!isDragging) {
-        nextBanner()
+        nextSlide()
       }
     }, 3000)
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current)
     }
-  }, [isDragging, nextBanner])
+  }, [isDragging, nextSlide])
+
+  // Reset to first slide without animation when reaching the clone
+  useEffect(() => {
+    if (currentIndex === banners.length) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(false)
+        setCurrentIndex(0)
+      }, 400)
+      return () => clearTimeout(timer)
+    }
+  }, [currentIndex])
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true)
@@ -100,9 +112,13 @@ export default function HomePage() {
   const handleTouchEnd = () => {
     setIsDragging(false)
     if (offset > 50) {
-      prevBanner()
+      if (currentIndex === 0) {
+        goToSlide(banners.length)
+      } else {
+        goToSlide(currentIndex - 1)
+      }
     } else if (offset < -50) {
-      nextBanner()
+      nextSlide()
     }
     setOffset(0)
   }
@@ -122,9 +138,13 @@ export default function HomePage() {
   const handleMouseUp = () => {
     setIsDragging(false)
     if (offset > 50) {
-      prevBanner()
+      if (currentIndex === 0) {
+        goToSlide(banners.length)
+      } else {
+        goToSlide(currentIndex - 1)
+      }
     } else if (offset < -50) {
-      nextBanner()
+      nextSlide()
     }
     setOffset(0)
   }
@@ -133,9 +153,13 @@ export default function HomePage() {
     if (isDragging) {
       setIsDragging(false)
       if (offset > 50) {
-        prevBanner()
+        if (currentIndex === 0) {
+          goToSlide(banners.length)
+        } else {
+          goToSlide(currentIndex - 1)
+        }
       } else if (offset < -50) {
-        nextBanner()
+        nextSlide()
       }
       setOffset(0)
     }
@@ -220,7 +244,6 @@ export default function HomePage() {
       {/* Banner Slider */}
       <div className="px-4 pb-4">
         <div
-          ref={sliderRef}
           className="relative overflow-hidden rounded-2xl select-none"
           style={{ background: 'var(--gradient-primary)', cursor: isDragging ? 'grabbing' : 'grab' }}
           onTouchStart={handleTouchStart}
@@ -232,35 +255,35 @@ export default function HomePage() {
           onMouseLeave={handleMouseLeave}
         >
           <div
-            className="flex transition-transform"
+            className="flex"
             style={{
-              transform: `translateX(calc(-${currentBanner * 100}% + ${offset}px))`,
-              transition: isDragging ? 'none' : 'transform 0.4s ease',
+              transform: `translateX(calc(-${currentIndex * 100}% + ${offset}px))`,
+              transition: isDragging ? 'none' : isTransitioning ? 'transform 0.4s ease' : 'none',
             }}
           >
-            {banners.map((banner) => (
-              <div key={banner.id} className="min-w-full p-5">
+            {extendedBanners.map((banner, index) => (
+              <div key={`${banner.id}-${index}`} className="min-w-full p-5">
                 <div className="flex items-center justify-between">
                   <div className="flex-1 pr-4">
                     <h3 className="font-heading text-xl font-bold text-white">
-                      {banner.title}
+                      {banner?.title}
                     </h3>
                     <p className="mt-2 text-xs leading-relaxed text-white/80">
-                      {banner.description}
+                      {banner?.description}
                     </p>
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
-                        navigate(`/meal/${banner.mealId}`)
+                        navigate(`/meal/${banner?.mealId}`)
                       }}
                       className="mt-4 rounded-full bg-white px-5 py-2.5 text-xs font-semibold"
                       style={{ color: 'var(--color-primary-red)' }}
                     >
-                      {banner.buttonText}
+                      {banner?.buttonText}
                     </button>
                   </div>
                   <img
-                    src={banner.image}
+                    src={banner?.image}
                     alt="Food"
                     className="h-24 w-24 rounded-2xl object-cover"
                     draggable={false}
@@ -275,11 +298,11 @@ export default function HomePage() {
           {banners.map((_, index) => (
             <button
               key={index}
-              onClick={() => setCurrentBanner(index)}
+              onClick={() => goToSlide(index)}
               className="h-2 rounded-full transition-all"
               style={{
-                width: currentBanner === index ? '24px' : '8px',
-                background: currentBanner === index ? 'var(--gradient-primary)' : 'var(--color-bg-hover)',
+                width: (currentIndex % banners.length) === index ? '24px' : '8px',
+                background: (currentIndex % banners.length) === index ? 'var(--gradient-primary)' : 'var(--color-bg-hover)',
               }}
             />
           ))}
