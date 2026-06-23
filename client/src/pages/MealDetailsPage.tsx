@@ -4,6 +4,7 @@ import { useState } from 'react'
 const mealsData: Record<string, {
   name: string
   description: string
+  fullDescription: string
   price: number
   calories: string
   rating: number
@@ -13,7 +14,8 @@ const mealsData: Record<string, {
 }> = {
   burgers: {
     name: 'Jumbo Burger',
-    description: 'Tasty Jumbo Burger with extra cheese, mayo, and veggies. This hearty burger is packed with flavor.',
+    description: 'Tasty Jumbo Burger with extra cheese, mayo, and veggies.',
+    fullDescription: 'Tasty Jumbo Burger with extra cheese, mayo, and veggies. This hearty burger is packed with flavor and made with 100% premium beef. Our signature sauce and fresh lettuce add the perfect crunch. Served on a toasted sesame seed bun with a side of golden fries.',
     price: 43.00,
     calories: '900 Cal',
     rating: 4.8,
@@ -27,7 +29,8 @@ const mealsData: Record<string, {
   },
   pizza: {
     name: 'Margherita Pizza',
-    description: 'Classic Italian pizza with fresh mozzarella, tomatoes, and basil on a crispy thin crust.',
+    description: 'Classic Italian pizza with fresh mozzarella, tomatoes, and basil.',
+    fullDescription: 'Classic Italian pizza with fresh mozzarella, tomatoes, and basil on a crispy thin crust. Made with our hand-stretched dough that rises for 24 hours. Topped with San Marzano tomato sauce and drizzled with extra virgin olive oil. Baked in a traditional wood-fired oven for that authentic smoky flavor.',
     price: 38.50,
     calories: '850 Cal',
     rating: 4.9,
@@ -41,7 +44,8 @@ const mealsData: Record<string, {
   },
   sushi: {
     name: 'Salmon Sushi Set',
-    description: 'Fresh premium salmon sashimi and nigiri, served with wasabi, ginger, and soy sauce.',
+    description: 'Fresh premium salmon sashimi and nigiri.',
+    fullDescription: 'Fresh premium salmon sashimi and nigiri, served with wasabi, ginger, and soy sauce. Our salmon is sourced daily from sustainable fisheries and prepared by expert sushi chefs. Includes 8 pieces of nigiri and 6 pieces of sashimi. Each piece is handcrafted with precision and care.',
     price: 52.00,
     calories: '450 Cal',
     rating: 4.7,
@@ -55,7 +59,8 @@ const mealsData: Record<string, {
   },
   chicken: {
     name: 'Crispy Fried Chicken',
-    description: 'Golden crispy fried chicken pieces with a blend of secret spices and herbs.',
+    description: 'Golden crispy fried chicken pieces with secret spices.',
+    fullDescription: 'Golden crispy fried chicken pieces with a blend of secret spices and herbs. Our chicken is marinated for 24 hours to ensure maximum flavor and juiciness. Coated in our proprietary batter and fried to golden perfection. Served with your choice of dipping sauce and a fresh side salad.',
     price: 28.00,
     calories: '720 Cal',
     rating: 4.6,
@@ -69,7 +74,8 @@ const mealsData: Record<string, {
   },
   grill: {
     name: 'Grilled Steak',
-    description: 'Premium cut grilled steak cooked to perfection, served with grilled vegetables and sauce.',
+    description: 'Premium cut grilled steak cooked to perfection.',
+    fullDescription: 'Premium cut grilled steak cooked to perfection, served with grilled vegetables and sauce. Our steaks are hand-selected from the finest cuts and aged for 28 days. Seasoned with our signature herb blend and grilled over an open flame. Served with roasted garlic butter, grilled asparagus, and your choice of side.',
     price: 65.00,
     calories: '1100 Cal',
     rating: 4.9,
@@ -83,7 +89,8 @@ const mealsData: Record<string, {
   },
   shawarma: {
     name: 'Chicken Shawarma',
-    description: 'Juicy marinated chicken wrapped in warm pita with tahini, pickles, and fresh veggies.',
+    description: 'Juicy marinated chicken wrapped in warm pita.',
+    fullDescription: 'Juicy marinated chicken wrapped in warm pita with tahini, pickles, and fresh veggies. Our chicken is marinated in a blend of Middle Eastern spices for 12 hours. Slow-roasted on a vertical spit for that authentic flavor. Wrapped in freshly baked pita bread with garlic sauce, turnips, and a drizzle of tahini.',
     price: 22.00,
     calories: '650 Cal',
     rating: 4.7,
@@ -102,6 +109,7 @@ export default function MealDetailsPage() {
   const { id } = useParams<{ id: string }>()
   const [quantity, setQuantity] = useState(1)
   const [selectedOptions, setSelectedOptions] = useState<number[]>([])
+  const [showFullDescription, setShowFullDescription] = useState(false)
 
   const meal = mealsData[id ?? ''] ?? mealsData.burgers!
 
@@ -280,12 +288,13 @@ export default function MealDetailsPage() {
             className="mt-2 text-sm leading-relaxed"
             style={{ color: 'var(--color-text-secondary)' }}
           >
-            {meal.description}
+            {showFullDescription ? meal.fullDescription : meal.description}
             <button
+              onClick={() => setShowFullDescription(!showFullDescription)}
               className="ml-1 font-medium"
               style={{ color: 'var(--color-primary-red)' }}
             >
-              Read More
+              {showFullDescription ? 'Read Less' : 'Read More'}
             </button>
           </p>
         </div>
@@ -314,7 +323,7 @@ export default function MealDetailsPage() {
                     + $ {option.price.toFixed(2)}
                   </span>
                   <div
-                    className="flex h-5 w-5 items-center justify-center rounded"
+                    className="flex h-5 w-5 items-center justify-center rounded-"
                     style={{
                       backgroundColor: selectedOptions.includes(index)
                         ? 'var(--color-primary-red)'
