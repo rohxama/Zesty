@@ -65,7 +65,8 @@ const mealsData: Record<
   },
   chicken: {
     name: 'Crispy Fried Chicken',
-    description: 'Golden crispy fried chicken pieces with a blend of secret spices and herbs.',
+    description: 'Golden crispy fried chicken pieces with secret spices.',
+    fullDescription: 'Golden crispy fried chicken pieces with a blend of secret spices and herbs. Our chicken is marinated for 24 hours to ensure maximum flavor and juiciness. Coated in our proprietary batter and fried to golden perfection. Served with your choice of dipping sauce and a fresh side salad.',
     price: 28.0,
     calories: '720 Cal',
     rating: 4.6,
@@ -79,8 +80,8 @@ const mealsData: Record<
   },
   grill: {
     name: 'Grilled Steak',
-    description:
-      'Premium cut grilled steak cooked to perfection, served with grilled vegetables and sauce.',
+    description: 'Premium cut grilled steak cooked to perfection.',
+    fullDescription: 'Premium cut grilled steak cooked to perfection, served with grilled vegetables and sauce. Our steaks are hand-selected from the finest cuts and aged for 28 days. Seasoned with our signature herb blend and grilled over an open flame. Served with roasted garlic butter, grilled asparagus, and your choice of side.',
     price: 65.0,
     calories: '1100 Cal',
     rating: 4.9,
@@ -94,8 +95,8 @@ const mealsData: Record<
   },
   shawarma: {
     name: 'Chicken Shawarma',
-    description:
-      'Juicy marinated chicken wrapped in warm pita with tahini, pickles, and fresh veggies.',
+    description: 'Juicy marinated chicken wrapped in warm pita.',
+    fullDescription: 'Juicy marinated chicken wrapped in warm pita with tahini, pickles, and fresh veggies. Our chicken is marinated in a blend of Middle Eastern spices for 12 hours. Slow-roasted on a vertical spit for that authentic flavor. Wrapped in freshly baked pita bread with garlic sauce, turnips, and a drizzle of tahini.',
     price: 22.0,
     calories: '650 Cal',
     rating: 4.7,
@@ -178,23 +179,8 @@ export default function MealDetailsPage() {
 
       {/* Meal Image */}
       <div className="px-4">
-        <div className="relative overflow-hidden rounded-3xl">
+        <div className="overflow-hidden rounded-3xl">
           <img src={meal.image} alt={meal.name} className="h-64 w-full object-cover" />
-          <button
-            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full"
-            style={{ backgroundColor: 'var(--color-bg-card)' }}
-          >
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="var(--color-primary-red)"
-              stroke="var(--color-primary-red)"
-              strokeWidth="2"
-            >
-              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-            </svg>
-          </button>
         </div>
       </div>
 
