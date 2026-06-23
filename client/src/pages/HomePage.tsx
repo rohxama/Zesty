@@ -78,116 +78,123 @@ const popularMeals = [
   },
 ]
 
-const extendedBanners = [...banners, banners[0]!]
-
 export default function HomePage() {
   const navigate = useNavigate()
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isDragging, setIsDragging] = useState(false)
-  const [startX, setStartX] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(0)
   const [offset, setOffset] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(true)
-  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const [animate, setAnimate] = useState(true)
 
-  const goToSlide = useCallback((index: number) => {
-    setIsTransitioning(true)
-    setCurrentIndex(index)
+  const total = banners.length
+  const isDragging = useRef(false)
+  const startX = useRef(0)
+  const dragOffset = useRef(0)
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
+
+  const goTo = useCallback((index: number) => {
+    setAnimate(true)
+    setCurrentSlide(index)
   }, [])
 
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => prev + 1)
+  const next = useCallback(() => {
+    setAnimate(true)
+    setCurrentSlide((prev) => prev + 1)
+  }, [])
+
+  const prev = useCallback(() => {
+    setAnimate(true)
+    setCurrentSlide((prev) => prev - 1)
   }, [])
 
   // Auto-play
   useEffect(() => {
     autoPlayRef.current = setInterval(() => {
-      if (!isDragging) {
-        nextSlide()
+      if (!isDragging.current) {
+        next()
       }
     }, 3000)
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current)
     }
-  }, [isDragging, nextSlide])
+  }, [next])
 
-  // Reset to first slide without animation when reaching the clone
+  // Seamless loop: when we reach the clone at index total, instantly jump to real 0
   useEffect(() => {
-    if (currentIndex === banners.length) {
-      const timer = setTimeout(() => {
-        setIsTransitioning(false)
-        setCurrentIndex(0)
-      }, 400)
-      return () => clearTimeout(timer)
+    if (currentSlide === total) {
+      resetTimerRef.current = setTimeout(() => {
+        setAnimate(false)
+        setCurrentSlide(0)
+      }, 450)
+      return () => {
+        if (resetTimerRef.current) clearTimeout(resetTimerRef.current)
+      }
     }
-  }, [currentIndex])
+  }, [currentSlide, total])
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsDragging(true)
-    setStartX(e.touches[0]?.clientX ?? 0)
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+      if (resetTimerRef.current) clearTimeout(resetTimerRef.current)
+    }
+  }, [])
+
+  const onDragStart = (clientX: number) => {
+    isDragging.current = true
+    startX.current = clientX
+    dragOffset.current = 0
+    setAnimate(false)
     if (autoPlayRef.current) clearInterval(autoPlayRef.current)
   }
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging) return
-    const diff = (e.touches[0]?.clientX ?? 0) - startX
-    setOffset(diff)
+  const onDragMove = (clientX: number) => {
+    if (!isDragging.current) return
+    dragOffset.current = clientX - startX.current
+    setOffset(dragOffset.current)
   }
 
-  const handleTouchEnd = () => {
-    setIsDragging(false)
-    if (offset > 50) {
-      if (currentIndex === 0) {
-        goToSlide(banners.length)
+  const onDragEnd = () => {
+    if (!isDragging.current) return
+    isDragging.current = false
+    setAnimate(true)
+
+    const threshold = 50
+    if (dragOffset.current < -threshold) {
+      next()
+    } else if (dragOffset.current > threshold) {
+      if (currentSlide === 0) {
+        goTo(total)
       } else {
-        goToSlide(currentIndex - 1)
+        prev()
       }
-    } else if (offset < -50) {
-      nextSlide()
     }
+    dragOffset.current = 0
     setOffset(0)
+
+    // Restart auto-play
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    autoPlayRef.current = setInterval(() => {
+      if (!isDragging.current) next()
+    }, 3000)
   }
+
+  const handleTouchStart = (e: React.TouchEvent) => onDragStart(e.touches[0]?.clientX ?? 0)
+  const handleTouchMove = (e: React.TouchEvent) => onDragMove(e.touches[0]?.clientX ?? 0)
+  const handleTouchEnd = () => onDragEnd()
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true)
-    setStartX(e.clientX)
-    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    e.preventDefault()
+    onDragStart(e.clientX)
   }
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return
-    const diff = e.clientX - startX
-    setOffset(diff)
-  }
-
-  const handleMouseUp = () => {
-    setIsDragging(false)
-    if (offset > 50) {
-      if (currentIndex === 0) {
-        goToSlide(banners.length)
-      } else {
-        goToSlide(currentIndex - 1)
-      }
-    } else if (offset < -50) {
-      nextSlide()
-    }
-    setOffset(0)
-  }
-
+  const handleMouseMove = (e: React.MouseEvent) => onDragMove(e.clientX)
+  const handleMouseUp = () => onDragEnd()
   const handleMouseLeave = () => {
-    if (isDragging) {
-      setIsDragging(false)
-      if (offset > 50) {
-        if (currentIndex === 0) {
-          goToSlide(banners.length)
-        } else {
-          goToSlide(currentIndex - 1)
-        }
-      } else if (offset < -50) {
-        nextSlide()
-      }
-      setOffset(0)
-    }
+    if (isDragging.current) onDragEnd()
   }
+
+  const activeDot = currentSlide % total
+  const translateX = -(currentSlide * 100) + (offset / (trackRef.current?.offsetWidth ?? 1)) * 100
 
   return (
     <div
@@ -196,7 +203,6 @@ export default function HomePage() {
     >
       {/* Header */}
       <div className="px-4 pt-4">
-        {/* Top row: Profile | Search | Notification */}
         <div className="flex items-center gap-3">
           <button
             className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full"
@@ -228,7 +234,6 @@ export default function HomePage() {
             </svg>
           </button>
         </div>
-        {/* Title */}
         <div className="pt-4 pb-2">
           <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
             What meal Do You Want?
@@ -240,7 +245,7 @@ export default function HomePage() {
       <div className="px-4 pb-6 pt-4">
         <div
           className="relative overflow-hidden rounded-2xl select-none"
-          style={{ background: 'var(--gradient-primary)', cursor: isDragging ? 'grabbing' : 'grab' }}
+          style={{ background: 'var(--gradient-primary)', cursor: isDragging.current ? 'grabbing' : 'grab' }}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -250,35 +255,36 @@ export default function HomePage() {
           onMouseLeave={handleMouseLeave}
         >
           <div
+            ref={trackRef}
             className="flex"
             style={{
-              transform: `translateX(calc(-${currentIndex * 100}% + ${offset}px))`,
-              transition: isDragging ? 'none' : isTransitioning ? 'transform 0.4s ease' : 'none',
+              transform: `translateX(${translateX}%)`,
+              transition: animate ? 'transform 0.4s ease' : 'none',
             }}
           >
-            {extendedBanners.map((banner, index) => (
-              <div key={`${banner.id}-${index}`} className="min-w-full p-5">
+            {banners.map((banner) => (
+              <div key={banner.id} className="min-w-full p-5">
                 <div className="flex items-center justify-between">
                   <div className="flex-1 pr-4">
                     <h3 className="font-heading text-xl font-bold text-white">
-                      {banner?.title}
+                      {banner.title}
                     </h3>
                     <p className="mt-2 text-xs leading-relaxed text-white/80">
-                      {banner?.description}
+                      {banner.description}
                     </p>
                     <button
                       onClick={(e) => {
                         e.stopPropagation()
-                        navigate(`/meal/${banner?.mealId}`)
+                        navigate(`/meal/${banner.mealId}`)
                       }}
                       className="mt-4 rounded-full bg-white px-5 py-2.5 text-xs font-semibold"
                       style={{ color: 'var(--color-primary-red)' }}
                     >
-                      {banner?.buttonText}
+                      {banner.buttonText}
                     </button>
                   </div>
                   <img
-                    src={banner?.image}
+                    src={banner.image}
                     alt="Food"
                     className="h-24 w-24 rounded-2xl object-cover"
                     draggable={false}
@@ -286,6 +292,35 @@ export default function HomePage() {
                 </div>
               </div>
             ))}
+            {/* Clone of first slide for seamless loop */}
+            <div className="min-w-full p-5">
+              <div className="flex items-center justify-between">
+                <div className="flex-1 pr-4">
+                  <h3 className="font-heading text-xl font-bold text-white">
+                    {banners[0]!.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-white/80">
+                    {banners[0]!.description}
+                  </p>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      navigate(`/meal/${banners[0]!.mealId}`)
+                    }}
+                    className="mt-4 rounded-full bg-white px-5 py-2.5 text-xs font-semibold"
+                    style={{ color: 'var(--color-primary-red)' }}
+                  >
+                    {banners[0]!.buttonText}
+                  </button>
+                </div>
+                <img
+                  src={banners[0]!.image}
+                  alt="Food"
+                  className="h-24 w-24 rounded-2xl object-cover"
+                  draggable={false}
+                />
+              </div>
+            </div>
           </div>
         </div>
         {/* Dots */}
@@ -293,11 +328,11 @@ export default function HomePage() {
           {banners.map((_, index) => (
             <button
               key={index}
-              onClick={() => goToSlide(index)}
+              onClick={() => goTo(index)}
               className="h-2 rounded-full transition-all"
               style={{
-                width: (currentIndex % banners.length) === index ? '24px' : '8px',
-                background: (currentIndex % banners.length) === index ? 'var(--gradient-primary)' : 'var(--color-bg-hover)',
+                width: activeDot === index ? '24px' : '8px',
+                background: activeDot === index ? 'var(--gradient-primary)' : 'var(--color-bg-hover)',
               }}
             />
           ))}
