@@ -61,11 +61,13 @@ export default function CategoriesPage() {
             onClick={() => navigate('/categories')}
             className="card flex flex-col items-center justify-center p-6 transition-all duration-200 hover:scale-[1.02]"
           >
-            <img
-              src={category.image}
-              alt={category.name}
-              className="mb-3 h-20 w-20 object-contain"
-            />
+            <div className="mb-3 h-20 w-20 overflow-hidden rounded-2xl">
+              <img
+                src={category.image}
+                alt={category.name}
+                className="h-full w-full object-cover"
+              />
+            </div>
             <h3
               className="font-heading text-base font-semibold"
               style={{ color: 'var(--color-text-primary)' }}
