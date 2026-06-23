@@ -1,5 +1,32 @@
-import { Search, Bell } from 'lucide-react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+const banners = [
+  {
+    id: 1,
+    title: 'Our best Seller!',
+    description: 'Loved by thousands, Your new favorite burger is here!',
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
+    buttonText: 'Order now',
+    mealId: '1',
+  },
+  {
+    id: 2,
+    title: 'Fresh Pizza!',
+    description: 'Handmade dough, premium cheese, oven baked to perfection',
+    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400',
+    buttonText: 'Order now',
+    mealId: '2',
+  },
+  {
+    id: 3,
+    title: 'Healthy Salad!',
+    description: 'Fresh ingredients, healthy living starts with a good meal',
+    image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400',
+    buttonText: 'Order now',
+    mealId: '3',
+  },
+]
 
 const categories = [
   { name: 'Burger', emoji: '🍔' },
@@ -29,6 +56,7 @@ const popularMeals = [
 
 export default function HomePage() {
   const navigate = useNavigate()
+  const [currentBanner, setCurrentBanner] = useState(0)
 
   return (
     <div
@@ -36,58 +64,44 @@ export default function HomePage() {
       style={{ backgroundColor: 'var(--color-bg-main)' }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-4">
+      <div className="flex items-center justify-between px-4 pt-4">
         <button
           className="flex h-10 w-10 items-center justify-center rounded-full"
           style={{ backgroundColor: 'var(--color-bg-card)' }}
         >
-          <svg
-            width="18"
-            height="14"
-            viewBox="0 0 18 14"
-            fill="none"
-            style={{ color: 'var(--color-text-primary)' }}
-          >
-            <path d="M1 1h16M1 7h16M1 13h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
+          <div className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: 'var(--gradient-primary)' }}>
+            <span className="text-xs font-bold text-white">A</span>
+          </div>
         </button>
         <div className="flex items-center gap-3">
           <button
             className="flex items-center gap-2 rounded-full px-4 py-2"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
-            <svg
-              width="14"
-              height="18"
-              viewBox="0 0 14 18"
-              fill="none"
-              style={{ color: 'var(--color-primary-red)' }}
-            >
+            <svg width="14" height="18" viewBox="0 0 14 18" fill="none" style={{ color: 'var(--color-primary-red)' }}>
               <path d="M7 0C3.13 0 0 3.13 0 7c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="currentColor"/>
             </svg>
-            <span
-              className="text-sm font-medium"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
-              cairo, Egypt
-            </span>
+            <span className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>cairo, Egypt</span>
           </button>
           <button
             className="flex h-10 w-10 items-center justify-center rounded-full"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
-            <Bell size={18} style={{ color: 'var(--color-text-primary)' }} />
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-primary)' }}>
+              <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+              <path d="M13.73 21a2 2 0 01-3.46 0" />
+            </svg>
           </button>
         </div>
       </div>
 
       {/* Search Bar */}
-      <div className="px-4 pb-4">
-        <div
-          className="flex items-center gap-3 rounded-2xl px-4 py-3"
-          style={{ backgroundColor: 'var(--color-bg-card)' }}
-        >
-          <Search size={18} style={{ color: 'var(--color-text-muted)' }} />
+      <div className="px-4 pt-4 pb-2">
+        <div className="flex items-center gap-3 rounded-2xl px-4 py-3" style={{ backgroundColor: 'var(--color-bg-card)' }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
           <input
             type="text"
             placeholder="Search"
@@ -98,16 +112,7 @@ export default function HomePage() {
             className="flex h-10 w-10 items-center justify-center rounded-xl"
             style={{ background: 'var(--gradient-primary)' }}
           >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="4" y1="21" x2="4" y2="14" />
               <line x1="4" y1="10" x2="4" y2="3" />
               <line x1="12" y1="21" x2="12" y2="12" />
@@ -123,57 +128,61 @@ export default function HomePage() {
       </div>
 
       {/* What do you want section */}
-      <div className="px-4 pb-6">
-        <h2
-          className="font-heading text-lg font-bold"
-          style={{ color: 'var(--color-text-primary)' }}
-        >
+      <div className="px-4 pt-2 pb-4">
+        <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
           What meal Do You Want?
         </h2>
+      </div>
 
-        {/* Best Seller Banner */}
+      {/* Banner Slider */}
+      <div className="px-4 pb-4">
         <div
-          className="relative mt-4 overflow-hidden rounded-2xl p-4"
+          className="relative overflow-hidden rounded-2xl p-5"
           style={{ background: 'var(--gradient-primary)' }}
         >
           <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <span
-                className="mb-2 inline-block rounded-full px-3 py-1 text-xs font-semibold text-white"
-                style={{ backgroundColor: 'rgba(255,255,255,0.2)' }}
-              >
-                Our Best Seller!
-              </span>
+            <div className="flex-1 pr-4">
               <h3 className="font-heading text-xl font-bold text-white">
-                50% OFF
+                {banners[currentBanner]?.title}
               </h3>
-              <p className="mt-1 text-xs text-white/80">
-                On your first order, use code in app
+              <p className="mt-2 text-xs leading-relaxed text-white/80">
+                {banners[currentBanner]?.description}
               </p>
               <button
-                onClick={() => navigate('/meal/1')}
-                className="mt-3 rounded-full bg-white px-4 py-2 text-xs font-semibold"
+                onClick={() => navigate(`/meal/${banners[currentBanner]?.mealId}`)}
+                className="mt-4 rounded-full bg-white px-5 py-2.5 text-xs font-semibold"
                 style={{ color: 'var(--color-primary-red)' }}
               >
-                Order now
+                {banners[currentBanner]?.buttonText}
               </button>
             </div>
             <img
-              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200"
-              alt="Burger"
-              className="h-20 w-20 rounded-full object-cover"
+              src={banners[currentBanner]?.image}
+              alt="Food"
+              className="h-24 w-24 rounded-2xl object-cover"
             />
           </div>
+        </div>
+        {/* Dots */}
+        <div className="mt-4 flex justify-center gap-2">
+          {banners.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentBanner(index)}
+              className="h-2 rounded-full transition-all"
+              style={{
+                width: currentBanner === index ? '24px' : '8px',
+                background: currentBanner === index ? 'var(--gradient-primary)' : 'var(--color-bg-hover)',
+              }}
+            />
+          ))}
         </div>
       </div>
 
       {/* Categories */}
       <div className="px-4 pb-6">
         <div className="mb-4 flex items-center justify-between">
-          <h2
-            className="font-heading text-lg font-bold"
-            style={{ color: 'var(--color-text-primary)' }}
-          >
+          <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
             Categories
           </h2>
           <button
@@ -193,10 +202,7 @@ export default function HomePage() {
               style={{ backgroundColor: 'var(--color-bg-card)' }}
             >
               <span className="text-3xl">{category.emoji}</span>
-              <span
-                className="text-sm font-medium"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
+              <span className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>
                 {category.name}
               </span>
             </button>
@@ -207,16 +213,10 @@ export default function HomePage() {
       {/* Popular Meals */}
       <div className="px-4">
         <div className="mb-4 flex items-center justify-between">
-          <h2
-            className="font-heading text-lg font-bold"
-            style={{ color: 'var(--color-text-primary)' }}
-          >
+          <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
             Popular Meals
           </h2>
-          <button
-            className="text-sm font-medium"
-            style={{ color: 'var(--color-primary-red)' }}
-          >
+          <button className="text-sm font-medium" style={{ color: 'var(--color-primary-red)' }}>
             See all
           </button>
         </div>
@@ -229,60 +229,32 @@ export default function HomePage() {
               style={{ backgroundColor: 'var(--color-bg-card)' }}
             >
               <div className="relative h-32">
-                <img
-                  src={meal.image}
-                  alt={meal.name}
-                  className="h-full w-full object-cover"
-                />
+                <img src={meal.image} alt={meal.name} className="h-full w-full object-cover" />
                 <button
                   className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full"
                   style={{ backgroundColor: 'var(--color-bg-card)' }}
                 >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="var(--color-primary-red)"
-                    stroke="var(--color-primary-red)"
-                    strokeWidth="2"
-                  >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--color-primary-red)" stroke="var(--color-primary-red)" strokeWidth="2">
                     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
                   </svg>
                 </button>
               </div>
               <div className="p-3">
-                <h3
-                  className="font-heading text-sm font-semibold"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
+                <h3 className="font-heading text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
                   {meal.name}
                 </h3>
-                <p
-                  className="mt-1 text-xs"
-                  style={{ color: 'var(--color-text-muted)' }}
-                >
+                <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
                   {meal.restaurant}
                 </p>
                 <div className="mt-2 flex items-center justify-between">
-                  <span
-                    className="text-sm font-bold"
-                    style={{ color: 'var(--color-primary-red)' }}
-                  >
+                  <span className="text-sm font-bold" style={{ color: 'var(--color-primary-red)' }}>
                     ${meal.price.toFixed(2)}
                   </span>
                   <div className="flex items-center gap-1">
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 24 24"
-                      fill="var(--color-secondary-orange)"
-                    >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-secondary-orange)">
                       <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
                     </svg>
-                    <span
-                      className="text-xs font-medium"
-                      style={{ color: 'var(--color-text-primary)' }}
-                    >
+                    <span className="text-xs font-medium" style={{ color: 'var(--color-text-primary)' }}>
                       {meal.rating}
                     </span>
                   </div>
@@ -296,10 +268,7 @@ export default function HomePage() {
       {/* Bottom Navigation */}
       <div
         className="fixed bottom-0 left-0 right-0 border-t px-4 py-3"
-        style={{
-          backgroundColor: 'var(--color-bg-card)',
-          borderColor: 'var(--color-border-color)',
-        }}
+        style={{ backgroundColor: 'var(--color-bg-card)', borderColor: 'var(--color-border-color)' }}
       >
         <div className="flex items-center justify-around">
           <button className="flex flex-col items-center gap-1">
