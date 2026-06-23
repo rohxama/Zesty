@@ -52,6 +52,30 @@ const popularMeals = [
     rating: 4.9,
     image: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=400',
   },
+  {
+    id: '3',
+    name: 'Grilled Chicken',
+    restaurant: 'Chicken Bros',
+    price: 11.49,
+    rating: 4.7,
+    image: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400',
+  },
+  {
+    id: '4',
+    name: 'Caesar Salad',
+    restaurant: 'Green Garden',
+    price: 9.99,
+    rating: 4.6,
+    image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400',
+  },
+  {
+    id: '5',
+    name: 'Spaghetti Carbonara',
+    restaurant: 'Pasta House',
+    price: 13.49,
+    rating: 4.8,
+    image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400',
+  },
 ]
 
 const extendedBanners = [...banners, banners[0]!]
@@ -205,11 +229,15 @@ export default function HomePage() {
           </button>
         </div>
         {/* Title */}
-     
+        <div className="pt-4 pb-2">
+          <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
+            What meal Do You Want?
+          </h2>
+        </div>
       </div>
 
       {/* Banner Slider */}
-      <div className="px-4 pb-4 pt-8">
+      <div className="px-4 pb-6 pt-4">
         <div
           className="relative overflow-hidden rounded-2xl select-none"
           style={{ background: 'var(--gradient-primary)', cursor: isDragging ? 'grabbing' : 'grab' }}
@@ -277,8 +305,8 @@ export default function HomePage() {
       </div>
 
       {/* Categories */}
-      <div className="px-4 pb-6">
-        <div className="mb-4 flex items-center justify-between">
+      <div className="px-4 pb-8">
+        <div className="mb-3 flex items-center justify-between">
           <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
             Categories
           </h2>
@@ -309,8 +337,8 @@ export default function HomePage() {
       </div>
 
       {/* Popular Meals */}
-      <div className="px-4">
-        <div className="mb-4 flex items-center justify-between">
+      <div className="px-4 pb-8">
+        <div className="mb-3 flex items-center justify-between">
           <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
             Popular Meals
           </h2>
@@ -318,7 +346,7 @@ export default function HomePage() {
             See all
           </button>
         </div>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           {popularMeals.map((meal) => (
             <button
               key={meal.id}
