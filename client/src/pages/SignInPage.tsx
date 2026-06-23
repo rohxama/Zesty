@@ -45,13 +45,30 @@ export default function SignInPage() {
         navigate('/home')
       }
     } catch (error: any) {
+      if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED') {
+        const users = JSON.parse(localStorage.getItem('zesty_users') || '[]')
+        const user = users.find((u: { email: string; password: string }) =>
+          u.email === formData.email && u.password === formData.password
+        )
+        if (!user) {
+          const emailExists = users.some((u: { email: string }) => u.email === formData.email)
+          if (!emailExists) {
+            setErrors({ email: 'You have no account with this email. Please sign up first.' })
+          } else {
+            setErrors({ password: 'Incorrect password' })
+          }
+          setLoading(false)
+          return
+        }
+        localStorage.setItem('zesty_current_user', JSON.stringify({ name: user.name, email: user.email }))
+        navigate('/home')
+        return
+      }
       const message = error.response?.data?.message || 'Something went wrong'
       if (message.includes('no account')) {
         setErrors({ email: message })
       } else if (message.includes('Incorrect')) {
         setErrors({ password: message })
-      } else if (message.includes('Database not connected')) {
-        setErrors({ email: 'Server is starting up. Please try again in a moment.' })
       } else {
         setErrors({ email: message })
       }

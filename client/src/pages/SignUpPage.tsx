@@ -57,14 +57,21 @@ export default function SignUpPage() {
         navigate('/signin')
       }
     } catch (error: any) {
-      const message = error.response?.data?.message || 'Something went wrong'
-      if (message.includes('already exists')) {
-        setErrors({ email: message })
-      } else if (message.includes('Database not connected')) {
-        setErrors({ email: 'Server is starting up. Please try again in a moment.' })
-      } else {
-        setErrors({ email: message })
+      if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED') {
+        const users = JSON.parse(localStorage.getItem('zesty_users') || '[]')
+        const userExists = users.some((u: { email: string }) => u.email === formData.email)
+        if (userExists) {
+          setErrors({ email: 'An account with this email already exists' })
+          setLoading(false)
+          return
+        }
+        users.push({ name: formData.name, email: formData.email, password: formData.password })
+        localStorage.setItem('zesty_users', JSON.stringify(users))
+        navigate('/signin')
+        return
       }
+      const message = error.response?.data?.message || 'Something went wrong'
+      setErrors({ email: message })
     } finally {
       setLoading(false)
     }
