@@ -171,27 +171,31 @@ export default function HomePage() {
       style={{ backgroundColor: 'var(--color-bg-main)' }}
     >
       {/* Header */}
-      <div className="flex items-center justify-between px-4 pt-4">
-        <button
-          className="flex h-10 w-10 items-center justify-center rounded-full"
-          style={{ backgroundColor: 'var(--color-bg-card)' }}
-        >
-          <div className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: 'var(--gradient-primary)' }}>
-            <span className="text-xs font-bold text-white">A</span>
-          </div>
-        </button>
+      <div className="px-4 pt-4">
+        {/* Top row: Profile | Search | Notification */}
         <div className="flex items-center gap-3">
           <button
-            className="flex items-center gap-2 rounded-full px-4 py-2"
+            className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
-            <svg width="14" height="18" viewBox="0 0 14 18" fill="none" style={{ color: 'var(--color-primary-red)' }}>
-              <path d="M7 0C3.13 0 0 3.13 0 7c0 5.25 7 11 7 11s7-5.75 7-11c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5z" fill="currentColor"/>
-            </svg>
-            <span className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>cairo, Egypt</span>
+            <div className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: 'var(--gradient-primary)' }}>
+              <span className="text-xs font-bold text-white">A</span>
+            </div>
           </button>
+          <div className="flex flex-1 items-center gap-2 rounded-2xl px-4 py-2.5" style={{ backgroundColor: 'var(--color-bg-card)' }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input
+              type="text"
+              placeholder="Search"
+              className="flex-1 bg-transparent text-sm outline-none"
+              style={{ color: 'var(--color-text-primary)' }}
+            />
+          </div>
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-full"
+            className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-primary)' }}>
@@ -200,45 +204,13 @@ export default function HomePage() {
             </svg>
           </button>
         </div>
-      </div>
-
-      {/* Search Bar */}
-      <div className="px-4 pt-4 pb-2">
-        <div className="flex items-center gap-3 rounded-2xl px-4 py-3" style={{ backgroundColor: 'var(--color-bg-card)' }}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-          <input
-            type="text"
-            placeholder="Search"
-            className="flex-1 bg-transparent text-sm outline-none"
-            style={{ color: 'var(--color-text-primary)' }}
-          />
-          <button
-            className="flex h-10 w-10 items-center justify-center rounded-xl"
-            style={{ background: 'var(--gradient-primary)' }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="4" y1="21" x2="4" y2="14" />
-              <line x1="4" y1="10" x2="4" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="12" />
-              <line x1="12" y1="8" x2="12" y2="3" />
-              <line x1="20" y1="21" x2="20" y2="16" />
-              <line x1="20" y1="12" x2="20" y2="3" />
-              <line x1="1" y1="14" x2="7" y2="14" />
-              <line x1="9" y1="8" x2="15" y2="8" />
-              <line x1="17" y1="16" x2="23" y2="16" />
-            </svg>
-          </button>
+        {/* Greeting + title */}
+        <div className="pt-4 pb-2">
+          <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Hello Abdullah!</p>
+          <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
+            What meal Do You Want?
+          </h2>
         </div>
-      </div>
-
-      {/* What do you want section */}
-      <div className="px-4 pt-2 pb-4">
-        <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
-          What meal Do You Want?
-        </h2>
       </div>
 
       {/* Banner Slider */}
