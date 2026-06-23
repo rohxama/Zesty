@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const banners = [
@@ -57,6 +57,89 @@ const popularMeals = [
 export default function HomePage() {
   const navigate = useNavigate()
   const [currentBanner, setCurrentBanner] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const [offset, setOffset] = useState(0)
+  const sliderRef = useRef<HTMLDivElement>(null)
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const totalBanners = banners.length
+
+  const nextBanner = useCallback(() => {
+    setCurrentBanner((prev) => (prev + 1) % totalBanners)
+  }, [totalBanners])
+
+  const prevBanner = useCallback(() => {
+    setCurrentBanner((prev) => (prev - 1 + totalBanners) % totalBanners)
+  }, [totalBanners])
+
+  // Auto-play infinite
+  useEffect(() => {
+    autoPlayRef.current = setInterval(() => {
+      if (!isDragging) {
+        nextBanner()
+      }
+    }, 3000)
+    return () => {
+      if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+    }
+  }, [isDragging, nextBanner])
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsDragging(true)
+    setStartX(e.touches[0]?.clientX ?? 0)
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging) return
+    const diff = (e.touches[0]?.clientX ?? 0) - startX
+    setOffset(diff)
+  }
+
+  const handleTouchEnd = () => {
+    setIsDragging(false)
+    if (offset > 50) {
+      prevBanner()
+    } else if (offset < -50) {
+      nextBanner()
+    }
+    setOffset(0)
+  }
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true)
+    setStartX(e.clientX)
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current)
+  }
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return
+    const diff = e.clientX - startX
+    setOffset(diff)
+  }
+
+  const handleMouseUp = () => {
+    setIsDragging(false)
+    if (offset > 50) {
+      prevBanner()
+    } else if (offset < -50) {
+      nextBanner()
+    }
+    setOffset(0)
+  }
+
+  const handleMouseLeave = () => {
+    if (isDragging) {
+      setIsDragging(false)
+      if (offset > 50) {
+        prevBanner()
+      } else if (offset < -50) {
+        nextBanner()
+      }
+      setOffset(0)
+    }
+  }
 
   return (
     <div
@@ -137,30 +220,54 @@ export default function HomePage() {
       {/* Banner Slider */}
       <div className="px-4 pb-4">
         <div
-          className="relative overflow-hidden rounded-2xl p-5"
-          style={{ background: 'var(--gradient-primary)' }}
+          ref={sliderRef}
+          className="relative overflow-hidden rounded-2xl select-none"
+          style={{ background: 'var(--gradient-primary)', cursor: isDragging ? 'grabbing' : 'grab' }}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseLeave}
         >
-          <div className="flex items-center justify-between">
-            <div className="flex-1 pr-4">
-              <h3 className="font-heading text-xl font-bold text-white">
-                {banners[currentBanner]?.title}
-              </h3>
-              <p className="mt-2 text-xs leading-relaxed text-white/80">
-                {banners[currentBanner]?.description}
-              </p>
-              <button
-                onClick={() => navigate(`/meal/${banners[currentBanner]?.mealId}`)}
-                className="mt-4 rounded-full bg-white px-5 py-2.5 text-xs font-semibold"
-                style={{ color: 'var(--color-primary-red)' }}
-              >
-                {banners[currentBanner]?.buttonText}
-              </button>
-            </div>
-            <img
-              src={banners[currentBanner]?.image}
-              alt="Food"
-              className="h-24 w-24 rounded-2xl object-cover"
-            />
+          <div
+            className="flex transition-transform"
+            style={{
+              transform: `translateX(calc(-${currentBanner * 100}% + ${offset}px))`,
+              transition: isDragging ? 'none' : 'transform 0.4s ease',
+            }}
+          >
+            {banners.map((banner) => (
+              <div key={banner.id} className="min-w-full p-5">
+                <div className="flex items-center justify-between">
+                  <div className="flex-1 pr-4">
+                    <h3 className="font-heading text-xl font-bold text-white">
+                      {banner.title}
+                    </h3>
+                    <p className="mt-2 text-xs leading-relaxed text-white/80">
+                      {banner.description}
+                    </p>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        navigate(`/meal/${banner.mealId}`)
+                      }}
+                      className="mt-4 rounded-full bg-white px-5 py-2.5 text-xs font-semibold"
+                      style={{ color: 'var(--color-primary-red)' }}
+                    >
+                      {banner.buttonText}
+                    </button>
+                  </div>
+                  <img
+                    src={banner.image}
+                    alt="Food"
+                    className="h-24 w-24 rounded-2xl object-cover"
+                    draggable={false}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         {/* Dots */}
