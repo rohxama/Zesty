@@ -204,9 +204,8 @@ export default function HomePage() {
             </svg>
           </button>
         </div>
-        {/* Greeting + title */}
+        {/* Title */}
         <div className="pt-4 pb-2">
-          <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Hello Abdullah!</p>
           <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
             What meal Do You Want?
           </h2>
