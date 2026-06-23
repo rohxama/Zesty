@@ -1,105 +1,110 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 
-const mealsData: Record<string, {
-  name: string
-  description: string
-  fullDescription: string
-  price: number
-  calories: string
-  rating: number
-  time: string
-  image: string
-  options: { name: string; price: number }[]
-}> = {
+const mealsData: Record<
+  string,
+  {
+    name: string
+    description: string
+    fullDescription: string
+    price: number
+    calories: string
+    rating: number
+    time: string
+    image: string
+    options: { name: string; price: number }[]
+  }
+> = {
   burgers: {
     name: 'Jumbo Burger',
     description: 'Tasty Jumbo Burger with extra cheese, mayo, and veggies.',
-    fullDescription: 'Tasty Jumbo Burger with extra cheese, mayo, and veggies. This hearty burger is packed with flavor and made with 100% premium beef. Our signature sauce and fresh lettuce add the perfect crunch. Served on a toasted sesame seed bun with a side of golden fries.',
-    price: 43.00,
+    fullDescription:
+      'Tasty Jumbo Burger with extra cheese, mayo, and veggies. This hearty burger is packed with flavor and made with 100% premium beef. Our signature sauce and fresh lettuce add the perfect crunch. Served on a toasted sesame seed bun with a side of golden fries.',
+    price: 43.0,
     calories: '900 Cal',
     rating: 4.8,
     time: '20-25 Min',
     image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600',
     options: [
-      { name: 'Add Cheese', price: 0.50 },
-      { name: 'Add Extra Sauce', price: 0.30 },
-      { name: 'Add Extra Meat', price: 2.00 },
+      { name: 'Add Cheese', price: 0.5 },
+      { name: 'Add Extra Sauce', price: 0.3 },
+      { name: 'Add Extra Meat', price: 2.0 },
     ],
   },
   pizza: {
     name: 'Margherita Pizza',
     description: 'Classic Italian pizza with fresh mozzarella, tomatoes, and basil.',
-    fullDescription: 'Classic Italian pizza with fresh mozzarella, tomatoes, and basil on a crispy thin crust. Made with our hand-stretched dough that rises for 24 hours. Topped with San Marzano tomato sauce and drizzled with extra virgin olive oil. Baked in a traditional wood-fired oven for that authentic smoky flavor.',
-    price: 38.50,
+    fullDescription:
+      'Classic Italian pizza with fresh mozzarella, tomatoes, and basil on a crispy thin crust. Made with our hand-stretched dough that rises for 24 hours. Topped with San Marzano tomato sauce and drizzled with extra virgin olive oil. Baked in a traditional wood-fired oven for that authentic smoky flavor.',
+    price: 38.5,
     calories: '850 Cal',
     rating: 4.9,
     time: '25-30 Min',
     image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600',
     options: [
-      { name: 'Add Extra Cheese', price: 1.00 },
+      { name: 'Add Extra Cheese', price: 1.0 },
       { name: 'Add Mushrooms', price: 0.75 },
-      { name: 'Add Pepperoni', price: 1.50 },
+      { name: 'Add Pepperoni', price: 1.5 },
     ],
   },
   sushi: {
     name: 'Salmon Sushi Set',
     description: 'Fresh premium salmon sashimi and nigiri.',
-    fullDescription: 'Fresh premium salmon sashimi and nigiri, served with wasabi, ginger, and soy sauce. Our salmon is sourced daily from sustainable fisheries and prepared by expert sushi chefs. Includes 8 pieces of nigiri and 6 pieces of sashimi. Each piece is handcrafted with precision and care.',
-    price: 52.00,
+    fullDescription:
+      'Fresh premium salmon sashimi and nigiri, served with wasabi, ginger, and soy sauce. Our salmon is sourced daily from sustainable fisheries and prepared by expert sushi chefs. Includes 8 pieces of nigiri and 6 pieces of sashimi. Each piece is handcrafted with precision and care.',
+    price: 52.0,
     calories: '450 Cal',
     rating: 4.7,
     time: '15-20 Min',
     image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600',
     options: [
-      { name: 'Add Miso Soup', price: 2.00 },
-      { name: 'Add Edamame', price: 1.50 },
+      { name: 'Add Miso Soup', price: 2.0 },
+      { name: 'Add Edamame', price: 1.5 },
       { name: 'Extra Soy Sauce', price: 0.25 },
     ],
   },
   chicken: {
     name: 'Crispy Fried Chicken',
-    description: 'Golden crispy fried chicken pieces with secret spices.',
-    fullDescription: 'Golden crispy fried chicken pieces with a blend of secret spices and herbs. Our chicken is marinated for 24 hours to ensure maximum flavor and juiciness. Coated in our proprietary batter and fried to golden perfection. Served with your choice of dipping sauce and a fresh side salad.',
-    price: 28.00,
+    description: 'Golden crispy fried chicken pieces with a blend of secret spices and herbs.',
+    price: 28.0,
     calories: '720 Cal',
     rating: 4.6,
     time: '20-25 Min',
     image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=600',
     options: [
-      { name: 'Add Coleslaw', price: 1.00 },
-      { name: 'Add Fries', price: 1.50 },
-      { name: 'Extra Sauce', price: 0.50 },
+      { name: 'Add Coleslaw', price: 1.0 },
+      { name: 'Add Fries', price: 1.5 },
+      { name: 'Extra Sauce', price: 0.5 },
     ],
   },
   grill: {
     name: 'Grilled Steak',
-    description: 'Premium cut grilled steak cooked to perfection.',
-    fullDescription: 'Premium cut grilled steak cooked to perfection, served with grilled vegetables and sauce. Our steaks are hand-selected from the finest cuts and aged for 28 days. Seasoned with our signature herb blend and grilled over an open flame. Served with roasted garlic butter, grilled asparagus, and your choice of side.',
-    price: 65.00,
+    description:
+      'Premium cut grilled steak cooked to perfection, served with grilled vegetables and sauce.',
+    price: 65.0,
     calories: '1100 Cal',
     rating: 4.9,
     time: '30-35 Min',
     image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=600',
     options: [
-      { name: 'Add Garlic Bread', price: 1.50 },
-      { name: 'Add Side Salad', price: 2.00 },
+      { name: 'Add Garlic Bread', price: 1.5 },
+      { name: 'Add Side Salad', price: 2.0 },
       { name: 'Extra Sauce', price: 0.75 },
     ],
   },
   shawarma: {
     name: 'Chicken Shawarma',
-    description: 'Juicy marinated chicken wrapped in warm pita.',
-    fullDescription: 'Juicy marinated chicken wrapped in warm pita with tahini, pickles, and fresh veggies. Our chicken is marinated in a blend of Middle Eastern spices for 12 hours. Slow-roasted on a vertical spit for that authentic flavor. Wrapped in freshly baked pita bread with garlic sauce, turnips, and a drizzle of tahini.',
-    price: 22.00,
+    description:
+      'Juicy marinated chicken wrapped in warm pita with tahini, pickles, and fresh veggies.',
+    price: 22.0,
     calories: '650 Cal',
     rating: 4.7,
     time: '15-20 Min',
     image: 'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=600',
     options: [
-      { name: 'Add Hummus', price: 1.00 },
-      { name: 'Add Fries', price: 1.50 },
-      { name: 'Extra Garlic Sauce', price: 0.50 },
+      { name: 'Add Hummus', price: 1.0 },
+      { name: 'Add Fries', price: 1.5 },
+      { name: 'Extra Garlic Sauce', price: 0.5 },
     ],
   },
 }
@@ -109,7 +114,6 @@ export default function MealDetailsPage() {
   const { id } = useParams<{ id: string }>()
   const [quantity, setQuantity] = useState(1)
   const [selectedOptions, setSelectedOptions] = useState<number[]>([])
-  const [showFullDescription, setShowFullDescription] = useState(false)
 
   const meal = mealsData[id ?? ''] ?? mealsData.burgers!
 
@@ -119,16 +123,15 @@ export default function MealDetailsPage() {
     )
   }
 
-  const totalPrice = meal.price * quantity +
+  const totalPrice =
+    meal.price * quantity +
     meal.options
       .filter((_, index) => selectedOptions.includes(index))
-      .reduce((sum, opt) => sum + opt.price, 0) * quantity
+      .reduce((sum, opt) => sum + opt.price, 0) *
+      quantity
 
   return (
-    <div
-      className="min-h-screen pb-32"
-      style={{ backgroundColor: 'var(--color-bg-main)' }}
-    >
+    <div className="min-h-screen pb-32" style={{ backgroundColor: 'var(--color-bg-main)' }}>
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-4">
         <button
@@ -176,11 +179,7 @@ export default function MealDetailsPage() {
       {/* Meal Image */}
       <div className="px-4">
         <div className="relative overflow-hidden rounded-3xl">
-          <img
-            src={meal.image}
-            alt={meal.name}
-            className="h-64 w-full object-cover"
-          />
+          <img src={meal.image} alt={meal.name} className="h-64 w-full object-cover" />
           <button
             className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
@@ -215,7 +214,15 @@ export default function MealDetailsPage() {
               className="flex h-8 w-8 items-center justify-center rounded-full"
               style={{ backgroundColor: 'var(--color-bg-card)' }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-primary)' }}>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                style={{ color: 'var(--color-text-primary)' }}
+              >
                 <line x1="5" y1="12" x2="19" y2="12" />
               </svg>
             </button>
@@ -230,7 +237,14 @@ export default function MealDetailsPage() {
               className="flex h-8 w-8 items-center justify-center rounded-full"
               style={{ background: 'var(--gradient-primary)' }}
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                strokeWidth="2"
+              >
                 <line x1="12" y1="5" x2="12" y2="19" />
                 <line x1="5" y1="12" x2="19" y2="12" />
               </svg>
@@ -244,7 +258,15 @@ export default function MealDetailsPage() {
             className="flex items-center gap-2 rounded-full px-3 py-2"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-primary-red)' }}>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              style={{ color: 'var(--color-primary-red)' }}
+            >
               <path d="M12 20V10M18 20V4M6 20v-4" />
             </svg>
             <span className="text-xs font-medium" style={{ color: 'var(--color-text-primary)' }}>
@@ -266,7 +288,15 @@ export default function MealDetailsPage() {
             className="flex items-center gap-2 rounded-full px-3 py-2"
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              style={{ color: 'var(--color-text-muted)' }}
+            >
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
@@ -288,13 +318,9 @@ export default function MealDetailsPage() {
             className="mt-2 text-sm leading-relaxed"
             style={{ color: 'var(--color-text-secondary)' }}
           >
-            {showFullDescription ? meal.fullDescription : meal.description}
-            <button
-              onClick={() => setShowFullDescription(!showFullDescription)}
-              className="ml-1 font-medium"
-              style={{ color: 'var(--color-primary-red)' }}
-            >
-              {showFullDescription ? 'Read Less' : 'Read More'}
+            {meal.description}
+            <button className="ml-1 font-medium" style={{ color: 'var(--color-primary-red)' }}>
+              Read More
             </button>
           </p>
         </div>
@@ -315,15 +341,21 @@ export default function MealDetailsPage() {
                 className="flex w-full items-center justify-between rounded-xl p-4"
                 style={{ backgroundColor: 'var(--color-bg-card)' }}
               >
-                <span className="text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>
+                <span
+                  className="text-sm font-medium"
+                  style={{ color: 'var(--color-text-primary)' }}
+                >
                   {option.name}
                 </span>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-medium" style={{ color: 'var(--color-primary-red)' }}>
+                  <span
+                    className="text-sm font-medium"
+                    style={{ color: 'var(--color-primary-red)' }}
+                  >
                     + $ {option.price.toFixed(2)}
                   </span>
                   <div
-                    className="flex h-5 w-5 items-center justify-center rounded-"
+                    className="flex h-5 w-5 items-center justify-center rounded"
                     style={{
                       backgroundColor: selectedOptions.includes(index)
                         ? 'var(--color-primary-red)'
@@ -331,7 +363,14 @@ export default function MealDetailsPage() {
                     }}
                   >
                     {selectedOptions.includes(index) && (
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="3"
+                      >
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                     )}
@@ -356,15 +395,22 @@ export default function MealDetailsPage() {
             <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
               Total price
             </span>
-            <p className="font-body text-xl font-bold" style={{ color: 'var(--color-primary-red)' }}>
+            <p
+              className="font-body text-xl font-bold"
+              style={{ color: 'var(--color-primary-red)' }}
+            >
               ${totalPrice.toFixed(2)}
             </p>
           </div>
-          <button
-            onClick={() => navigate('/cart')}
-            className="btn-primary flex items-center gap-2"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <button onClick={() => navigate('/cart')} className="btn-primary flex items-center gap-2">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <circle cx="9" cy="21" r="1" />
               <circle cx="20" cy="21" r="1" />
               <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
