@@ -33,6 +33,10 @@ const categories = [
   { name: 'Pizza', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200' },
   { name: 'Chicken', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=200' },
   { name: 'Salad', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200' },
+  { name: 'Pasta', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=200' },
+  { name: 'Sushi', image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=200' },
+  { name: 'Tacos', image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=200' },
+  { name: 'Steak', image: 'https://images.unsplash.com/photo-1600891964092-4316c288032e?w=200' },
 ]
 
 const popularMeals = [
@@ -218,8 +222,8 @@ export default function HomePage() {
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
             <input
-              type="text"
-              placeholder="Search"
+                type="text"
+                placeholder="Search"
               className="flex-1 bg-transparent text-sm outline-none"
               style={{ color: 'var(--color-text-primary)' }}
             />
@@ -236,7 +240,7 @@ export default function HomePage() {
         </div>
         <div className="pt-4 pb-2">
           <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
-            What meal Do You Want?
+            What Meal Do You Want?
           </h2>
         </div>
       </div>
