@@ -205,15 +205,11 @@ export default function HomePage() {
           </button>
         </div>
         {/* Title */}
-        <div className="pt-4 pb-2">
-          <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
-            What meal Do You Want?
-          </h2>
-        </div>
+     
       </div>
 
       {/* Banner Slider */}
-      <div className="px-4 pb-4">
+      <div className="px-4 pb-4 pt-8">
         <div
           className="relative overflow-hidden rounded-2xl select-none"
           style={{ background: 'var(--gradient-primary)', cursor: isDragging ? 'grabbing' : 'grab' }}
@@ -322,30 +318,30 @@ export default function HomePage() {
             See all
           </button>
         </div>
-        <div className="flex gap-4 overflow-x-auto pb-4">
+        <div className="flex flex-col gap-3">
           {popularMeals.map((meal) => (
             <button
               key={meal.id}
               onClick={() => navigate(`/meal/${meal.id}`)}
-              className="w-48 flex-shrink-0 overflow-hidden rounded-2xl text-left"
+              className="flex overflow-hidden rounded-2xl text-left"
               style={{ backgroundColor: 'var(--color-bg-card)' }}
             >
-              <div className="relative h-32">
+              <div className="relative h-24 w-24 flex-shrink-0">
                 <img src={meal.image} alt={meal.name} className="h-full w-full object-cover" />
                 <button
-                  className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full"
+                  className="absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full"
                   style={{ backgroundColor: 'var(--color-bg-card)' }}
                 >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--color-primary-red)" stroke="var(--color-primary-red)" strokeWidth="2">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-primary-red)" stroke="var(--color-primary-red)" strokeWidth="2">
                     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
                   </svg>
                 </button>
               </div>
-              <div className="p-3">
+              <div className="flex flex-1 flex-col justify-center p-3">
                 <h3 className="font-heading text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>
                   {meal.name}
                 </h3>
-                <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                <p className="mt-0.5 text-xs" style={{ color: 'var(--color-text-muted)' }}>
                   {meal.restaurant}
                 </p>
                 <div className="mt-2 flex items-center justify-between">
