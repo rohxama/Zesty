@@ -136,7 +136,7 @@ export default function MealDetailsPage() {
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-4">
         <button
-          onClick={() => navigate('/home')}
+          onClick={() => navigate(-1)}
           className="flex h-10 w-10 items-center justify-center rounded-full"
           style={{ backgroundColor: 'var(--color-bg-card)' }}
         >
