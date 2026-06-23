@@ -331,7 +331,7 @@ export default function HomePage() {
               onClick={() => goTo(index)}
               className="h-2 rounded-full transition-all"
               style={{
-                width: activeDot === index ? '24px' : '8px',
+                width: '8px',
                 background: activeDot === index ? 'var(--gradient-primary)' : 'var(--color-bg-hover)',
               }}
             />
