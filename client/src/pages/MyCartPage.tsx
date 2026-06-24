@@ -1,37 +1,28 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-
-const cartItems: {
-  id: string
-  name: string
-  restaurant: string
-  price: number
-  quantity: number
-  image: string
-}[] = []
+import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
+import { removeFromCart, updateQuantity as updateCartQuantity } from '@/store/slices/cartSlice'
 
 export default function MyCartPage() {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const cartItems = useAppSelector((state) => state.cart.items)
   const [promoCode, setPromoCode] = useState('')
-  const [items, setItems] = useState(cartItems)
 
   const updateQuantity = (id: string, delta: number) => {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id
-          ? { ...item, quantity: Math.max(1, item.quantity + delta) }
-          : item
-      )
-    )
+    const item = cartItems.find((i) => i.food.id === id)
+    if (item) {
+      dispatch(updateCartQuantity({ id, quantity: item.quantity + delta }))
+    }
   }
 
   const removeItem = (id: string) => {
-    setItems((prev) => prev.filter((item) => item.id !== id))
+    dispatch(removeFromCart(id))
   }
 
-  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+  const subtotal = cartItems.reduce((sum, item) => sum + item.food.price * item.quantity, 0)
   const delivery = 10.00
-  const total = items.length > 0 ? subtotal + delivery : 0
+  const total = cartItems.length > 0 ? subtotal + delivery : 0
 
   return (
     <div
@@ -69,7 +60,7 @@ export default function MyCartPage() {
 
       {/* Cart Items */}
       <div className="space-y-4 px-4 pt-4">
-        {items.length === 0 ? (
+        {cartItems.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16">
             <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: 'var(--color-text-muted)' }}>
               <circle cx="9" cy="21" r="1" />
@@ -79,13 +70,13 @@ export default function MyCartPage() {
             <p className="mt-4 text-sm" style={{ color: 'var(--color-text-muted)' }}>Your cart is empty</p>
           </div>
         ) : (
-          items.map((item) => (
+          cartItems.map((item) => (
           <div
-            key={item.id}
+            key={item.food.id}
             className="card relative p-4"
           >
             <button
-              onClick={() => removeItem(item.id)}
+              onClick={() => removeItem(item.food.id)}
               className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full"
               style={{ backgroundColor: 'var(--color-bg-hover)' }}
             >
@@ -96,8 +87,8 @@ export default function MyCartPage() {
             </button>
             <div className="flex items-center gap-4">
               <img
-                src={item.image}
-                alt={item.name}
+                src={item.food.image}
+                alt={item.food.name}
                 className="h-20 w-20 rounded-xl object-cover"
               />
               <div className="flex-1">
@@ -105,14 +96,11 @@ export default function MyCartPage() {
                   className="font-heading text-sm font-semibold"
                   style={{ color: 'var(--color-text-primary)' }}
                 >
-                  {item.name}
+                  {item.food.name}
                 </h3>
-                <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                  {item.restaurant}
-                </p>
                 <div className="mt-3 flex items-center gap-2">
                   <button
-                    onClick={() => updateQuantity(item.id, -1)}
+                    onClick={() => updateQuantity(item.food.id, -1)}
                     className="flex h-7 w-7 items-center justify-center rounded-full"
                     style={{ backgroundColor: 'var(--color-bg-hover)' }}
                   >
@@ -127,7 +115,7 @@ export default function MyCartPage() {
                     {item.quantity}
                   </span>
                   <button
-                    onClick={() => updateQuantity(item.id, 1)}
+                    onClick={() => updateQuantity(item.food.id, 1)}
                     className="flex h-7 w-7 items-center justify-center rounded-full"
                     style={{ background: 'var(--gradient-primary)' }}
                   >
@@ -140,12 +128,12 @@ export default function MyCartPage() {
               </div>
               <div className="text-right">
                 <span className="font-body text-base font-bold" style={{ color: 'var(--color-primary-red)' }}>
-                  ${(item.price * item.quantity).toFixed(2)}
+                  ${(item.food.price * item.quantity).toFixed(2)}
                 </span>
               </div>
             </div>
-            </div>
-          ))
+          </div>
+        ))
         )}
       </div>
 

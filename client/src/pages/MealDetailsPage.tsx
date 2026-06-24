@@ -1,5 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
+import { useAppDispatch } from '@/hooks/useRedux'
+import { addToCart } from '@/store/slices/cartSlice'
 
 const mealsData: Record<
   string,
@@ -112,6 +114,7 @@ const mealsData: Record<
 
 export default function MealDetailsPage() {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
   const { id } = useParams<{ id: string }>()
   const [quantity, setQuantity] = useState(1)
   const [selectedOptions, setSelectedOptions] = useState<number[]>([])
@@ -393,7 +396,22 @@ export default function MealDetailsPage() {
               ${totalPrice.toFixed(2)}
             </p>
           </div>
-          <button onClick={() => navigate('/cart')} className="btn-primary flex items-center gap-2">
+          <button onClick={() => {
+            dispatch(addToCart({
+              id: id ?? '1',
+              name: meal.name,
+              description: meal.description,
+              price: meal.price,
+              category: '',
+              image: meal.image,
+              rating: meal.rating,
+              reviews: 0,
+              isAvailable: true,
+              createdAt: '',
+              updatedAt: '',
+            }))
+            navigate('/cart')
+          }} className="btn-primary flex items-center gap-2">
             <svg
               width="18"
               height="18"
