@@ -1,24 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 
-const cartItems = [
-  {
-    id: '1',
-    name: 'Margherita Pizza',
-    restaurant: 'Pizza Palace',
-    price: 14.99,
-    quantity: 2,
-    image: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=200',
-  },
-  {
-    id: '2',
-    name: 'Jumbo Burger',
-    restaurant: 'Burger Factory',
-    price: 42.00,
-    quantity: 1,
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200',
-  },
-]
+const cartItems: {
+  id: string
+  name: string
+  restaurant: string
+  price: number
+  quantity: number
+  image: string
+}[] = []
 
 export default function MyCartPage() {
   const navigate = useNavigate()
@@ -79,71 +69,84 @@ export default function MyCartPage() {
 
       {/* Cart Items */}
       <div className="space-y-4 px-4 pt-4">
-        {items.map((item) => (
+        {items.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-16">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ color: 'var(--color-text-muted)' }}>
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
+            </svg>
+            <p className="mt-4 text-sm" style={{ color: 'var(--color-text-muted)' }}>Your cart is empty</p>
+          </div>
+        ) : (
+          items.map((item) => (
           <div
             key={item.id}
-            className="card flex items-center gap-4 p-4"
+            className="card relative p-4"
           >
-            <img
-              src={item.image}
-              alt={item.name}
-              className="h-20 w-20 rounded-xl object-cover"
-            />
-            <div className="flex-1">
-              <h3
-                className="font-heading text-sm font-semibold"
-                style={{ color: 'var(--color-text-primary)' }}
-              >
-                {item.name}
-              </h3>
-              <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                {item.restaurant}
-              </p>
-              <div className="mt-3 flex items-center gap-2">
-                <button
-                  onClick={() => updateQuantity(item.id, -1)}
-                  className="flex h-7 w-7 items-center justify-center rounded-full"
-                  style={{ backgroundColor: 'var(--color-bg-hover)' }}
-                >
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-primary)' }}>
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                  </svg>
-                </button>
-                <span
-                  className="w-6 text-center font-body text-sm font-medium"
-                  style={{ color: 'var(--color-text-primary)' }}
-                >
-                  {item.quantity}
-                </span>
-                <button
-                  onClick={() => updateQuantity(item.id, 1)}
-                  className="flex h-7 w-7 items-center justify-center rounded-full"
-                  style={{ background: 'var(--gradient-primary)' }}
-                >
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <line x1="12" y1="5" x2="12" y2="19" />
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div className="text-right">
-              <span className="font-body text-base font-bold" style={{ color: 'var(--color-primary-red)' }}>
-                ${(item.price * item.quantity).toFixed(2)}
-              </span>
-            </div>
             <button
               onClick={() => removeItem(item.id)}
-              className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full"
+              className="absolute right-3 top-3 flex h-6 w-6 items-center justify-center rounded-full"
               style={{ backgroundColor: 'var(--color-bg-hover)' }}
             >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{ color: 'var(--color-text-muted)' }}>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" style={{ color: 'var(--color-text-muted)' }}>
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>
             </button>
-          </div>
-        ))}
+            <div className="flex items-center gap-4">
+              <img
+                src={item.image}
+                alt={item.name}
+                className="h-20 w-20 rounded-xl object-cover"
+              />
+              <div className="flex-1">
+                <h3
+                  className="font-heading text-sm font-semibold"
+                  style={{ color: 'var(--color-text-primary)' }}
+                >
+                  {item.name}
+                </h3>
+                <p className="mt-1 text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                  {item.restaurant}
+                </p>
+                <div className="mt-3 flex items-center gap-2">
+                  <button
+                    onClick={() => updateQuantity(item.id, -1)}
+                    className="flex h-7 w-7 items-center justify-center rounded-full"
+                    style={{ backgroundColor: 'var(--color-bg-hover)' }}
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-primary)' }}>
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                  <span
+                    className="w-6 text-center font-body text-sm font-medium"
+                    style={{ color: 'var(--color-text-primary)' }}
+                  >
+                    {item.quantity}
+                  </span>
+                  <button
+                    onClick={() => updateQuantity(item.id, 1)}
+                    className="flex h-7 w-7 items-center justify-center rounded-full"
+                    style={{ background: 'var(--gradient-primary)' }}
+                  >
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                      <line x1="12" y1="5" x2="12" y2="19" />
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div className="text-right">
+                <span className="font-body text-base font-bold" style={{ color: 'var(--color-primary-red)' }}>
+                  ${(item.price * item.quantity).toFixed(2)}
+                </span>
+              </div>
+            </div>
+            </div>
+          ))
+        )}
       </div>
 
       {/* Promo Code */}
