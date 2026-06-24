@@ -37,7 +37,7 @@ const categories = [
 
 const popularMeals = [
   {
-    id: '1',
+    id: 'burgers',
     name: 'Jumbo Burger',
     restaurant: 'Burger Factory',
     price: 12.99,
@@ -45,7 +45,7 @@ const popularMeals = [
     image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
   },
   {
-    id: '2',
+    id: 'pizza',
     name: 'Margherita Pizza',
     restaurant: 'Pizza Palace',
     price: 14.99,
@@ -53,7 +53,7 @@ const popularMeals = [
     image: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=400',
   },
   {
-    id: '3',
+    id: 'chicken',
     name: 'Grilled Chicken',
     restaurant: 'Chicken Bros',
     price: 11.49,
@@ -61,7 +61,7 @@ const popularMeals = [
     image: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400',
   },
   {
-    id: '4',
+    id: 'grill',
     name: 'Caesar Salad',
     restaurant: 'Green Garden',
     price: 9.99,
@@ -69,7 +69,7 @@ const popularMeals = [
     image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400',
   },
   {
-    id: '5',
+    id: 'sushi',
     name: 'Spaghetti Carbonara',
     restaurant: 'Pasta House',
     price: 13.49,
