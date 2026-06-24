@@ -1,13 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useAppSelector } from '@/hooks/useRedux'
 
 export default function CheckoutPage() {
   const navigate = useNavigate()
   const [selectedAddress, setSelectedAddress] = useState('home')
   const [selectedPayment, setSelectedPayment] = useState('cash')
+  const cartItems = useAppSelector((state) => state.cart.items)
 
-  const subtotal = 74.00
-  const delivery = 10.00
+  const subtotal = cartItems.reduce((sum, item) => sum + item.food.price * item.quantity, 0)
+  const delivery = cartItems.length > 0 ? 10.00 : 0
   const total = subtotal + delivery
 
   return (
@@ -46,12 +48,20 @@ export default function CheckoutPage() {
 
       {/* Shipping Address */}
       <div className="px-4 pt-4">
-        <h2
-          className="font-heading text-sm font-semibold"
-          style={{ color: 'var(--color-text-primary)' }}
-        >
-          Shipping Address
-        </h2>
+        <div className="flex items-center justify-between">
+          <h2
+            className="font-heading text-sm font-semibold"
+            style={{ color: 'var(--color-text-primary)' }}
+          >
+            Shipping Address
+          </h2>
+          <button
+            className="text-xs font-medium"
+            style={{ color: 'var(--color-primary-red)' }}
+          >
+            Add New Address
+          </button>
+        </div>
         <div className="mt-3 space-y-3">
           {/* Home Address */}
           <button
@@ -158,7 +168,7 @@ export default function CheckoutPage() {
               </svg>
             </div>
             <div className="flex-1 text-left">
-              <h3 className="font-body text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>Cash</h3>
+              <h3 className="font-body text-sm font-semibold" style={{ color: 'var(--color-text-primary)' }}>Cash on delivery</h3>
             </div>
             <div
               className="flex h-6 w-6 items-center justify-center rounded-full"
