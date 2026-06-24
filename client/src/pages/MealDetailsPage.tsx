@@ -398,17 +398,20 @@ export default function MealDetailsPage() {
           </div>
           <button onClick={() => {
             dispatch(addToCart({
-              id: id ?? '1',
-              name: meal.name,
-              description: meal.description,
-              price: meal.price,
-              category: '',
-              image: meal.image,
-              rating: meal.rating,
-              reviews: 0,
-              isAvailable: true,
-              createdAt: '',
-              updatedAt: '',
+              food: {
+                id: id ?? '1',
+                name: meal.name,
+                description: meal.description,
+                price: meal.price,
+                category: '',
+                image: meal.image,
+                rating: meal.rating,
+                reviews: 0,
+                isAvailable: true,
+                createdAt: '',
+                updatedAt: '',
+              },
+              quantity,
             }))
             navigate('/cart')
           }} className="btn-primary flex items-center gap-2">
