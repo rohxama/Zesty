@@ -94,7 +94,10 @@ export default function SignInPage() {
       {/* Skip Button */}
       <div className="flex justify-end px-6 pt-6">
         <button
-          onClick={() => navigate('/home')}
+          onClick={() => {
+            localStorage.setItem('zesty_current_user', JSON.stringify({ name: 'Guest', email: 'guest@zesty.com' }))
+            navigate('/home')
+          }}
           className="rounded-full px-4 py-2 text-sm font-medium"
           style={{
             backgroundColor: 'var(--color-bg-card)',
