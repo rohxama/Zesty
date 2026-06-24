@@ -30,7 +30,7 @@ export default function MyCartPage() {
   }
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
-  const delivery = 10.00
+  const delivery = items.length > 0 ? 10.00 : 0
   const total = subtotal + delivery
 
   return (
