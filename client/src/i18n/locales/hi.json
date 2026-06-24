@@ -1,0 +1,90 @@
+{
+  "app": { "name": "ज़ेस्टी" },
+  "onboarding": {
+    "title1": "रेस्तरां खोजें",
+    "desc1": "विभिन्न प्रकार के व्यंजनों और स्वादों के साथ अपने पास के सर्वोत्तम रेस्तरां खोजें।",
+    "title2": "आसान ऑर्डरिंग",
+    "desc2": "कुछ ही टैप में अपने पसंदीदा भोजन का ऑर्डर करें। तेज़, सरल और सुविधाजनक।",
+    "title3": "तेज़ डिलीवरी",
+    "desc3": "अपना भोजन गर्म और ताज़ा प्राप्त करें।",
+    "skip": "छोड़ें", "next": "अगला", "getStarted": "शुरू करें"
+  },
+  "auth": {
+    "welcomeBack": "वापसी पर स्वागत", "signInSubtitle": "जारी रखने के लिए साइन इन करें",
+    "email": "ईमेल", "password": "पासवर्ड",
+    "forgotPassword": "पासवर्ड भूल गए?", "signIn": "साइन इन",
+    "noAccount": "खाता नहीं है?", "signUp": "साइन अप",
+    "createAccount": "खाता बनाएं", "signUpSubtitle": "हमसे जुड़ें और ऑर्डर शुरू करें",
+    "fullName": "पूरा नाम", "confirmPassword": "पासवर्ड की पुष्टि करें",
+    "alreadyHaveAccount": "पहले से खाता है?",
+    "termsAgree": "साइन अप करके, आप हमारी उपयोग की शर्तों और गोपनीयता नीति से सहमत होते हैं"
+  },
+  "home": {
+    "greeting": "नमस्ते,", "searchPlaceholder": "रेस्तरां या भोजन खोजें...",
+    "popularMeals": "लोकप्रिय भोजन", "viewAll": "सभी देखें",
+    "categories": "श्रेणियाँ", "seeAll": "सभी देखें"
+  },
+  "categories": { "title": "श्रेणियाँ", "meals": "भोजन" },
+  "meal": {
+    "addToCart": "कार्ट में जोड़ें", "readMore": "और पढ़ें", "readLess": "कम पढ़ें",
+    "options": "विकल्प", "quantity": "मात्रा", "total": "कुल"
+  },
+  "cart": {
+    "title": "मेरा कार्ट", "empty": "आपका कार्ट खाली है",
+    "emptyDesc": "शुरू करने के लिए कुछ स्वादिष्ट भोजन जोड़ें",
+    "browseMeals": "भोजन देखें", "delivery": "डिलीवरी",
+    "subtotal": "उप-कुल", "total": "कुल", "proceedToCheckout": "चेकआउट करें"
+  },
+  "checkout": {
+    "title": "चेकआउट", "shippingAddress": "शिपिंग पता",
+    "paymentMethod": "भुगतान विधि", "orderSummary": "ऑर्डर सारांश",
+    "delivery": "डिलीवरी", "subtotal": "उप-कुल", "total": "कुल",
+    "placeOrder": "ऑर्डर दें", "cashOnDelivery": "कैश ऑन डिलीवरी",
+    "creditCard": "क्रेडिट कार्ड", "applePay": "ऐप्पल पे"
+  },
+  "orderDone": {
+    "title": "ऑर्डर की पुष्टि!", "subtitle": "आपका ऑर्डर सफलतापूर्वक दिया गया है",
+    "trackOrder": "ऑर्डर ट्रैक करें", "backToHome": "होम पर वापस जाएं"
+  },
+  "profile": {
+    "title": "प्रोफ़ाइल", "darkMode": "डार्क मोड", "about": "इंगग्रोस के बारे में",
+    "aboutSubtitle": "रेस्तरां के बारे में", "language": "भाषा",
+    "favourites": "पसंदीदा", "favouritesSubtitle": "पसंदीदा भोजन",
+    "settings": "सेटिंग्स", "faq": "अक्सर पूछे जाने वाले प्रश्न",
+    "faqSubtitle": "FAQ देखें", "terms": "उपयोग की शर्तें",
+    "privacy": "गोपनीयता नीति"
+  },
+  "settings": {
+    "title": "सेटिंग्स", "mainSettings": "मुख्य सेटिंग्स",
+    "popularSettings": "लोकप्रिय सेटिंग्स",
+    "pushNotifications": "पुश सूचनाएँ", "pushNotificationsDesc": "ऑर्डर अपडेट प्राप्त करें",
+    "locationServices": "स्थान सेवाएँ", "locationServicesDesc": "स्थान एक्सेस की अनुमति दें",
+    "paymentMethods": "भुगतान विधियाँ", "paymentMethodsDesc": "भुगतान विकल्प प्रबंधित करें",
+    "savedAddresses": "सहेजे गए पते", "savedAddressesDesc": "2 पते सहेजे गए",
+    "currency": "मुद्रा", "currencyDesc": "USD ($)",
+    "privacySecurity": "गोपनीयता और सुरक्षा", "privacySecurityDesc": "डेटा और गोपनीयता प्रबंधित करें",
+    "helpSupport": "सहायता और सपोर्ट", "helpSupportDesc": "अपने खाते में सहायता प्राप्त करें",
+    "sendFeedback": "प्रतिक्रिया भेजें", "sendFeedbackDesc": "Zesty में सुधार में हमारी सहायता करें",
+    "shareZesty": "Zesty साझा करें", "shareZestyDesc": "मित्रों को आमंत्रित करें और पुरस्कार अर्जित करें",
+    "rateUs": "हमें रेट करें", "rateUsDesc": "App Store पर Zesty को रेट करें",
+    "clearCache": "कैश साफ़ करें", "appVersion": "ऐप संस्करण",
+    "signOut": "साइन आउट"
+  },
+  "about": {
+    "title": "Zesty के बारे में", "tagline": "प्रीमियम फूड डिलीवरी",
+    "heroDesc": "खुशी पहुँचाना, एक भोजन के साथ। Zesty आपको शहर के सर्वोत्तम रेस्तरां से जोड़ता है।",
+    "mission": "हमारा मिशन", "missionDesc": "एक सहज, तेज़ और विश्वसनी� सेवा के साथ फूड डिलीवरी में क्रांति लाना।",
+    "values": "हमारे मूल्य", "qualityFirst": "गुणवत्ता पहले",
+    "qualityFirstDesc": "हम केवल उन रेस्तरां के साथ काम करते हैं जो हमारे उच्च मानकों को पूरा करते हैं।",
+    "lightningFast": "बिजली की तरह तेज़", "lightningFastDesc": "हमारा अनुकूलित नेटवर्क सुनिश्चित करता है कि आपका भोजन गर्म और ताज़ा पहुँचे।",
+    "buildingTrust": "विश्वास का निर्माण", "buildingTrustDesc": "पारदर्शी मूल्य, वास्तविक समय ट्रैकिंग और उत्तरदायी समर्थन।",
+    "team": "टीम से मिलें", "journey": "हमारी यात्रा", "contactUs": "संपर्क करें",
+    "email": "ईमेल", "phone": "फ़ोन", "address": "पता"
+  },
+  "languages": { "title": "भाषा चुनें", "searchPlaceholder": "भाषाएँ खोजें...", "saveLanguage": "भाषा सहेजें" },
+  "favorites": { "title": "पसंदीदा", "empty": "अभी कोई पसंदीदा नहीं", "emptyDesc": "किसी भी भोजन पर दिल के आइकन पर टैप करें", "browseMeals": "भोजन देखें" },
+  "faqs": { "title": "अक्सर पूछे जाने वाले प्रश्न", "stillHaveQuestions": "अभी भी प्रश्न हैं?", "contactSupport": "सपोर्ट से संपर्क करें" },
+  "terms": { "title": "उपयोग की शर्तें", "lastUpdated": "अंतिम अपडेट: 1 जनवरी 2024", "acceptance": "Zesty का उपयोग करके, आप इन शर्तों से सहमत होते हैं" },
+  "privacy": { "title": "गोपनीयता नीति", "lastUpdated": "अंतिम अपडेट: 1 जनवरी 2024", "questions": "गोपनीयता प्रथाओं के बारे में प्रश्न?", "contactTeam": "गोपनीयता टीम से संपर्क करें" },
+  "navigation": { "home": "होम", "categories": "श्रेणियाँ", "myCart": "मेरा कार्ट", "profile": "प्रोफ़ाइल" }
+}

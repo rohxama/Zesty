@@ -1,0 +1,90 @@
+{
+  "app": { "name": "Zesty" },
+  "onboarding": {
+    "title1": "Découvrir les Restaurants",
+    "desc1": "Trouvez les meilleurs restaurants près de vous avec une grande variété de cuisines.",
+    "title2": "Commande Facile",
+    "desc2": "Commandez vos plats préférés en quelques touchers. Rapide, simple et pratique.",
+    "title3": "Livraison Rapide",
+    "desc3": "Recevez votre nourriture chaude et fraîche à votre porte en quelques minutes.",
+    "skip": "Passer", "next": "Suivant", "getStarted": "Commencer"
+  },
+  "auth": {
+    "welcomeBack": "Bon Retour", "signInSubtitle": "Connectez-vous pour continuer",
+    "email": "E-mail", "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié?", "signIn": "Se Connecter",
+    "noAccount": "Pas de compte?", "signUp": "S'inscrire",
+    "createAccount": "Créer un Compte", "signUpSubtitle": "Rejoignez-nous et commencez à commander",
+    "fullName": "Nom Complet", "confirmPassword": "Confirmer le Mot de Passe",
+    "alreadyHaveAccount": "Déjà un compte?",
+    "termsAgree": "En vous inscrivant, vous acceptez nos Conditions d'Utilisation et Politique de Confidentialité"
+  },
+  "home": {
+    "greeting": "Bonjour,", "searchPlaceholder": "Rechercher restaurants ou nourriture...",
+    "popularMeals": "Plats Populaires", "viewAll": "Voir Tout",
+    "categories": "Catégories", "seeAll": "Voir Tout"
+  },
+  "categories": { "title": "Catégories", "meals": "plats" },
+  "meal": {
+    "addToCart": "Ajouter au Panier", "readMore": "Lire Plus", "readLess": "Lire Moins",
+    "options": "Options", "quantity": "Quantité", "total": "Total"
+  },
+  "cart": {
+    "title": "Mon Panier", "empty": "Votre panier est vide",
+    "emptyDesc": "Ajoutez des plats délicieux pour commencer",
+    "browseMeals": "Voir les Plats", "delivery": "Livraison",
+    "subtotal": "Sous-total", "total": "Total", "proceedToCheckout": "Passer à la Caisse"
+  },
+  "checkout": {
+    "title": "Paiement", "shippingAddress": "Adresse de Livraison",
+    "paymentMethod": "Mode de Paiement", "orderSummary": "Résumé de la Commande",
+    "delivery": "Livraison", "subtotal": "Sous-total", "total": "Total",
+    "placeOrder": "Passer la Commande", "cashOnDelivery": "Paiement à la Livraison",
+    "creditCard": "Carte de Crédit", "applePay": "Apple Pay"
+  },
+  "orderDone": {
+    "title": "Commande Confirmée!", "subtitle": "Votre commande a été passée avec succès",
+    "trackOrder": "Suivre la Commande", "backToHome": "Retour à l'Accueil"
+  },
+  "profile": {
+    "title": "Profil", "darkMode": "Mode Sombre", "about": "À propos d'Inggros",
+    "aboutSubtitle": "À propos du restaurant", "language": "Langue",
+    "favourites": "Favoris", "favouritesSubtitle": "Plats favoris",
+    "settings": "Paramètres", "faq": "FAQ",
+    "faqSubtitle": "Consulter les FAQs", "terms": "Conditions d'Utilisation",
+    "privacy": "Politique de Confidentialité"
+  },
+  "settings": {
+    "title": "Paramètres", "mainSettings": "Paramètres Principaux",
+    "popularSettings": "Paramètres Populaires",
+    "pushNotifications": "Notifications Push", "pushNotificationsDesc": "Recevez les mises à jour des commandes",
+    "locationServices": "Services de Localisation", "locationServicesDesc": "Autoriser l'accès à votre position",
+    "paymentMethods": "Modes de Paiement", "paymentMethodsDesc": "Gérer vos options de paiement",
+    "savedAddresses": "Adresses Enregistrées", "savedAddressesDesc": "2 adresses enregistrées",
+    "currency": "Devise", "currencyDesc": "USD ($)",
+    "privacySecurity": "Confidentialité et Sécurité", "privacySecurityDesc": "Gérer vos données et votre vie privée",
+    "helpSupport": "Aide et Support", "helpSupportDesc": "Obtenez de l'aide pour votre compte",
+    "sendFeedback": "Envoyer des Commentaires", "sendFeedbackDesc": "Aidez-nous à améliorer Zesty",
+    "shareZesty": "Partager Zesty", "shareZestyDesc": "Invitez des amis et gagnez des récompenses",
+    "rateUs": "Évaluez-nous", "rateUsDesc": "Évaluez Zesty sur l'App Store",
+    "clearCache": "Vider le Cache", "appVersion": "Version de l'App",
+    "signOut": "Se Déconnecter"
+  },
+  "about": {
+    "title": "À propos de Zesty", "tagline": "Livraison de Nourriture Premium",
+    "heroDesc": "La livraison du bonheur, un plat à la fois. Zesty vous connecte aux meilleurs restaurants.",
+    "mission": "Notre Mission", "missionDesc": "Révolutionner la livraison de nourriture avec un service fluide, rapide et fiable.",
+    "values": "Nos Valeurs", "qualityFirst": "Qualité d'Abord",
+    "qualityFirstDesc": "Nous ne travaillons qu'avec des restaurants qui respectent nos standards élevés.",
+    "lightningFast": "Rapide comme l'Éclair", "lightningFastDesc": "Notre réseau optimisé garantit que votre nourriture arrive chaude et fraîche.",
+    "buildingTrust": "Bâtir la Confiance", "buildingTrustDesc": "Prix transparents, suivi en temps réel et support réactif.",
+    "team": "Rencontrez l'Équipe", "journey": "Notre Parcours", "contactUs": "Contactez-nous",
+    "email": "E-mail", "phone": "Téléphone", "address": "Adresse"
+  },
+  "languages": { "title": "Choisir la Langue", "searchPlaceholder": "Rechercher des langues...", "saveLanguage": "Enregistrer la Langue" },
+  "favorites": { "title": "Favoris", "empty": "Pas encore de favoris", "emptyDesc": "Appuyez sur le cœur d'un plat pour l'ajouter ici", "browseMeals": "Voir les Plats" },
+  "faqs": { "title": "FAQ", "stillHaveQuestions": "Encore des questions?", "contactSupport": "Contacter le Support" },
+  "terms": { "title": "Conditions d'Utilisation", "lastUpdated": "Dernière mise à jour: 1 janvier 2024", "acceptance": "En utilisant Zesty, vous acceptez ces Conditions d'Utilisation" },
+  "privacy": { "title": "Politique de Confidentialité", "lastUpdated": "Dernière mise à jour: 1 janvier 2024", "questions": "Questions sur nos pratiques de confidentialité?", "contactTeam": "Contacter l'Équipe Confidentialité" },
+  "navigation": { "home": "Accueil", "categories": "Catégories", "myCart": "Mon Panier", "profile": "Profil" }
+}

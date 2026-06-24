@@ -2,114 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useAppDispatch } from '@/hooks/useRedux'
 import { addToCart } from '@/store/slices/cartSlice'
-
-const mealsData: Record<
-  string,
-  {
-    name: string
-    description: string
-    fullDescription: string
-    price: number
-    calories: string
-    rating: number
-    time: string
-    image: string
-    options: { name: string; price: number }[]
-  }
-> = {
-  burgers: {
-    name: 'Jumbo Burger',
-    description: 'Tasty Jumbo Burger with extra cheese, mayo, and veggies.',
-    fullDescription:
-      'Tasty Jumbo Burger with extra cheese, mayo, and veggies. This hearty burger is packed with flavor and made with 100% premium beef. Our signature sauce and fresh lettuce add the perfect crunch. Served on a toasted sesame seed bun with a side of golden fries.',
-    price: 12.99,
-    calories: '900 Cal',
-    rating: 4.8,
-    time: '20-25 Min',
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600',
-    options: [
-      { name: 'Add Cheese', price: 0.5 },
-      { name: 'Add Extra Sauce', price: 0.3 },
-      { name: 'Add Extra Meat', price: 2.0 },
-    ],
-  },
-  pizza: {
-    name: 'Margherita Pizza',
-    description: 'Classic Italian pizza with fresh mozzarella, tomatoes, and basil.',
-    fullDescription:
-      'Classic Italian pizza with fresh mozzarella, tomatoes, and basil on a crispy thin crust. Made with our hand-stretched dough that rises for 24 hours. Topped with San Marzano tomato sauce and drizzled with extra virgin olive oil. Baked in a traditional wood-fired oven for that authentic smoky flavor.',
-    price: 14.99,
-    calories: '850 Cal',
-    rating: 4.9,
-    time: '25-30 Min',
-    image: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=600',
-    options: [
-      { name: 'Add Extra Cheese', price: 1.0 },
-      { name: 'Add Mushrooms', price: 0.75 },
-      { name: 'Add Pepperoni', price: 1.5 },
-    ],
-  },
-  sushi: {
-    name: 'Spaghetti Carbonara',
-    description: 'Creamy Italian pasta with crispy pancetta and parmesan.',
-    fullDescription: 'Creamy Italian spaghetti carbonara with crispy pancetta, egg yolk, and freshly grated parmesan cheese. Made with authentic Italian ingredients and cooked al dente. A classic Roman dish that is simple yet incredibly flavorful.',
-    price: 13.49,
-    calories: '780 Cal',
-    rating: 4.8,
-    time: '20-25 Min',
-    image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600',
-    options: [
-      { name: 'Add Extra Cheese', price: 1.0 },
-      { name: 'Add Garlic Bread', price: 1.5 },
-      { name: 'Add Side Salad', price: 2.0 },
-    ],
-  },
-  chicken: {
-    name: 'Grilled Chicken',
-    description: 'Juicy grilled chicken with herbs and spices.',
-    fullDescription: 'Juicy grilled chicken seasoned with a blend of herbs and spices, grilled to perfection. Our chicken is sourced from free-range farms and marinated for 12 hours. Served with a fresh side salad and your choice of dipping sauce.',
-    price: 11.49,
-    calories: '650 Cal',
-    rating: 4.7,
-    time: '20-25 Min',
-    image: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=600',
-    options: [
-      { name: 'Add Coleslaw', price: 1.0 },
-      { name: 'Add Fries', price: 1.5 },
-      { name: 'Extra Sauce', price: 0.5 },
-    ],
-  },
-  grill: {
-    name: 'Caesar Salad',
-    description: 'Fresh Caesar salad with crispy croutons and parmesan.',
-    fullDescription: 'Fresh Caesar salad with crispy croutons, parmesan cheese, and our signature Caesar dressing. Made with romaine lettuce harvested daily. Topped with grilled chicken breast and served with a warm bread roll.',
-    price: 9.99,
-    calories: '350 Cal',
-    rating: 4.6,
-    time: '10-15 Min',
-    image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=600',
-    options: [
-      { name: 'Add Grilled Chicken', price: 2.0 },
-      { name: 'Add Avocado', price: 1.5 },
-      { name: 'Extra Dressing', price: 0.5 },
-    ],
-  },
-  shawarma: {
-    name: 'Chicken Shawarma',
-    description: 'Juicy marinated chicken wrapped in warm pita.',
-    fullDescription: 'Juicy marinated chicken wrapped in warm pita with tahini, pickles, and fresh veggies. Our chicken is marinated in a blend of Middle Eastern spices for 12 hours. Slow-roasted on a vertical spit for that authentic flavor. Wrapped in freshly baked pita bread with garlic sauce, turnips, and a drizzle of tahini.',
-    price: 22.0,
-    calories: '650 Cal',
-    rating: 4.7,
-    time: '15-20 Min',
-    image: 'https://images.unsplash.com/photo-1561651823-34feb02250e4?w=600',
-    options: [
-      { name: 'Add Hummus', price: 1.0 },
-      { name: 'Add Fries', price: 1.5 },
-      { name: 'Extra Garlic Sauce', price: 0.5 },
-    ],
-  },
-}
+import { mealsData } from '@/data/meals'
 
 export default function MealDetailsPage() {
   const navigate = useNavigate()
@@ -119,7 +12,7 @@ export default function MealDetailsPage() {
   const [selectedOptions, setSelectedOptions] = useState<number[]>([])
   const [showFullDescription, setShowFullDescription] = useState(false)
 
-  const meal = mealsData[id ?? ''] ?? mealsData.burgers!
+  const meal = mealsData[id ?? ''] ?? mealsData['jumbo-burger']!
 
   const toggleOption = (index: number) => {
     setSelectedOptions((prev) =>

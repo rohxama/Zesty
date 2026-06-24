@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import api from '@/api/axios'
 
 export default function SignUpPage() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -96,7 +98,7 @@ export default function SignUpPage() {
           className="font-heading text-3xl font-bold"
           style={{ color: 'var(--color-text-primary)' }}
         >
-          Sign up
+          {t('auth.createAccount')}
         </h1>
 
         {/* Form */}
@@ -111,7 +113,7 @@ export default function SignUpPage() {
                 <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
                 <circle cx="12" cy="7" r="4" />
               </svg>
-              Full Name
+              {t('auth.fullName')}
             </label>
             <input
               type="text"
@@ -138,7 +140,7 @@ export default function SignUpPage() {
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="M22 7l-10 6L2 7" />
               </svg>
-              Email Address
+              {t('auth.email')}
             </label>
             <input
               type="email"
@@ -165,7 +167,7 @@ export default function SignUpPage() {
                 <rect x="3" y="11" width="18" height="11" rx="2" />
                 <path d="M7 11V7a5 5 0 0110 0v4" />
               </svg>
-              Password
+              {t('auth.password')}
             </label>
             <input
               type="password"
@@ -192,7 +194,7 @@ export default function SignUpPage() {
                 <rect x="3" y="11" width="18" height="11" rx="2" />
                 <path d="M7 11V7a5 5 0 0110 0v4" />
               </svg>
-              Confirm Password
+              {t('auth.confirmPassword')}
             </label>
             <input
               type="password"
@@ -216,7 +218,7 @@ export default function SignUpPage() {
             disabled={loading}
             style={{ opacity: loading ? 0.7 : 1 }}
           >
-            {loading ? 'Creating account...' : 'Sign up'}
+            {loading ? 'Creating account...' : t('auth.signUp')}
           </button>
         </div>
 
@@ -263,14 +265,14 @@ export default function SignUpPage() {
         {/* Sign In Link */}
         <div className="mt-auto pb-8 text-center">
           <span className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-            Already have an account?{' '}
+            {t('auth.alreadyHaveAccount')}{' '}
           </span>
           <button
             onClick={() => navigate('/signin')}
             className="text-sm font-semibold"
             style={{ color: 'var(--color-primary-red)' }}
           >
-            Sign in
+            {t('auth.signIn')}
           </button>
         </div>
       </div>

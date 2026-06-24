@@ -12,6 +12,13 @@ import MyCartPage from '@/pages/MyCartPage'
 import CheckoutPage from '@/pages/CheckoutPage'
 import OrderDonePage from '@/pages/OrderDonePage'
 import ProfilePage from '@/pages/ProfilePage'
+import AboutPage from '@/pages/AboutPage'
+import LanguagesPage from '@/pages/LanguagesPage'
+import FavoritesPage from '@/pages/FavoritesPage'
+import SettingsPage from '@/pages/SettingsPage'
+import FaqsPage from '@/pages/FaqsPage'
+import TermsPage from '@/pages/TermsPage'
+import PrivacyPage from '@/pages/PrivacyPage'
 import ProtectedRoute from '@/components/ProtectedRoute'
 
 const router = createBrowserRouter([
@@ -66,6 +73,34 @@ const router = createBrowserRouter([
   {
     path: '/profile',
     element: <ProtectedRoute><ProfilePage /></ProtectedRoute>,
+  },
+  {
+    path: '/about',
+    element: <ProtectedRoute><AboutPage /></ProtectedRoute>,
+  },
+  {
+    path: '/languages',
+    element: <ProtectedRoute><LanguagesPage /></ProtectedRoute>,
+  },
+  {
+    path: '/favorites',
+    element: <ProtectedRoute><FavoritesPage /></ProtectedRoute>,
+  },
+  {
+    path: '/settings',
+    element: <ProtectedRoute><SettingsPage /></ProtectedRoute>,
+  },
+  {
+    path: '/faqs',
+    element: <ProtectedRoute><FaqsPage /></ProtectedRoute>,
+  },
+  {
+    path: '/terms',
+    element: <ProtectedRoute><TermsPage /></ProtectedRoute>,
+  },
+  {
+    path: '/privacy',
+    element: <ProtectedRoute><PrivacyPage /></ProtectedRoute>,
   },
   {
     path: '*',

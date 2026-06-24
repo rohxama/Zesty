@@ -1,0 +1,91 @@
+{
+  "app": { "name": "Zesty" },
+  "onboarding": {
+    "title1": "Descubre Restaurantes",
+    "desc1": "Encuentra los mejores restaurantes cerca de ti con una amplia variedad de cocinas y sabores.",
+    "title2": "Pedido Fácil",
+    "desc2": "Pide tus comidas favoritas con solo unos toques. Rápido, simple y conveniente.",
+    "title3": "Entrega Rápida",
+    "desc3": "Recibe tu comida caliente y fresca en tu puerta en minutos.",
+    "skip": "Saltar", "next": "Siguiente", "getStarted": "Comenzar"
+  },
+  "auth": {
+    "welcomeBack": "Bienvenido de Nuevo",
+    "signInSubtitle": "Inicia sesión para continuar",
+    "email": "Correo Electrónico", "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?", "signIn": "Iniciar Sesión",
+    "noAccount": "¿No tienes cuenta?", "signUp": "Registrarse",
+    "createAccount": "Crear Cuenta", "signUpSubtitle": "Únete y empieza a pedir",
+    "fullName": "Nombre Completo", "confirmPassword": "Confirmar Contraseña",
+    "alreadyHaveAccount": "¿Ya tienes cuenta?",
+    "termsAgree": "Al registrarte, aceptas nuestros Términos de Uso y Política de Privacidad"
+  },
+  "home": {
+    "greeting": "Hola,", "searchPlaceholder": "Buscar restaurantes o comida...",
+    "popularMeals": "Comidas Populares", "viewAll": "Ver Todo",
+    "categories": "Categorías", "seeAll": "Ver Todo"
+  },
+  "categories": { "title": "Categorías", "meals": "comidas" },
+  "meal": {
+    "addToCart": "Agregar al Carrito", "readMore": "Leer Más", "readLess": "Leer Menos",
+    "options": "Opciones", "quantity": "Cantidad", "total": "Total"
+  },
+  "cart": {
+    "title": "Mi Carrito", "empty": "Tu carrito está vacío",
+    "emptyDesc": "Agrega algunas comidas deliciosas para empezar",
+    "browseMeals": "Ver Comidas", "delivery": "Envío",
+    "subtotal": "Subtotal", "total": "Total", "proceedToCheckout": "Proceder al Pago"
+  },
+  "checkout": {
+    "title": "Pago", "shippingAddress": "Dirección de Envío",
+    "paymentMethod": "Método de Pago", "orderSummary": "Resumen del Pedido",
+    "delivery": "Envío", "subtotal": "Subtotal", "total": "Total",
+    "placeOrder": "Realizar Pedido", "cashOnDelivery": "Pago contra Entrega",
+    "creditCard": "Tarjeta de Crédito", "applePay": "Apple Pay"
+  },
+  "orderDone": {
+    "title": "¡Pedido Confirmado!", "subtitle": "Tu pedido ha sido realizado con éxito",
+    "trackOrder": "Rastrear Pedido", "backToHome": "Volver al Inicio"
+  },
+  "profile": {
+    "title": "Perfil", "darkMode": "Modo Oscuro", "about": "Sobre Inggros",
+    "aboutSubtitle": "Sobre el restaurante", "language": "Idioma",
+    "favourites": "Favoritos", "favouritesSubtitle": "Comidas favoritas",
+    "settings": "Configuración", "faq": "Preguntas Frecuentes",
+    "faqSubtitle": "Consultar FAQs", "terms": "Términos de Uso",
+    "privacy": "Política de Privacidad"
+  },
+  "settings": {
+    "title": "Configuración", "mainSettings": "Configuración Principal",
+    "popularSettings": "Configuración Popular",
+    "pushNotifications": "Notificaciones", "pushNotificationsDesc": "Recibe actualizaciones de pedidos",
+    "locationServices": "Servicios de Ubicación", "locationServicesDesc": "Permitir acceso a ubicación",
+    "paymentMethods": "Métodos de Pago", "paymentMethodsDesc": "Gestionar opciones de pago",
+    "savedAddresses": "Direcciones Guardadas", "savedAddressesDesc": "2 direcciones guardadas",
+    "currency": "Moneda", "currencyDesc": "USD ($)",
+    "privacySecurity": "Privacidad y Seguridad", "privacySecurityDesc": "Gestionar datos y privacidad",
+    "helpSupport": "Ayuda y Soporte", "helpSupportDesc": "Obtén ayuda con tu cuenta",
+    "sendFeedback": "Enviar Comentarios", "sendFeedbackDesc": "Ayúdanos a mejorar Zesty",
+    "shareZesty": "Compartir Zesty", "shareZestyDesc": "Invita amigos y gana recompensas",
+    "rateUs": "Califícanos", "rateUsDesc": "Califica Zesty en la App Store",
+    "clearCache": "Limpiar Caché", "appVersion": "Versión de la App",
+    "signOut": "Cerrar Sesión"
+  },
+  "about": {
+    "title": "Sobre Zesty", "tagline": "Entrega de Comida Premium",
+    "heroDesc": "Entregando felicidad, una comida a la vez. Zesty te conecta con los mejores restaurantes de tu ciudad.",
+    "mission": "Nuestra Misión", "missionDesc": "Revolucionar la entrega de comida con un servicio fluido, rápido y confiable.",
+    "values": "Nuestros Valores", "qualityFirst": "Calidad Primero",
+    "qualityFirstDesc": "Solo trabajamos con restaurantes que cumplen nuestros altos estándares.",
+    "lightningFast": "Rápido como el Rayo", "lightningFastDesc": "Nuestra red optimizada asegura que tu comida llegue caliente y fresca.",
+    "buildingTrust": "Construyendo Confianza", "buildingTrustDesc": "Precios transparentes, seguimiento en tiempo real y soporte receptivo.",
+    "team": "Conoce al Equipo", "journey": "Nuestro Viaje", "contactUs": "Contáctanos",
+    "email": "Correo", "phone": "Teléfono", "address": "Dirección"
+  },
+  "languages": { "title": "Seleccionar Idioma", "searchPlaceholder": "Buscar idiomas...", "saveLanguage": "Guardar Idioma" },
+  "favorites": { "title": "Favoritos", "empty": "Sin favoritos aún", "emptyDesc": "Toca el corazón en cualquier comida para agregarla aquí", "browseMeals": "Ver Comidas" },
+  "faqs": { "title": "Preguntas Frecuentes", "stillHaveQuestions": "¿Todavía tienes preguntas?", "contactSupport": "Contactar Soporte" },
+  "terms": { "title": "Términos de Uso", "lastUpdated": "Última actualización: 1 de enero de 2024", "acceptance": "Al usar Zesty, aceptas estos Términos de Uso" },
+  "privacy": { "title": "Política de Privacidad", "lastUpdated": "Última actualización: 1 de enero de 2024", "questions": "¿Preguntas sobre nuestras prácticas de privacidad?", "contactTeam": "Contactar Equipo de Privacidad" },
+  "navigation": { "home": "Inicio", "categories": "Categorías", "myCart": "Mi Carrito", "profile": "Perfil" }
+}

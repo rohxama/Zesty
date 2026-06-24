@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import api from '@/api/axios'
 
 export default function SignInPage() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -110,7 +112,7 @@ export default function SignInPage() {
           className="font-heading text-3xl font-bold"
           style={{ color: 'var(--color-text-primary)' }}
         >
-          Sign in
+          {t('auth.signIn')}
         </h1>
 
         {/* Form */}
@@ -125,7 +127,7 @@ export default function SignInPage() {
                 <rect x="2" y="4" width="20" height="16" rx="2" />
                 <path d="M22 7l-10 6L2 7" />
               </svg>
-              Email Address
+              {t('auth.email')}
             </label>
             <input
               type="email"
@@ -152,7 +154,7 @@ export default function SignInPage() {
                 <rect x="3" y="11" width="18" height="11" rx="2" />
                 <path d="M7 11V7a5 5 0 0110 0v4" />
               </svg>
-              Password
+              {t('auth.password')}
             </label>
             <input
               type="password"
@@ -176,7 +178,7 @@ export default function SignInPage() {
               className="text-sm font-medium"
               style={{ color: 'var(--color-text-muted)' }}
             >
-              Forgot Password?
+              {t('auth.forgotPassword')}
             </a>
           </div>
 
@@ -187,7 +189,7 @@ export default function SignInPage() {
             disabled={loading}
             style={{ opacity: loading ? 0.7 : 1 }}
           >
-            {loading ? 'Signing in...' : 'Sign in'}
+            {loading ? 'Signing in...' : t('auth.signIn')}
           </button>
         </div>
 
@@ -234,14 +236,14 @@ export default function SignInPage() {
         {/* Sign Up Link */}
         <div className="mt-auto pb-8 text-center">
           <span className="text-sm" style={{ color: 'var(--color-text-muted)' }}>
-            Don't have an account?{' '}
+            {t('auth.noAccount')}{' '}
           </span>
           <button
             onClick={() => navigate('/signup')}
             className="text-sm font-semibold"
             style={{ color: 'var(--color-primary-red)' }}
           >
-            Sign up
+            {t('auth.signUp')}
           </button>
         </div>
       </div>

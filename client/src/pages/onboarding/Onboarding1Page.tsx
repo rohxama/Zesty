@@ -85,15 +85,9 @@ export default function Onboarding1Page() {
       {/* Progress Dots */}
       <div className="mt-auto px-6 pb-10">
         <div className="flex justify-center gap-2">
-          <div className="h-2 w-8 rounded-full" style={{ background: 'var(--gradient-primary)' }} />
-          <div
-            className="h-2 w-2 rounded-full"
-            style={{ backgroundColor: 'var(--color-bg-hover)' }}
-          />
-          <div
-            className="h-2 w-2 rounded-full"
-            style={{ backgroundColor: 'var(--color-bg-hover)' }}
-          />
+          <div className="h-2 w-2 rounded-full" style={{ background: 'var(--gradient-primary)' }} />
+          <div className="h-2 w-2 rounded-full" style={{ backgroundColor: 'var(--color-bg-hover)' }} />
+          <div className="h-2 w-2 rounded-full" style={{ backgroundColor: 'var(--color-bg-hover)' }} />
         </div>
       </div>
     </div>

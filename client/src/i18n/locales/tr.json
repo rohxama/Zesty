@@ -1,0 +1,90 @@
+{
+  "app": { "name": "Zesty" },
+  "onboarding": {
+    "title1": "Restoranları Keşfet",
+    "desc1": "Çeşitli mutfaklar ve lezzetlerle yakınızdaki en iyi restoranları bulun.",
+    "title2": "Kolay Sipariş",
+    "desc2": "Favori yemeklerinizi birkaç dokunuşla sipariş edin. Hızlı, basit ve kullanışlı.",
+    "title3": "Hızlı Teslimat",
+    "desc3": "Yemeğinizi sıcak ve taze olarak kapınıza alın.",
+    "skip": "Atla", "next": "İleri", "getStarted": "Başla"
+  },
+  "auth": {
+    "welcomeBack": "Tekrar Hoş Geldiniz", "signInSubtitle": "Devam etmek için giriş yapın",
+    "email": "E-posta", "password": "Şifre",
+    "forgotPassword": "Şifrenizi mi unuttunuz?", "signIn": "Giriş Yap",
+    "noAccount": "Hesabınız yok mu?", "signUp": "Kayıt Ol",
+    "createAccount": "Hesap Oluştur", "signUpSubtitle": "Katılın ve sipariş vermeye başlayın",
+    "fullName": "Ad Soyad", "confirmPassword": "Şifreyi Onayla",
+    "alreadyHaveAccount": "Zaten hesabınız var mı?",
+    "termsAgree": "Kayıt olarak Kullanım Şartlarımızı ve Gizlilik Politikamızı kabul edersiniz"
+  },
+  "home": {
+    "greeting": "Merhaba,", "searchPlaceholder": "Restoran veya yemek arayın...",
+    "popularMeals": "Popüler Yemekler", "viewAll": "Tümünü Gör",
+    "categories": "Kategoriler", "seeAll": "Tümünü Gör"
+  },
+  "categories": { "title": "Kategoriler", "meals": "yemek" },
+  "meal": {
+    "addToCart": "Sepete Ekle", "readMore": "Daha Fazla", "readLess": "Daha Az",
+    "options": "Seçenekler", "quantity": "Miktar", "total": "Toplam"
+  },
+  "cart": {
+    "title": "Sepetim", "empty": "Sepetiniz boş",
+    "emptyDesc": "Başlamak için lezzetli yemekler ekleyin",
+    "browseMeals": "Yemeklere Göz At", "delivery": "Teslimat",
+    "subtotal": "Ara Toplam", "total": "Toplam", "proceedToCheckout": "Ödemeye Geç"
+  },
+  "checkout": {
+    "title": "Ödeme", "shippingAddress": "Kargo Adresi",
+    "paymentMethod": "Ödeme Yöntemi", "orderSummary": "Sipariş Özeti",
+    "delivery": "Teslimat", "subtotal": "Ara Toplam", "total": "Toplam",
+    "placeOrder": "Sipariş Ver", "cashOnDelivery": "Kapıda Ödeme",
+    "creditCard": "Kredi Kartı", "applePay": "Apple Pay"
+  },
+  "orderDone": {
+    "title": "Sipariş Onaylandı!", "subtitle": "Siparişiniz başarıyla verildi",
+    "trackOrder": "Siparişi Takip Et", "backToHome": "Ana Sayfaya Dön"
+  },
+  "profile": {
+    "title": "Profil", "darkMode": "Karanlık Mod", "about": "Inggros Hakkında",
+    "aboutSubtitle": "Restoran hakkında", "language": "Dil",
+    "favourites": "Favoriler", "favouritesSubtitle": "Favori yemekler",
+    "settings": "Ayarlar", "faq": "SSS",
+    "faqSubtitle": "SSS'yi Okuyun", "terms": "Kullanım Şartları",
+    "privacy": "Gizlilik Politikası"
+  },
+  "settings": {
+    "title": "Ayarlar", "mainSettings": "Ana Ayarlar",
+    "popularSettings": "Popüler Ayarlar",
+    "pushNotifications": "Bildirimler", "pushNotificationsDesc": "Sipariş güncellemelerini alın",
+    "locationServices": "Konum Servisleri", "locationServicesDesc": "Konum erişimine izin verin",
+    "paymentMethods": "Ödeme Yöntemleri", "paymentMethodsDesc": "Ödeme seçeneklerini yönetin",
+    "savedAddresses": "Kayıtlı Adresler", "savedAddressesDesc": "2 kayıtlı adres",
+    "currency": "Para Birimi", "currencyDesc": "USD ($)",
+    "privacySecurity": "Gizlilik ve Güvenlik", "privacySecurityDesc": "Verilerinizi ve gizliliğinizi yönetin",
+    "helpSupport": "Yardım ve Destek", "helpSupportDesc": "Hesabınızla ilgili yardım alın",
+    "sendFeedback": "Geri Bildirim Gönder", "sendFeedbackDesc": "Zesty'yi geliştirmemize yardımcı olun",
+    "shareZesty": "Zesty'yi Paylaş", "shareZestyDesc": "Arkadaşlarınızı davet edin ve ödül kazanın",
+    "rateUs": "Bizi Değerlendirin", "rateUsDesc": "App Store'da Zesty'yi değerlendirin",
+    "clearCache": "Önbelleği Temizle", "appVersion": "Uygulama Sürümü",
+    "signOut": "Çıkış Yap"
+  },
+  "about": {
+    "title": "Zesty Hakkında", "tagline": "Premium Yemek Teslimatı",
+    "heroDesc": "Mutluluk dağıtıyoruz, bir yemek bir zaman. Zesty sizi şehirdeki en iyi restoranlarla buluşturur.",
+    "mission": "Misyonumuz", "missionDesc": "Sorunsuz, hızlı ve güvenilir bir hizmetle yemek teslimatında devrim yapmak.",
+    "values": "Değerlerimiz", "qualityFirst": "Önce Kalite",
+    "qualityFirstDesc": "Yalnızca yüksek standartlarımızı karşılayan restoranlarla çalışıyoruz.",
+    "lightningFast": "Yıldırım Hızında", "lightningFastDesc": "Optimize ağımız yemeğinizin sıcak ve taze ulaşmasını sağlar.",
+    "buildingTrust": "Güven İnşası", "buildingTrustDesc": "Şeffaf fiyatlandırma, gerçek zamanlı takip ve duyarlı destek.",
+    "team": "Ekiple Tanışın", "journey": "Yolculuğumuz", "contactUs": "Bize Ulaşın",
+    "email": "E-posta", "phone": "Telefon", "address": "Adres"
+  },
+  "languages": { "title": "Dil Seçin", "searchPlaceholder": "Dilleri arayın...", "saveLanguage": "Dili Kaydet" },
+  "favorites": { "title": "Favoriler", "empty": "Henüz favori yok", "emptyDesc": "Herhangi bir yemeğe kalp simgesine dokunun", "browseMeals": "Yemeklere Göz At" },
+  "faqs": { "title": "SSS", "stillHaveQuestions": "Hala sorularınız var mı?", "contactSupport": "Destekle İletişime Geçin" },
+  "terms": { "title": "Kullanım Şartları", "lastUpdated": "Son güncelleme: 1 Ocak 2024", "acceptance": "Zesty kullanarak bu Kullanım Şartlarını kabul edersiniz" },
+  "privacy": { "title": "Gizlilik Politikası", "lastUpdated": "Son güncelleme: 1 Ocak 2024", "questions": "Gizlilik uygulamalarımız hakkında sorularınız mı var?", "contactTeam": "Gizlilik Ekibiyle İletişime Geçin" },
+  "navigation": { "home": "Ana Sayfa", "categories": "Kategoriler", "myCart": "Sepetim", "profile": "Profil" }
+}

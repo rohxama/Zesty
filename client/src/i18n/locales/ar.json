@@ -1,0 +1,176 @@
+{
+  "app": {
+    "name": "زيستي"
+  },
+  "onboarding": {
+    "title1": "اكتشف المطاعم",
+    "desc1": "اعثر على أفضل المطاعم بالقرب منك مع مجموعة متنوعة من المأكولات والنكهات.",
+    "title2": "طلب سهل",
+    "desc2": "اطلب وجباتك المفضلة ببضع نقرات فقط. سريع وبسيط ومريح.",
+    "title3": "توصيل سريع",
+    "desc3": "احصل على طعامك ساخنًا وطازجًا عند بابك في دقائق.",
+    "skip": "تخطي",
+    "next": "التالي",
+    "getStarted": "ابدأ الآن"
+  },
+  "auth": {
+    "welcomeBack": "مرحبًا بعودتك",
+    "signInSubtitle": "سجّل الدخول للمتابعة",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgotPassword": "نسيت كلمة المرور؟",
+    "signIn": "تسجيل الدخول",
+    "noAccount": "ليس لديك حساب؟",
+    "signUp": "إنشاء حساب",
+    "createAccount": "إنشاء حساب جديد",
+    "signUpSubtitle": "انضم إلينا وابدأ الطلب",
+    "fullName": "الاسم الكامل",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟",
+    "termsAgree": "بالتسجيل، أنت توافق على شروط الاستخدام وسياسة الخصوصية"
+  },
+  "home": {
+    "greeting": "مرحبًا،",
+    "searchPlaceholder": "ابحث عن مطاعم أو طعام...",
+    "popularMeals": "الوجبات الشائعة",
+    "viewAll": "عرض الكل",
+    "categories": "الفئات",
+    "seeAll": "عرض الكل"
+  },
+  "categories": {
+    "title": "الفئات",
+    "meals": "وجبات"
+  },
+  "meal": {
+    "addToCart": "أضف إلى السلة",
+    "readMore": "اقرأ المزيد",
+    "readLess": "اقرأ أقل",
+    "options": "الخيارات",
+    "quantity": "الكمية",
+    "total": "المجموع"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلتك فارغة",
+    "emptyDesc": "أضف بعض الوجبات اللذيذة للبدء",
+    "browseMeals": "تصفح الوجبات",
+    "delivery": "التوصيل",
+    "subtotal": "المجموع الفرعي",
+    "total": "المجموع",
+    "proceedToCheckout": "إتمام الطلب"
+  },
+  "checkout": {
+    "title": "إتمام الطلب",
+    "shippingAddress": "عنوان الشحن",
+    "paymentMethod": "طريقة الدفع",
+    "orderSummary": "ملخص الطلب",
+    "delivery": "التوصيل",
+    "subtotal": "المجموع الفرعي",
+    "total": "المجموع",
+    "placeOrder": "تأكيد الطلب",
+    "cashOnDelivery": "الدفع عند التوصيل",
+    "creditCard": "بطاقة ائتمان",
+    "applePay": "أبل باي"
+  },
+  "orderDone": {
+    "title": "تم تأكيد الطلب!",
+    "subtitle": "تم وضع طلبك بنجاح",
+    "trackOrder": "تتبع الطلب",
+    "backToHome": "العودة للرئيسية"
+  },
+  "profile": {
+    "title": "الملف الشخصي",
+    "darkMode": "الوضع الداكن",
+    "about": "عن إنغروس",
+    "aboutSubtitle": "عن مطعم الشركة",
+    "language": "اللغة",
+    "favourites": "المفضلة",
+    "favouritesSubtitle": "الأطباق المفضلة",
+    "settings": "الإعدادات",
+    "faq": "الأسئلة الشائعة",
+    "faqSubtitle": "استشارات الأسئلة الشائعة",
+    "terms": "شروط الاستخدام",
+    "privacy": "سياسة الخصوصية"
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "mainSettings": "الإعدادات الرئيسية",
+    "popularSettings": "الإعدادات الشائعة",
+    "pushNotifications": "إشعارات الدفع",
+    "pushNotificationsDesc": "استلام تحديثات الطلبات والتنبيهات",
+    "locationServices": "خدمات الموقع",
+    "locationServicesDesc": "السماح للتطبيق بالوصول إلى موقعك",
+    "paymentMethods": "طرق الدفع",
+    "paymentMethodsDesc": "إدارة خيارات الدفع",
+    "savedAddresses": "العناوين المحفوظة",
+    "savedAddressesDesc": "عناوين محفوظة",
+    "currency": "العملة",
+    "currencyDesc": "دولار ($)",
+    "privacySecurity": "الخصوصية والأمان",
+    "privacySecurityDesc": "إدارة بياناتك وخصوصيتك",
+    "helpSupport": "المساعدة والدعم",
+    "helpSupportDesc": "احصل على مساعدة بحسابك",
+    "sendFeedback": "إرسال ملاحظات",
+    "sendFeedbackDesc": "ساعدنا في تحسين زيستي",
+    "shareZesty": "مشاركة زيستي",
+    "shareZestyDesc": "ادعُ أصدقاءك واكسب مكافآت",
+    "rateUs": "قيّمنا",
+    "rateUsDesc": "قيّم زيستي في متجر التطبيقات",
+    "clearCache": "مسح التخزين المؤقت",
+    "appVersion": "إصدار التطبيق",
+    "signOut": "تسجيل الخروج"
+  },
+  "about": {
+    "title": "عن زيستي",
+    "tagline": "توصيل طعام فاخر",
+    "heroDesc": "ن delivering السعادة، وجبة واحدة في كل مرة. زيستي يربطك بأفضل المطاعم في مدينتك.",
+    "mission": "مهمتنا",
+    "missionDesc": "إحداث ثورة في توصيل الطعام من خلال تقديم خدمة سلسة وسريعة وموثوقة تقدم وجبات بجودة المطاعم إلى بابك.",
+    "values": "قيمنا",
+    "qualityFirst": "الجودة أولاً",
+    "qualityFirstDesc": "نتعامل فقط مع المطاعم التي تلبي معاييرنا العالية.",
+    "lightningFast": "سريع كالبرق",
+    "lightningFastDesc": "شبكة التوصيل المحسّنة تضمن وصول طعامك ساخنًا وطازجًا.",
+    "buildingTrust": "بناء الثقة",
+    "buildingTrustDesc": "أسعار شفافة وتتبع مباشر ودعم مستجيب.",
+    "team": "تعرّف على الفريق",
+    "journey": "رحلتنا",
+    "contactUs": "تواصل معنا",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "address": "العنوان"
+  },
+  "languages": {
+    "title": "اختر اللغة",
+    "searchPlaceholder": "ابحث عن اللغات...",
+    "saveLanguage": "حفظ اللغة"
+  },
+  "favorites": {
+    "title": "المفضلة",
+    "empty": "لا توجد مفضلات بعد",
+    "emptyDesc": "اضغط على أيقونة القلب على أي وجبة لإضافتها هنا",
+    "browseMeals": "تصفح الوجبات"
+  },
+  "faqs": {
+    "title": "الأسئلة الشائعة",
+    "stillHaveQuestions": "لا تزال لديك أسئلة؟",
+    "contactSupport": "اتصل بالدعم"
+  },
+  "terms": {
+    "title": "شروط الاستخدام",
+    "lastUpdated": "آخر تحديث: 1 يناير 2024",
+    "acceptance": "باستخدامك لزيستي، أنت توافق على شروط الاستخدام هذه"
+  },
+  "privacy": {
+    "title": "سياسة الخصوصية",
+    "lastUpdated": "آخر تحديث: 1 يناير 2024",
+    "questions": "لديك أسئلة حول ممارسات الخصوصية؟",
+    "contactTeam": "اتصل بفريق الخصوصية"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "categories": "الفئات",
+    "myCart": "سلتي",
+    "profile": "الملف الشخصي"
+  }
+}

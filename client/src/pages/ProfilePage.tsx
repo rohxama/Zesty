@@ -1,19 +1,44 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useTheme } from '@/context/ThemeContext'
 
 const menuItems = [
-  { icon: 'info', label: 'About Inggros', subtitle: 'About company restaurant' },
-  { icon: 'language', label: 'Language', subtitle: 'English' },
-  { icon: 'heart', label: 'Favourites', subtitle: ' favourite food items' },
-  { icon: 'settings', label: 'Settings', subtitle: '' },
-  { icon: 'faq', label: 'FAQ', subtitle: 'Consult FAQs' },
-  { icon: 'terms', label: 'Terms Of Use', subtitle: '' },
-  { icon: 'privacy', label: 'Privacy Policy', subtitle: '' },
+  { icon: 'info', label: 'profile.about', subtitle: 'profile.aboutSubtitle', route: '/about' },
+  { icon: 'language', label: 'profile.language', subtitle: '', route: '/languages' },
+  { icon: 'heart', label: 'profile.favourites', subtitle: 'profile.favouritesSubtitle', route: '/favorites' },
+  { icon: 'settings', label: 'profile.settings', subtitle: '', route: '/settings' },
+  { icon: 'faq', label: 'profile.faq', subtitle: 'profile.faqSubtitle', route: '/faqs' },
+  { icon: 'terms', label: 'profile.terms', subtitle: '', route: '/terms' },
+  { icon: 'privacy', label: 'profile.privacy', subtitle: '', route: '/privacy' },
 ]
 
 export default function ProfilePage() {
   const navigate = useNavigate()
-  const [darkMode, setDarkMode] = useState(true)
+  const { t } = useTranslation()
+  const { darkMode, toggleDarkMode } = useTheme()
+  const [userName, setUserName] = useState(() => {
+    const saved = localStorage.getItem('zesty_user_name')
+    return saved || 'Abdullah'
+  })
+  const [isEditing, setIsEditing] = useState(false)
+  const [editName, setEditName] = useState(userName)
+
+  useEffect(() => {
+    localStorage.setItem('zesty_user_name', userName)
+  }, [userName])
+
+  const handleSaveName = () => {
+    if (editName.trim()) {
+      setUserName(editName.trim())
+      setIsEditing(false)
+    }
+  }
+
+  const handleCancelEdit = () => {
+    setEditName(userName)
+    setIsEditing(false)
+  }
 
   const getIcon = (icon: string) => {
     switch (icon) {
@@ -108,7 +133,7 @@ export default function ProfilePage() {
           className="font-heading text-lg font-bold"
           style={{ color: 'var(--color-text-primary)' }}
         >
-          Profile
+          {t('profile.title')}
         </h1>
         <button
           className="flex h-10 w-10 items-center justify-center rounded-full"
@@ -129,37 +154,64 @@ export default function ProfilePage() {
         >
           <div className="relative">
             <div className="flex h-14 w-14 items-center justify-center rounded-full" style={{ background: 'var(--gradient-primary)' }}>
-              <span className="text-xl font-bold text-white">A</span>
+              <span className="text-xl font-bold text-white">{userName.charAt(0).toUpperCase()}</span>
             </div>
           </div>
           <div className="flex-1">
-            <h2
-              className="font-heading text-base font-semibold"
-              style={{ color: 'var(--color-text-primary)' }}
-            >
-              Abdullah
-            </h2>
+            {isEditing ? (
+              <div className="flex items-center gap-2">
+                <input
+                  type="text"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && handleSaveName()}
+                  className="input flex-1 py-2 px-3 text-sm"
+                  autoFocus
+                />
+                <button
+                  onClick={handleSaveName}
+                  className="flex h-8 w-8 items-center justify-center rounded-full"
+                  style={{ backgroundColor: '#2ECC71' }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </button>
+                <button
+                  onClick={handleCancelEdit}
+                  className="flex h-8 w-8 items-center justify-center rounded-full"
+                  style={{ backgroundColor: '#E74C3C' }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <h2
+                className="font-heading text-base font-semibold"
+                style={{ color: 'var(--color-text-primary)' }}
+              >
+                {userName}
+              </h2>
+            )}
           </div>
-          <button
-            className="flex h-8 w-8 items-center justify-center rounded-full"
-            style={{ backgroundColor: 'var(--color-bg-hover)' }}
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
-              <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
-              <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Wallet Balance */}
-      <div className="px-4 pt-4">
-        <div
-          className="rounded-xl p-4"
-          style={{ backgroundColor: 'var(--color-bg-card)' }}
-        >
-          <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Wallet Balance</p>
-          <p className="mt-1 font-heading text-xl font-bold" style={{ color: 'var(--color-text-primary)' }}>$582.00</p>
+          {!isEditing && (
+            <button
+              onClick={() => {
+                setEditName(userName)
+                setIsEditing(true)
+              }}
+              className="flex h-8 w-8 items-center justify-center rounded-full"
+              style={{ backgroundColor: 'var(--color-bg-hover)' }}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+              </svg>
+            </button>
+          )}
         </div>
       </div>
 
@@ -173,10 +225,10 @@ export default function ProfilePage() {
             className="font-body text-sm font-medium"
             style={{ color: 'var(--color-text-primary)' }}
           >
-            Dark Mode
+            {t('profile.darkMode')}
           </span>
           <button
-            onClick={() => setDarkMode(!darkMode)}
+            onClick={toggleDarkMode}
             className="relative h-7 w-12 rounded-full transition-colors"
             style={{
               backgroundColor: darkMode ? 'var(--color-primary-red)' : 'var(--color-bg-hover)',
@@ -198,6 +250,7 @@ export default function ProfilePage() {
           {menuItems.map((item) => (
             <button
               key={item.label}
+              onClick={() => item.route && navigate(item.route)}
               className="flex w-full items-center gap-4 rounded-xl p-4"
               style={{ backgroundColor: 'var(--color-bg-card)' }}
             >
@@ -212,11 +265,11 @@ export default function ProfilePage() {
                   className="font-body text-sm font-medium"
                   style={{ color: 'var(--color-text-primary)' }}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </span>
                 {item.subtitle && (
                   <p className="mt-0.5 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                    {item.subtitle}
+                    {t(item.subtitle)}
                   </p>
                 )}
               </div>
@@ -250,7 +303,7 @@ export default function ProfilePage() {
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
-            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Home</span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('navigation.home')}</span>
           </button>
           <button className="flex flex-col items-center gap-1" onClick={() => navigate('/categories')}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
@@ -259,7 +312,7 @@ export default function ProfilePage() {
               <rect x="14" y="14" width="7" height="7" />
               <rect x="3" y="14" width="7" height="7" />
             </svg>
-            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Categories</span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('navigation.categories')}</span>
           </button>
           <button className="flex flex-col items-center gap-1" onClick={() => navigate('/cart')}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
@@ -267,14 +320,14 @@ export default function ProfilePage() {
               <circle cx="20" cy="21" r="1" />
               <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
             </svg>
-            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>My Cart</span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('navigation.myCart')}</span>
           </button>
           <button className="flex flex-col items-center gap-1" onClick={() => navigate('/profile')}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-primary-red)' }}>
               <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
-            <span className="text-xs font-semibold" style={{ color: 'var(--color-primary-red)' }}>Profile</span>
+            <span className="text-xs font-semibold" style={{ color: 'var(--color-primary-red)' }}>{t('navigation.profile')}</span>
           </button>
         </div>
       </div>

@@ -1,5 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useAppDispatch, useAppSelector } from '@/hooks/useRedux'
+import { toggleFavorite } from '@/store/slices/favoritesSlice'
+import { allMealsList } from '@/data/meals'
 
 const banners = [
   {
@@ -8,7 +12,7 @@ const banners = [
     description: 'Loved by thousands, Your new favorite burger is here!',
     image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
     buttonText: 'Order now',
-    mealId: '1',
+    mealId: 'jumbo-burger',
   },
   {
     id: 2,
@@ -16,7 +20,7 @@ const banners = [
     description: 'Handmade dough, premium cheese, oven baked to perfection',
     image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400',
     buttonText: 'Order now',
-    mealId: '2',
+    mealId: 'margherita-pizza',
   },
   {
     id: 3,
@@ -24,62 +28,32 @@ const banners = [
     description: 'Fresh ingredients, healthy living starts with a good meal',
     image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400',
     buttonText: 'Order now',
-    mealId: '3',
+    mealId: 'caesar-salad',
   },
 ]
 
 const categories = [
   { id: 'burgers', name: 'Burger', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=200' },
-  { id: 'pizza', name: 'Pizza', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200' },
-  { id: 'chicken', name: 'Chicken', image: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=200' },
-  { id: 'grill', name: 'Salad', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200' },
+  { id: 'pizza', name: 'Pizza', image: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=200' },
+  { id: 'chicken', name: 'Chicken', image: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=200' },
+  { id: 'grill', name: 'Salad', image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=200' },
 ]
 
-const popularMeals = [
-  {
-    id: 'burgers',
-    name: 'Jumbo Burger',
-    restaurant: 'Burger Factory',
-    price: 12.99,
-    rating: 4.8,
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400',
-  },
-  {
-    id: 'pizza',
-    name: 'Margherita Pizza',
-    restaurant: 'Pizza Palace',
-    price: 14.99,
-    rating: 4.9,
-    image: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=400',
-  },
-  {
-    id: 'chicken',
-    name: 'Grilled Chicken',
-    restaurant: 'Chicken Bros',
-    price: 11.49,
-    rating: 4.7,
-    image: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?w=400',
-  },
-  {
-    id: 'grill',
-    name: 'Caesar Salad',
-    restaurant: 'Green Garden',
-    price: 9.99,
-    rating: 4.6,
-    image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400',
-  },
-  {
-    id: 'sushi',
-    name: 'Spaghetti Carbonara',
-    restaurant: 'Pasta House',
-    price: 13.49,
-    rating: 4.8,
-    image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400',
-  },
-]
+const popularMeals = allMealsList.slice(0, 6).map((meal) => ({
+  id: meal.id,
+  name: meal.name,
+  restaurant: meal.restaurant,
+  price: meal.price,
+  rating: meal.rating,
+  image: meal.image,
+}))
 
 export default function HomePage() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
+  const dispatch = useAppDispatch()
+  const favorites = useAppSelector((state) => state.favorites.items)
+  const [userName] = useState(() => localStorage.getItem('zesty_user_name') || 'Abdullah')
   const [currentSlide, setCurrentSlide] = useState(0)
   const [offset, setOffset] = useState(0)
   const [animate, setAnimate] = useState(true)
@@ -209,7 +183,7 @@ export default function HomePage() {
             style={{ backgroundColor: 'var(--color-bg-card)' }}
           >
             <div className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: 'var(--gradient-primary)' }}>
-              <span className="text-xs font-bold text-white">A</span>
+              <span className="text-xs font-bold text-white">{userName.charAt(0).toUpperCase()}</span>
             </div>
           </button>
           <div className="flex flex-1 items-center gap-2 rounded-2xl px-4 py-2.5" style={{ backgroundColor: 'var(--color-bg-card)' }}>
@@ -219,7 +193,7 @@ export default function HomePage() {
             </svg>
             <input
               type="text"
-              placeholder="Search"
+              placeholder={t('home.searchPlaceholder')}
               className="flex-1 bg-transparent text-sm outline-none"
               style={{ color: 'var(--color-text-primary)' }}
             />
@@ -236,7 +210,7 @@ export default function HomePage() {
         </div>
         <div className="pt-4 pb-2">
           <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
-            What meal Do You Want?
+            What Meal Do You Want?
           </h2>
         </div>
       </div>
@@ -343,21 +317,21 @@ export default function HomePage() {
       <div className="px-4 pb-8">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
-            Categories
+            {t('home.categories')}
           </h2>
           <button
             onClick={() => navigate('/categories')}
             className="text-sm font-medium"
             style={{ color: 'var(--color-primary-red)' }}
           >
-            See all
+            {t('home.seeAll')}
           </button>
         </div>
         <div className="grid grid-cols-4 gap-3">
           {categories.map((category, index) => (
             <button
               key={index}
-              onClick={() => navigate(`/meal/${category.id}`)}
+              onClick={() => navigate('/categories')}
               className="flex flex-col items-center gap-2"
             >
               <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-full" style={{ backgroundColor: 'var(--color-bg-card)' }}>
@@ -375,10 +349,10 @@ export default function HomePage() {
       <div className="px-4 pb-8">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="font-heading text-lg font-bold" style={{ color: 'var(--color-text-primary)' }}>
-            Popular Meals
+            {t('home.popularMeals')}
           </h2>
-          <button className="text-sm font-medium" style={{ color: 'var(--color-primary-red)' }}>
-            See all
+          <button onClick={() => navigate('/categories')} className="text-sm font-medium" style={{ color: 'var(--color-primary-red)' }}>
+            {t('home.viewAll')}
           </button>
         </div>
         <div className="flex flex-col gap-4">
@@ -392,10 +366,26 @@ export default function HomePage() {
               <div className="relative h-24 w-24 flex-shrink-0">
                 <img src={meal.image} alt={meal.name} className="h-full w-full object-cover" />
                 <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    dispatch(toggleFavorite({
+                      id: meal.id,
+                      name: meal.name,
+                      description: '',
+                      price: meal.price,
+                      category: '',
+                      image: meal.image,
+                      rating: meal.rating,
+                      reviews: 0,
+                      isAvailable: true,
+                      createdAt: '',
+                      updatedAt: '',
+                    }))
+                  }}
                   className="absolute right-1.5 top-1.5 flex h-7 w-7 items-center justify-center rounded-full"
                   style={{ backgroundColor: 'var(--color-bg-card)' }}
                 >
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-primary-red)" stroke="var(--color-primary-red)" strokeWidth="2">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill={favorites.some((f) => f.id === meal.id) ? 'var(--color-primary-red)' : 'none'} stroke="var(--color-primary-red)" strokeWidth="2">
                     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
                   </svg>
                 </button>
@@ -437,7 +427,7 @@ export default function HomePage() {
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
-            <span className="text-xs font-medium" style={{ color: 'var(--color-primary-red)' }}>Home</span>
+            <span className="text-xs font-medium" style={{ color: 'var(--color-primary-red)' }}>{t('navigation.home')}</span>
           </button>
           <button className="flex flex-col items-center gap-1" onClick={() => navigate('/categories')}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
@@ -446,7 +436,7 @@ export default function HomePage() {
               <rect x="14" y="14" width="7" height="7" />
               <rect x="3" y="14" width="7" height="7" />
             </svg>
-            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Categories</span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('navigation.categories')}</span>
           </button>
           <button className="flex flex-col items-center gap-1" onClick={() => navigate('/cart')}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
@@ -454,14 +444,14 @@ export default function HomePage() {
               <circle cx="20" cy="21" r="1" />
               <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6" />
             </svg>
-            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>My Cart</span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('navigation.myCart')}</span>
           </button>
           <button className="flex flex-col items-center gap-1" onClick={() => navigate('/profile')}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-muted)' }}>
               <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
               <circle cx="12" cy="7" r="4" />
             </svg>
-            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Profile</span>
+            <span className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{t('navigation.profile')}</span>
           </button>
         </div>
       </div>
