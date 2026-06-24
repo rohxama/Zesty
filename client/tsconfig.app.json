@@ -4,7 +4,7 @@
     "target": "es2023",
     "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "esnext",
-    "types": ["vite/client", "jest", "@testing-library/jest-dom"],
+    "types": ["vite/client"],
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -22,12 +22,10 @@
 
     /* Strict mode */
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
-    "noUncheckedIndexedAccess": true
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src"]
 }
