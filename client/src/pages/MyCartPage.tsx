@@ -35,6 +35,10 @@ export default function MyCartPage() {
     )
   }
 
+  const removeItem = (id: string) => {
+    setItems((prev) => prev.filter((item) => item.id !== id))
+  }
+
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0)
   const delivery = 10.00
   const total = subtotal + delivery
@@ -128,6 +132,16 @@ export default function MyCartPage() {
                 ${(item.price * item.quantity).toFixed(2)}
               </span>
             </div>
+            <button
+              onClick={() => removeItem(item.id)}
+              className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full"
+              style={{ backgroundColor: 'var(--color-bg-hover)' }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{ color: 'var(--color-text-muted)' }}>
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
           </div>
         ))}
       </div>
