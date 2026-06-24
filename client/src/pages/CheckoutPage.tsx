@@ -39,9 +39,8 @@ export default function CheckoutPage() {
           style={{ backgroundColor: 'var(--color-bg-card)' }}
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ color: 'var(--color-text-primary)' }}>
-            <circle cx="12" cy="12" r="1" />
-            <circle cx="19" cy="12" r="1" />
-            <circle cx="5" cy="12" r="1" />
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 01-3.46 0" />
           </svg>
         </button>
       </div>
@@ -264,7 +263,6 @@ export default function CheckoutPage() {
           </div>
           <div className="flex justify-between">
             <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Delivery: ${delivery.toFixed(2)}</span>
-            <span className="font-body text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>${delivery.toFixed(2)}</span>
           </div>
           <div className="border-t pt-3" style={{ borderColor: 'var(--color-border-color)' }}>
             <div className="flex justify-between">
