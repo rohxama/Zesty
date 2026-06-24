@@ -9,8 +9,8 @@ export default function CheckoutPage() {
   const cartItems = useAppSelector((state) => state.cart.items)
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.food.price * item.quantity, 0)
-  const delivery = cartItems.length > 0 ? 10.00 : 0
-  const total = subtotal + delivery
+  const delivery = 10.00
+  const total = cartItems.length > 0 ? subtotal + delivery : 0
 
   return (
     <div
