@@ -263,7 +263,7 @@ export default function CheckoutPage() {
             <span className="font-body text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>${subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Delivery</span>
+            <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>Delivery: ${delivery.toFixed(2)}</span>
             <span className="font-body text-sm font-medium" style={{ color: 'var(--color-text-primary)' }}>${delivery.toFixed(2)}</span>
           </div>
           <div className="border-t pt-3" style={{ borderColor: 'var(--color-border-color)' }}>
