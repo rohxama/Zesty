@@ -281,3 +281,12 @@ html.light {
     font-weight: 700;
   }
 }
+
+/* Mobile shell: contains fixed-position children (bottom navs) inside the 390px box on desktop */
+@media (min-width: 391px) {
+  .app-shell {
+    position: relative;
+    transform: translateZ(0);
+    box-shadow: 0 0 0 9999px var(--color-bg-main);
+  }
+}

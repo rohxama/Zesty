@@ -23,7 +23,7 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-          <div className="mx-auto min-h-screen max-w-[390px] overflow-hidden">
+          <div className="app-shell mx-auto min-h-screen max-w-[390px] overflow-hidden">
             <RouterProvider router={router} />
           </div>
         </ThemeProvider>
