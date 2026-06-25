@@ -41,6 +41,7 @@ html.light {
 
   html {
     font-family: var(--font-body);
+    overflow-x: hidden;
   }
 
   body {
@@ -52,6 +53,7 @@ html.light {
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
