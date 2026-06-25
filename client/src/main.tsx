@@ -23,8 +23,14 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
-          <div className="app-shell mx-auto min-h-screen max-w-[390px] overflow-hidden">
-            <RouterProvider router={router} />
+          <div className="phone-simulator">
+            <div className="phone-notch">
+              <div className="phone-notch-pill" />
+            </div>
+            <div className="phone-screen app-shell">
+              <RouterProvider router={router} />
+            </div>
+            <div className="phone-home-bar" />
           </div>
         </ThemeProvider>
       </QueryClientProvider>
